@@ -5833,6 +5833,7 @@ ionic.views.Slider = ionic.views.View.inherit({
     var index = parseInt(options.startSlide, 10) || 0;
     var speed = options.speed || 300;
     options.continuous = options.continuous !== undefined ? options.continuous : true;
+    var me = this;
 
     function setup() {
 
@@ -6036,6 +6037,8 @@ ionic.views.Slider = ionic.views.View.inherit({
     var delta = {};
     var isScrolling;
 
+    me.stopPro = true;
+
     // setup event capturing
     var events = {
 
@@ -6062,7 +6065,7 @@ ionic.views.Slider = ionic.views.View.inherit({
           case 'resize': offloadFn(setup); break;
         }
 
-        if (options.stopPropagation) event.stopPropagation();
+        // event.stopPropagation();
 
       },
       start: function(event) {
@@ -6099,10 +6102,14 @@ ionic.views.Slider = ionic.views.View.inherit({
       },
       move: function(event) {
 
+
         // ensure swiping with one touch and not pinching
         if ( event.touches.length > 1 || event.scale && event.scale !== 1) return
 
         if (options.disableScroll) event.preventDefault();
+        if(me.disabled){
+          return;
+        }
 
         var touches = event.touches[0];
 
@@ -6111,6 +6118,15 @@ ionic.views.Slider = ionic.views.View.inherit({
           x: touches.pageX - start.x,
           y: touches.pageY - start.y
         }
+
+        if( index == 0 && delta.x > 0 ){
+          return;
+        }
+        if( index == me.slidesCount() - 1 && delta.x < 0 ){
+          event.stopPropagation();
+          return;
+        }
+        event.stopPropagation();
 
         // determine if scrolling test has run - one time test
         if ( typeof isScrolling == 'undefined') {
@@ -6154,6 +6170,9 @@ ionic.views.Slider = ionic.views.View.inherit({
 
       },
       end: function(event) {
+        console.log('end');
+
+        me.enable();
 
         // measure duration
         var duration = +new Date - start.time;
@@ -6318,6 +6337,18 @@ ionic.views.Slider = ionic.views.View.inherit({
       // return current index position
       return index;
     };
+
+    this.stopPropagation = function(stop){
+      return stop ? true : false;
+    };
+
+    this.disable = function(){
+      this.disabled = true;
+    }
+
+    this.enable = function(){
+      this.disabled = false;
+    }
 
     /**
      * @ngdoc method
