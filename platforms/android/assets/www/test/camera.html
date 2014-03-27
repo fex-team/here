@@ -1,0 +1,13 @@
+<script src="../cordova.js"></script>
+<script>
+	var host = window.location.host;
+	
+	function capture(){
+		window.here.openCamera("http://"+host+"/mask.html",function(a){
+			console.info(a);
+		},function(){
+			
+		});
+	}
+</script>
+<button onclick="capture()">拍照</button>

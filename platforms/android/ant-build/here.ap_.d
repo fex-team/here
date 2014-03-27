@@ -51,6 +51,7 @@ D:\project\here\hybrid\platforms\android\assets\www\mask.html \
 D:\project\here\hybrid\platforms\android\assets\www\plugins \
 D:\project\here\hybrid\platforms\android\assets\www\res \
 D:\project\here\hybrid\platforms\android\assets\www\templates \
+D:\project\here\hybrid\platforms\android\assets\www\test \
 D:\project\here\hybrid\platforms\android\assets\www\css\app.css \
 D:\project\here\hybrid\platforms\android\assets\www\datas\home.json \
 D:\project\here\hybrid\platforms\android\assets\www\img\ionic.png \
@@ -233,4 +234,5 @@ D:\project\here\hybrid\platforms\android\assets\www\templates\home.html \
 D:\project\here\hybrid\platforms\android\assets\www\templates\setting.html \
 D:\project\here\hybrid\platforms\android\assets\www\templates\side_menu.html \
 D:\project\here\hybrid\platforms\android\assets\www\templates\zone.html \
+D:\project\here\hybrid\platforms\android\assets\www\test\camera.html \
 D:\project\here\hybrid\platforms\android\ant-build\AndroidManifest.xml \
