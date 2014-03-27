@@ -1,8 +1,24 @@
 D:\project\here\hybrid\platforms\android\ant-build\classes.dex : \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\CameraActivity$1.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\CameraActivity$2.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\CameraActivity$CameraLisenter.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\CameraActivity.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\CameraPreview$LayoutMode.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\CameraPreview$PreviewReadyCallback.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\CameraPreview.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\Plugin$1$1.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\Plugin$1.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\Plugin.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\ResizableCameraPreview.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\Result.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\Utils$LocationListener.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\camera\Utils.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\BuildConfig.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\here.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\R$attr.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\R$drawable.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\R$id.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\R$layout.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\R$string.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\R$xml.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\com\baidu\fex\here\R.class \
@@ -110,3 +126,5 @@ D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\me
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\splashscreen\SplashScreen.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\vibration\Vibration.class \
 D:\project\here\hybrid\platforms\android\ant-build\dexedLibs\classes-bf2027a250c8b558c0a9ceac0f3045f0.jar \
+D:\project\here\hybrid\platforms\android\ant-build\dexedLibs\locSDK_4.1-4a46286b3a3be537e2e332e6bef75468.jar \
+D:\project\here\hybrid\platforms\android\ant-build\dexedLibs\gson-2.2.4-b6655936964e4d437f6da4c096d14266.jar \

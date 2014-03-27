@@ -17,10 +17,23 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 			window.history.back();
 		}
 	}];
+
+	$scope.attendees = [{
+		firstname : 'Nicolas',
+		lastname : 'Cage'
+	}, {
+		firstname : 'Jean-Claude',
+		lastname : 'Van Damme'
+	}, {
+		firstname : 'Keanu',
+		lastname : 'Reeves'
+	}, {
+		firstname : 'Steven',
+		lastname : 'Seagal'
+	}];
 }).controller('MenuContentController', function($scope, $element){
 	$scope.candrag = true;
 	$scope.$on('candrag', function(event, can){
 		$scope.candrag = can;
 	});
 } );
-

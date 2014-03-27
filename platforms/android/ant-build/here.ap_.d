@@ -16,6 +16,7 @@ D:\project\here\hybrid\platforms\android\res\drawable-xhdpi\ic_action_remove.png
 D:\project\here\hybrid\platforms\android\res\drawable-xxhdpi\ic_action_next_item.png \
 D:\project\here\hybrid\platforms\android\res\drawable-xxhdpi\ic_action_previous_item.png \
 D:\project\here\hybrid\platforms\android\res\drawable-xxhdpi\ic_action_remove.png \
+D:\project\here\hybrid\platforms\android\res\layout\activity_main.xml \
 D:\project\here\hybrid\platforms\android\res\values\strings.xml \
 D:\project\here\hybrid\platforms\android\res\xml\config.xml \
 D:\project\here\hybrid\platforms\android\ant-build\res\drawable\icon.png \
@@ -46,6 +47,7 @@ D:\project\here\hybrid\platforms\android\assets\www\img \
 D:\project\here\hybrid\platforms\android\assets\www\index.html \
 D:\project\here\hybrid\platforms\android\assets\www\js \
 D:\project\here\hybrid\platforms\android\assets\www\lib \
+D:\project\here\hybrid\platforms\android\assets\www\mask.html \
 D:\project\here\hybrid\platforms\android\assets\www\plugins \
 D:\project\here\hybrid\platforms\android\assets\www\res \
 D:\project\here\hybrid\platforms\android\assets\www\templates \
@@ -105,6 +107,7 @@ D:\project\here\hybrid\platforms\android\assets\www\lib\js\angular\version.json 
 D:\project\here\hybrid\platforms\android\assets\www\lib\js\angular\version.txt \
 D:\project\here\hybrid\platforms\android\assets\www\lib\js\angular-ui\angular-ui-router.js \
 D:\project\here\hybrid\platforms\android\assets\www\lib\js\angular-ui\angular-ui-router.min.js \
+D:\project\here\hybrid\platforms\android\assets\www\plugins\com.baidu.fex.here.camera \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.contacts \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.dialogs \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file \
@@ -114,6 +117,8 @@ D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.i
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.media \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.splashscreen \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.vibration \
+D:\project\here\hybrid\platforms\android\assets\www\plugins\com.baidu.fex.here.camera\www \
+D:\project\here\hybrid\platforms\android\assets\www\plugins\com.baidu.fex.here.camera\www\here.js \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.contacts\www \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.contacts\www\Contact.js \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.contacts\www\ContactAddress.js \
