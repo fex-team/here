@@ -1,8 +1,38 @@
 /* Your app's CSS, go crazy, make it your own */
 
 .ionic-logo {
-  display: block;
-  margin: 15px auto;
-  width: 96px;
-  height: 96px;
+	display: block;
+	margin: 15px auto;
+	width: 96px;
+	height: 96px;
 }
+#page-home .row,#page-detail .row {
+	display: block;
+}
+
+#page-home .row:after,#page-detail .row:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+#page-home .gallery-item {
+	width: 25%;
+	float: left;
+}
+#page-home .gallery-item img {
+	width: 100%;
+}
+#page-home .gallery-item label {
+	text-align: center;
+	display: block;
+}
+
+#page-detail .gallery-item {
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+

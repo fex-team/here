@@ -16,6 +16,7 @@ D:\project\here\hybrid\platforms\android\res\drawable-xhdpi\ic_action_remove.png
 D:\project\here\hybrid\platforms\android\res\drawable-xxhdpi\ic_action_next_item.png \
 D:\project\here\hybrid\platforms\android\res\drawable-xxhdpi\ic_action_previous_item.png \
 D:\project\here\hybrid\platforms\android\res\drawable-xxhdpi\ic_action_remove.png \
+D:\project\here\hybrid\platforms\android\res\layout\activity_main.xml \
 D:\project\here\hybrid\platforms\android\res\values\strings.xml \
 D:\project\here\hybrid\platforms\android\res\xml\config.xml \
 D:\project\here\hybrid\platforms\android\ant-build\res\drawable\icon.png \
