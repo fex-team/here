@@ -8,34 +8,34 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
         if( /275/.test(angular.element(document.querySelector('#ion-pane')).css('-webkit-transform')) ){
             $scope.slideBoxController.disable();
             $rootScope.$broadcast('closeSlideMenu');
-            // setTimeout(function(){
-            //     $scope.slideBoxController.enable();
-            // }, 400);
+            $rootScope.$broadcast('candrag', false);
         }
-        // $scope.slideBoxController.stopPropagation(true);
     });
 
-    $scope.slide = function(){
-        // $scope.slideBoxController.stopPropagation(true);
-    }
+    $element.bind('touchend mouseup', function(e){
+        $rootScope.$broadcast('candrag', true);
+    });
+
 }).controller('SliderCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $ionicSideMenuDelegate){
-    // console.log($element);
+
     $element.bind('touchstart mousedown', function(e){
         // slidemenu打开时
         if( /275/.test(angular.element(document.querySelector('#ion-pane')).css('-webkit-transform')) ){
             $scope.slideBoxController.disable();
             $rootScope.$broadcast('closeSlideMenu');
+            $rootScope.$broadcast('candrag', false);
         }
-        // $scope.slideBoxController.stopPropagation(true);
+    });
+
+    $element.bind('touchend mouseup', function(e){
+        $rootScope.$broadcast('candrag', true);
     });
 
     $scope.slide = function(){
         if($scope.slideBoxController.currentIndex() == 0){
             $rootScope.$broadcast('candrag', true);
-            // $scope.slideBoxController.stopPropagation(false);
         }else{
             $rootScope.$broadcast('candrag', false);
-            // $scope.slideBoxController.stopPropagation(true);
         }
     }
 });

@@ -6170,7 +6170,6 @@ ionic.views.Slider = ionic.views.View.inherit({
 
       },
       end: function(event) {
-        console.log('end');
 
         me.enable();
 
@@ -6336,10 +6335,6 @@ ionic.views.Slider = ionic.views.View.inherit({
     this.currentIndex = function() {
       // return current index position
       return index;
-    };
-
-    this.stopPropagation = function(stop){
-      return stop ? true : false;
     };
 
     this.disable = function(){

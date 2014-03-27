@@ -35,5 +35,6 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 	$scope.candrag = true;
 	$scope.$on('candrag', function(event, can){
 		$scope.candrag = can;
+		$scope.$apply();
 	});
 } );
