@@ -37,5 +37,14 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
         }else{
             $rootScope.$broadcast('candrag', false);
         }
+
+        $rootScope.$broadcast('homeSlide', $scope.slideBoxController.currentIndex());
     }
-});
+}).controller('HomeTabController', function($rootScope, $scope){
+    $scope.$on('homeSlide', function(e, index){
+        var tabs = angular.element(document.querySelector('#homeTabs')).children();
+        var currentTab = tabs[index];
+        angular.element(tabs).removeClass('active');
+        angular.element(currentTab).addClass('active');
+    });
+})
