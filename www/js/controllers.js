@@ -7,6 +7,10 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 		}
 	}];
 
+	$scope.$on('closeSlideMenu', function(event){
+		$ionicSideMenuDelegate.close($scope.$$childHead);
+	});
+
 	$scope.back = [{
 		type : 'button back-button button-icon icon ion-arrow-left-c button back-button button-icon icon ion-arrow-left-c',
 		tap : function(e) {
@@ -27,12 +31,10 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 		firstname : 'Steven',
 		lastname : 'Seagal'
 	}];
-}).controller('homelist', function($scope, $http) {
-
-	$http.get('datas/home.json').success(function(data) {
-		$scope.list = eval(data);
+}).controller('MenuContentController', function($scope, $element){
+	$scope.candrag = true;
+	$scope.$on('candrag', function(event, can){
+		$scope.candrag = can;
+		$scope.$apply();
 	});
-	
-	
-
-});
+} );
