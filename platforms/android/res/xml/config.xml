@@ -32,6 +32,10 @@
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
+    <feature name="FileSystemRoots">
+        <param name="android-package" value="org.apache.cordova.filesystemroots.FileSystemRoots" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Here">
         <param name="android-package" value="com.baidu.fex.camera.Plugin" />
     </feature>
@@ -42,6 +46,7 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-    <content src="http://172.22.82.195/test/camera.html" />
+    <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root" />
+    <content src="http://172.22.81.177/test/camera.html" />
     <access origin="*" />
 </widget>

@@ -87,6 +87,7 @@ D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\fi
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\file\LocalFilesystemURL.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\file\NoModificationAllowedException.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\file\TypeMismatchException.class \
+D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\filesystemroots\FileSystemRoots.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\filetransfer\FileProgressResult.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\filetransfer\FileTransfer$1.class \
 D:\project\here\hybrid\platforms\android\ant-build\classes\org\apache\cordova\filetransfer\FileTransfer$2.class \

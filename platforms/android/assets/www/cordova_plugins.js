@@ -263,6 +263,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.file-system-roots/FileSystemRoots.js",
+        "id": "org.apache.cordova.file-system-roots.FileSystemRoots",
+        "clobbers": [
+            "cordova.filesystem"
+        ]
+    },
+    {
         "file": "plugins/com.baidu.fex.here.camera/www/here.js",
         "id": "com.baidu.fex.here.camera.here",
         "clobbers": [
@@ -283,6 +290,7 @@ module.exports.metadata =
     "org.apache.cordova.media": "0.2.9",
     "org.apache.cordova.splashscreen": "0.2.7",
     "org.apache.cordova.vibration": "0.3.7",
+    "org.apache.cordova.file-system-roots": "0.2.0-dev",
     "com.baidu.fex.here.camera": "0.0.1"
 }
 // BOTTOM OF METADATA
