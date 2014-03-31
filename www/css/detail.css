@@ -1,0 +1,18 @@
+.page-detail img {
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1px solid #E2E2E2;
+}
+.page-detail .user-avatar {
+    display: inline-block;
+    border: 2px solid #E2E2E2;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    height: 24px;
+    width: 24px;
+    background-color: #4A87EE;
+    border-radius: 12px;
+}
+.page-detail .nickname {
+    line-height: 24px;
+}
