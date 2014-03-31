@@ -15,6 +15,7 @@
                 "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>": 1,
                 "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /></feature>": 1,
                 "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>": 1,
+                "<feature name=\"FileSystemRoots\"><param name=\"android-package\" value=\"org.apache.cordova.filesystemroots.FileSystemRoots\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
                 "<feature name=\"Here\"><param name=\"android-package\" value=\"com.baidu.fex.camera.Plugin\" /></feature>": 1
             }
         },
@@ -78,6 +79,9 @@
             "PACKAGE_NAME": "com.baidu.fex.here"
         },
         "org.apache.cordova.vibration": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.file-system-roots": {
             "PACKAGE_NAME": "com.baidu.fex.here"
         },
         "com.baidu.fex.here.camera": {

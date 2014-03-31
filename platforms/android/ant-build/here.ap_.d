@@ -51,11 +51,19 @@ D:\project\here\hybrid\platforms\android\assets\www\mask.html \
 D:\project\here\hybrid\platforms\android\assets\www\plugins \
 D:\project\here\hybrid\platforms\android\assets\www\res \
 D:\project\here\hybrid\platforms\android\assets\www\templates \
+D:\project\here\hybrid\platforms\android\assets\www\test \
 D:\project\here\hybrid\platforms\android\assets\www\css\app.css \
+D:\project\here\hybrid\platforms\android\assets\www\css\home.css \
 D:\project\here\hybrid\platforms\android\assets\www\datas\home.json \
+D:\project\here\hybrid\platforms\android\assets\www\img\1.png \
+D:\project\here\hybrid\platforms\android\assets\www\img\2.png \
+D:\project\here\hybrid\platforms\android\assets\www\img\3.png \
+D:\project\here\hybrid\platforms\android\assets\www\img\4.png \
 D:\project\here\hybrid\platforms\android\assets\www\img\ionic.png \
 D:\project\here\hybrid\platforms\android\assets\www\js\app.js \
 D:\project\here\hybrid\platforms\android\assets\www\js\controllers.js \
+D:\project\here\hybrid\platforms\android\assets\www\js\home.js \
+D:\project\here\hybrid\platforms\android\assets\www\js\native.js \
 D:\project\here\hybrid\platforms\android\assets\www\js\services.js \
 D:\project\here\hybrid\platforms\android\assets\www\lib\css \
 D:\project\here\hybrid\platforms\android\assets\www\lib\fonts \
@@ -111,6 +119,7 @@ D:\project\here\hybrid\platforms\android\assets\www\plugins\com.baidu.fex.here.c
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.contacts \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.dialogs \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file \
+D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file-system-roots \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.globalization \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.inappbrowser \
@@ -152,6 +161,7 @@ D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.f
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file\www\requestFileSystem.js \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file\www\resolveLocalFileSystemURI.js \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file\www\android\FileSystem.js \
+D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file-system-roots\FileSystemRoots.js \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer\www \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer\www\FileTransfer.js \
 D:\project\here\hybrid\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer\www\FileTransferError.js \
@@ -233,4 +243,5 @@ D:\project\here\hybrid\platforms\android\assets\www\templates\home.html \
 D:\project\here\hybrid\platforms\android\assets\www\templates\setting.html \
 D:\project\here\hybrid\platforms\android\assets\www\templates\side_menu.html \
 D:\project\here\hybrid\platforms\android\assets\www\templates\zone.html \
+D:\project\here\hybrid\platforms\android\assets\www\test\camera.html \
 D:\project\here\hybrid\platforms\android\ant-build\AndroidManifest.xml \

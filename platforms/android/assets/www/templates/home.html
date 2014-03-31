@@ -1,19 +1,51 @@
+<ion-view title="首页" left-buttons="leftButtons" class="home">
+	<div class="tabs tabs-top" id="homeTabs" ng-controller="HomeTabController">
+		<a class="tab-item active">精华</a>
+		<a class="tab-item">身边</a>
+		<a class="tab-item">收藏</a>
+	</div>
+	<ion-content has-header="true" ng-controller="HomeController">
+		<ion-slide-box class="tab-slide" show-pager="false" ng-controller="SliderCollection" on-slide-changed="slide()">
+			<ion-slide>
+			    <div class="pride-slide">
+			    	<!-- 轮播图 -->
+			    	<div class="slider-container" ng-controller="RecommendCollection">
+				    	<ion-slide-box class="tab-slide recommend-collection" on-slide-changed="slide()">
+							<ion-slide ng-repeat="recommend in recommends">
+							    <img ng-src="{{recommend.src}}" width="100%" height="132px" />
+							</ion-slide>
+						</ion-slide-box>
+						<p id="recommendPosition"></p>
+					</div>
 
-<ion-view title="首页" left-buttons="leftButtons" id="page-home">
-	<ion-content has-header="true" padding="true" ng-controller="homelist">
-		<div ng-repeat="group in list">
-			<div class="item item-divider">
-				{{group.title}}
-			</div>
-			<div class="row">
-				
-				<a href="#/detail" class="gallery-item" ng-repeat="item in group.datas">
-					
-					<img ng-src="{{item.img}}"/>
-					<label>{{item.text}}</label>
-				</a>
-			</div>
-		</div>
-
+					<div class="hot-groups" ng-controller="HotGroup">
+						<div class="group" ng-repeat="group in groups">
+							<figure class="stack stack-peekaboo active">
+								<img ng-src="{{photo}}" ng-repeat="photo in group.photos">
+							</figure>
+							<p>{{group.position}}</p>
+						</div>
+					</div>
+			    </div>
+			</ion-slide>
+			<ion-slide>
+				<div class="beside-slide">
+					<div class="test-content">
+						balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />
+						balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />
+						balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />
+					</div>
+			    </div>
+			</ion-slide>
+			<ion-slide>
+				<div class="favorites-slide">
+					<div class="test-content">
+						balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />
+						balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />
+						balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />balabalabala...<br />
+					</div>
+			    </div>
+			</ion-slide>
+		</ion-slide-box>
 	</ion-content>
 </ion-view>
