@@ -1,4 +1,4 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -50,11 +50,43 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
       	}
       }
       
+    }).state('login', {
+      url: "/login",
+      views:{
+      	'pager':{
+      		templateUrl: "templates/login.html"
+      	}
+      }
+      
+    }).state('register', {
+      url: "/register",
+      views:{
+      	'pager':{
+      		templateUrl: "templates/register.html"
+      	}
+      }
+      
     }).state('capture', {
       url: "/capture?group_id",
       views:{
       	'pager':{
       		templateUrl: "templates/capture.html"
+      	}
+      }
+      
+    }).state('about_us', {
+      url: "/about_us",
+      views:{
+      	'pager':{
+      		templateUrl: "templates/about_us.html"
+      	}
+      }
+      
+    }).state('guide', {
+      url: "/guide",
+      views:{
+      	'pager':{
+      		templateUrl: "templates/guide.html"
       	}
       }
       
