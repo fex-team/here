@@ -1,0 +1,48 @@
+.sidemenu-bg{
+	background: url("images/black-overlay.jpg") no-repeat center center;
+}
+.sidemenu-bg{
+	color:#fff;
+}
+.sidemenu-bg .item{
+	background: transparent;
+	color:#fff;
+	border-color:rgba(255,255,255,0.2);
+}
+.sidemenu-bg a.item:after{
+	color:#ebebeb;
+}
+.sidemenu-bg a.item.active{
+	background-color: rgba(255,255,255,0.2) !important;
+}
+
+.sidemenu-photo{
+	text-align: center;
+}
+.sidemenu-photo img{
+	width: 60px;
+	height: 60px;
+	-webkit-border-radius:30px;
+	padding: 2px;
+	background: #fff; 
+}
+.sidemenu-hd label{
+	display: block;
+	text-align: center;
+	color: #fff;
+	font-size:15px;
+	
+}
+.sidemenu-hd{
+	margin: 30px 0;
+}
+.icon-camera-big{
+	width: 46px;
+	height: 44.5px;
+	background: url("images/camera_big.png") no-repeat;
+	background-size: contain;
+}
+.sidemenu-fd label{
+	display: block;
+	text-align: center;
+}
