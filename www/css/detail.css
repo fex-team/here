@@ -16,3 +16,31 @@
 .page-detail .nickname {
     line-height: 24px;
 }
+.page-detail .actions {
+    text-align: right;
+}
+.comment-panel {
+    background-color: #E3E2E2;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.comment-panel .user-avatar {
+    border-color: #FFF;
+}
+.comment-panel .comment-input {
+    width: calc(100% - 50px);
+    float: left;
+    height: 30px;
+    line-height: 26px;
+    padding: 2px 5px;
+}
+.comment-panel .comment-submit {
+    height: 30px;
+    width: 40px;
+    background-color: #3B8AD3;
+    border: 1px solid #E1E1E1;
+    color: #FFF;
+    font-size: 12px;
+    line-height: 26px;
+    margin-left: 10px;
+}
