@@ -12,7 +12,7 @@
 
 			function capture() {
 				window.here.openCamera("http://" + host + "/mask.html", function(a) {
-					console.info(a);
+					
 					a = eval("("+a+")");
 					NATIVE.displayImage(a.filepath,document.getElementById("preview"));
 				}, function() {

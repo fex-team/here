@@ -1,4 +1,4 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -39,6 +39,22 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
       views:{
       	'pager':{
       		templateUrl: "templates/detail.html"
+      	}
+      }
+      
+    }).state('capture_confirm', {
+      url: "/capture_confirm?data",
+      views:{
+      	'pager':{
+      		templateUrl: "templates/capture_confirm.html"
+      	}
+      }
+      
+    }).state('capture', {
+      url: "/capture?group_id",
+      views:{
+      	'pager':{
+      		templateUrl: "templates/capture.html"
       	}
       }
       

@@ -8,6 +8,6 @@
         Apache Cordova Team
     </author>
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root" />
-    <content src="http://172.22.81.177/test/camera.html" />
+    <content src="http://172.22.81.214/#capture?group_id=11" />
     <access origin="*" />
 </widget>
