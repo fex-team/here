@@ -1,8 +1,6 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings','detail'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-
-  
   $stateProvider
     .state('sidemenu', {
       url: "/sidemenu",
@@ -95,4 +93,3 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
 	$urlRouterProvider.otherwise("/sidemenu/home");
 	
 });
-

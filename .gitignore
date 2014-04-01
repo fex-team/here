@@ -4,5 +4,5 @@ target
 .settings
 .classpath
 .project
+.psd
 /config.xml
-/platforms/*
