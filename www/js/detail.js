@@ -1,18 +1,25 @@
 angular.module('detail', ['ionic', 'hereApp.controllers'])
 .controller('DetailController', function($scope, $stateParams, $http) {
     console.log($stateParams);
-    $http.get('http://localhost/end/here/here/api/get_group?groupId=' + $stateParams.groupId).
-        success(function(response) {
-            response.data.photos.forEach(function(photo, index){
-                photo['src'] = 'http://localhost/end/here/here/api/img?hash=' + photo.hash;
-                photo.commentShow = false;
-            });
-            console.log(response.data);
-            $scope.group = response.data;
-            angular.element(document.querySelector('#detail-header')).find('h1').html(response.data.name);
-        }).error(function(data, status, headers, config) {
-          
-        });
+
+    Here.api.get('/api/get_group', {
+                    groupId: $stateParams.groupId
+                }, {
+                    success: function(data){
+                        data.photos.forEach(function(photo, index){
+                            photo['src'] = 'http://localhost/end/here/here/api/img?hash=' + photo.hash;
+                            photo.commentShow = false;
+                        });
+                        console.log(data);
+                        $scope.group = data;
+                        $scope.$apply();
+                        angular.element(document.querySelector('#detail-header')).find('h1').html(data.name);
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
+
 
     // 显示评论区域
     $scope.showComment = function(){
@@ -22,20 +29,26 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
         $scope.group.photos.forEach(function(photo){
             if( photoId === photo.id ){
                 if(photo.commentItems == undefined){
-                    $http.get('http://localhost/end/here/here/api/get_comments?photoId=' + photoId).
-                        success(function(response) {
-                            $scope.group.photos.forEach(function(photo){
-                                if( photoId === photo.id ){
-                                    photo.commentItems = response.data || [];
-                                }
-                            });
-                        }).error(function(data, status, headers, config) {
-                          
-                        });
-                }
+                    Here.api.get('/api/get_comments', {
+                                    photoId: photoId
+                                }, {
+                                    success: function(data) {
+                                        $scope.group.photos.forEach(function(photo){
+                                            if( photoId === photo.id ){
+                                                photo.commentItems = data || [];
+                                            }
+                                        });
+
+                                        $scope.$apply();
+                                    },
+                                    error: function(data) {
+                                      
+                                    }
+                                });
+                }//if
 
                 photo.commentShow = !photo.commentShow;
-            }
+            }//if
         });
     };
 

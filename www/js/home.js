@@ -104,13 +104,20 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
 
         $rootScope.$broadcast('homeSlide', $scope.slideBoxController.currentIndex());
     }
-}).controller('HomeTabController', function($rootScope, $scope){
+
+    $rootScope.slideTo = function(index){
+        $scope.slideBoxController.slide(index);
+    }
+}).controller('HomeTabController', function($rootScope, $scope, $ionicSlideBoxDelegate){
     $scope.$on('homeSlide', function(e, index){
         var tabs = angular.element(document.querySelector('#homeTabs')).children();
         var currentTab = tabs[index];
         angular.element(tabs).removeClass('active');
         angular.element(currentTab).addClass('active');
     });
+
+    console.log($ionicSlideBoxDelegate);
+
 }).controller('HotGroup', function($scope){
     
 })
