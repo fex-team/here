@@ -5,7 +5,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
         success(function(response) {
             response.data.forEach(function(group){
                 group.photos.forEach(function(photo, index){
-                    group.photos[index] = 'http://localhost/end/here/here/api/img?hash=' + photo;
+                    group.photos[index] = 'http://localhost/end/here/here/api/img?mini=1&hash=' + photo;
                 });
             });
 
@@ -50,7 +50,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
             });
 
             $scope.recommends = response.data;
-            angular.element(document.querySelector('#groupName')).html( $scope.recommends[0].name );
+            $scope.currentGroup = $scope.recommends[0].name;
             $timeout(function(){
                 // 强制setup
                 $scope.slideBoxController.setup();
@@ -73,7 +73,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
     });
 
     $scope.slide = function(){
-        angular.element(document.querySelector('#groupName')).html( $scope.recommends[$scope.slideBoxController.currentIndex()].name );
+        $scope.currentGroup = $scope.recommends[$scope.slideBoxController.currentIndex()].name;
     }
 
 }).controller('SliderCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $ionicSideMenuDelegate){

@@ -48,7 +48,8 @@
     clear: both;
 }
 .group {
-    width: 45%;
+    width: 180px;
+    height: 140px;
     float: left;
     position: relative;
     margin: 30px auto;
@@ -56,6 +57,9 @@
 }
 .group:nth-child(odd){
     margin-left: 3%;
+}
+.group a {
+    display: block;
 }
 .group p {
     margin: 0;
@@ -73,7 +77,7 @@
     position: relative;
 }
 .stack img {
-    max-width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;

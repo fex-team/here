@@ -19,6 +19,9 @@
 .page-detail .actions {
     text-align: right;
 }
+.page-detail .img-wrap {
+    text-align: center;
+}
 .comment-panel {
     background-color: #E3E2E2;
     padding: 10px;

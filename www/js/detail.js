@@ -14,6 +14,7 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
           
         });
 
+    // 显示评论区域
     $scope.showComment = function(){
         var photoId = this.photo.id;
 
@@ -36,7 +37,28 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
                 photo.commentShow = !photo.commentShow;
             }
         });
-    }
+    };
+
+    // 关注照片
+    $scope.doFollow = function(){
+        //TODO 先判断登录状态
+        var photoId = this.photo.id;
+        Here.api.post('/api/follow', {
+                            'photoId': photoId
+                        }, {
+                            success: function(data) {
+                                $scope.group.photos.forEach(function(photo){
+                                    if( photoId === photo.id ){
+                                        photo.follows = ++photo.follows;
+                                    }
+                                });
+                                $scope.$apply();
+                            },
+                            error: function(data) {
+                                alert(data.message);
+                            }
+                        });
+    };
 
 })
 .controller('CommentController', function($scope, $element, $http){
@@ -44,7 +66,7 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
     $scope.submitComment = function(){
         var photoId = $element.find('input').attr('data-photoId');
 
-        if($scope.commentContent === ''){
+        if($scope.commentContent === '' || !$scope.commentContent){
             alert('评论内容不能为空！');
             return;
         }
