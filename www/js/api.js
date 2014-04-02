@@ -1,5 +1,5 @@
 Here = window.Here || {};
-Here.serverAddress = 'http://localhost/end/here/here';
+Here.serverAddress = 'http://hereend.duapp.com/here/?m=here';
 Here.api = {
     /**
      * 获取数据的接口
@@ -9,6 +9,8 @@ Here.api = {
      * @param json callbacks 提交后的处理函数定义，含错误(error)和成功(success)两个
      */
     get: function( url, input, callbacks ){
+
+        url = '&c=' + url.split('/')[1] + '&a=' + url.split('/')[2];
         input._t_ = Date.now();
 
         $.get( Here.serverAddress + url, input, function( response ){
@@ -32,6 +34,9 @@ Here.api = {
      * @param json callbacks 提交后的处理函数定义，含错误(error)和成功(success)两个
      */
     post: function( url, input, callbacks ){
+
+        url = '&c=' + url.split('/')[1] + '&a=' + url.split('/')[2];
+        
         if (/ \?/.test(url) ) {
             url += "&_t=" + Date.now();
         } else {
