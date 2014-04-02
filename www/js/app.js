@@ -1,4 +1,4 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings','detail'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings','detail','register','login'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
