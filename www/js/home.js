@@ -5,7 +5,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                     success: function(data){
                         data.forEach(function(group){
                             group.photos.forEach(function(photo, index){
-                                group.photos[index] = Here.serverAddress + '/api/img?mini=1&hash=' + photo;
+                                group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo;
                             });
                         });
 
@@ -50,7 +50,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
     Here.api.get('/api/get_recommends', {}, {
                     success: function(data){
                         data.forEach(function(group){
-                            group.src = Here.serverAddress + '/api/img?hash=' + group.hash;
+                            group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
                         });
 
                         $scope.recommends = data;
