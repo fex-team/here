@@ -1,18 +1,21 @@
 angular.module('home', ['ionic', 'hereApp.controllers'])
-.controller('HomeController', function($scope, $ionicSideMenuDelegate, $http) {
+.controller('HomeController', function($scope, $ionicSideMenuDelegate) {
 
-    $http({method: 'GET', url: 'http://localhost/end/here/here/api/get_hots'}).
-        success(function(response) {
-            response.data.forEach(function(group){
-                group.photos.forEach(function(photo, index){
-                    group.photos[index] = 'http://localhost/end/here/here/api/img?mini=1&hash=' + photo;
+    Here.api.get('/api/get_hots', {}, {
+                    success: function(data){
+                        data.forEach(function(group){
+                            group.photos.forEach(function(photo, index){
+                                group.photos[index] = Here.serverAddress + '/api/img?mini=1&hash=' + photo;
+                            });
+                        });
+
+                        $scope.hotgroups = data;
+                        $scope.$apply();
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
                 });
-            });
-
-            $scope.hotgroups = response.data;
-        }).error(function(data, status, headers, config) {
-          
-        });
 
     $scope.besidegroups = [{
                         photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
@@ -42,22 +45,26 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                         name: '上海'
                     }];
 
-}).controller('RecommendCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $timeout, $http){
-    $http({method: 'GET', url: 'http://localhost/end/here/here/api/get_recommends'}).
-        success(function(response) {
-            response.data.forEach(function(group){
-                group.src = 'http://localhost/end/here/here/api/img?hash=' + group.hash;
-            });
+}).controller('RecommendCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $timeout){
 
-            $scope.recommends = response.data;
-            $scope.currentGroup = $scope.recommends[0].name;
-            $timeout(function(){
-                // 强制setup
-                $scope.slideBoxController.setup();
-            }, 100);
-        }).error(function(data, status, headers, config) {
-          
-        });
+    Here.api.get('/api/get_recommends', {}, {
+                    success: function(data){
+                        data.forEach(function(group){
+                            group.src = Here.serverAddress + '/api/img?hash=' + group.hash;
+                        });
+
+                        $scope.recommends = data;
+                        $scope.currentGroup = $scope.recommends[0].name;
+                        $timeout(function(){
+                            // 强制setup
+                            $scope.slideBoxController.setup();
+                        }, 100);
+                        $scope.$apply();
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
 
     $element.bind('touchstart mousedown', function(e){
         // slidemenu打开时
@@ -116,7 +123,6 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
         angular.element(currentTab).addClass('active');
     });
 
-    console.log($ionicSlideBoxDelegate);
 
 }).controller('HotGroup', function($scope){
     

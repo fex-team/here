@@ -1,5 +1,5 @@
 angular.module('detail', ['ionic', 'hereApp.controllers'])
-.controller('DetailController', function($scope, $stateParams, $http) {
+.controller('DetailController', function($scope, $stateParams) {
     console.log($stateParams);
 
     Here.api.get('/api/get_group', {
@@ -74,7 +74,7 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
     };
 
 })
-.controller('CommentController', function($scope, $element, $http){
+.controller('CommentController', function($scope, $element){
 
     $scope.submitComment = function(){
         var photoId = $element.find('input').attr('data-photoId');
