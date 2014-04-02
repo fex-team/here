@@ -5,19 +5,29 @@
 		<ion-nav-view name="menuContent" animation="no"></ion-nav-view>
 	</ion-pane>
 
-	<ion-side-menu side="left">
-		<header class="bar bar-header bar-assertive">
-			<div class="title">
-				dsaadsd
+	<ion-side-menu side="left" class="sidemenu-bg">
+
+		<ion-content >
+			<div class="sidemenu-hd">
+				<div class="sidemenu-photo">
+					<img src="http://tp4.sinaimg.cn/2129028663/180/5684393877/1"/>
+				</div>
+
+				<label>威廉萌</label>
 			</div>
-		</header>
-		<ion-content has-header="true">
 			<ul class="list">
 				<a href="#/sidemenu/home" class="item">首页</a>
 				<a href="#/sidemenu/zone" class="item">我的空间</a>
 				<a href="#/sidemenu/setting" class="item">设置</a>
-				
+
 			</ul>
+			<div class="sidemenu-fd">
+				<div style="text-align: center;" ng-controller="capture_start">
+					<a class="button button-icon icon icon-camera-big"></a>
+					
+				</div>
+				<label>分享</label>
+			</div>
 		</ion-content>
 	</ion-side-menu>
 

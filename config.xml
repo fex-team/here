@@ -8,6 +8,14 @@
         Apache Cordova Team
     </author>
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root" />
-    <content src="http://172.22.81.177/test/camera.html" />
+
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="10000" />
+
+    <feature name="SplashScreen">  
+ 		<param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />  
+	</feature> 
+
+    <content src="http://172.22.81.214/" />
     <access origin="*" />
 </widget>
