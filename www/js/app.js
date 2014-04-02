@@ -33,7 +33,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
         }
       }
     }).state('detail', {
-      url: "/detail",
+      url: "/detail?groupId",
       views:{
       	'pager':{
       		templateUrl: "templates/detail.html"

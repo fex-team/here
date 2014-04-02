@@ -31,10 +31,16 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 		firstname : 'Steven',
 		lastname : 'Seagal'
 	}];
-}).controller('MenuContentController', function($scope, $element){
+}).controller('MenuContentController', function( $scope, $element){
 	$scope.candrag = true;
 	$scope.$on('candrag', function(event, can){
 		$scope.candrag = can;
-		$scope.$apply();
+		// $scope.$apply();
 	});
-} );
+
+}).controller('SideMenuController', function($rootScope, $scope, $ionicSideMenuDelegate){
+	
+	$rootScope.$on('$stateChangeSuccess', function(){
+		$ionicSideMenuDelegate.close($scope);
+	});
+});

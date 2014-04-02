@@ -57,6 +57,9 @@
 .group:nth-child(odd){
     margin-left: 3%;
 }
+.group a {
+    display: block;
+}
 .group p {
     margin: 0;
     position: absolute;
@@ -73,7 +76,7 @@
     position: relative;
 }
 .stack img {
-    max-width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
