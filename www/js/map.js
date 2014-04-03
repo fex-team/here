@@ -97,24 +97,24 @@
 
 	angular.module("map", ['ionic', 'hereApp.controllers']).controller('map_display', function($scope, $element) {
 		map.ready(function() {
-			map.init("map-container", new BMap.Point(116.404, 39.915), function(bounds) {
+			map.init("map-container", new BMap.Point(116.290328,40.050923), function(bounds) {
 				console.info(bounds);
 				map.clearOverlays();
-				map.addMarker("天安门广场", new BMap.Point(116.404, 39.915), {
-					album : "天安门广场",
+				map.addMarker("文思海辉", new BMap.Point(116.290328,40.050923), {
+					album : "文思海辉",
 					city : "北京",
 					time : "2014-03-02",
 					follow : "10",
-					url : "detail",
+					url : "detail?groupId=1",
 					photo : "http://img.51766.com/tamcl/1175499862824.jpg"
 				}, $scope);
 
-				map.addMarker("中南海", new BMap.Point(116.414, 39.925), {
-					album : "中南海",
+				map.addMarker("百度大厦", new BMap.Point(116.307665,40.056695), {
+					album : "百度大厦",
 					city : "北京",
 					time : "2014-03-02",
 					follow : "1",
-					url : "detail",
+					url : "detail?groupId=2",
 					photo : "http://img.51766.com/tamcl/1175499862824.jpg"
 				}, $scope);
 			});
