@@ -11,7 +11,6 @@
                 "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
                 "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>": 1,
                 "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>": 1,
-                "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>": 1,
                 "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>": 1,
                 "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /></feature>": 1,
                 "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>": 1,
@@ -67,9 +66,6 @@
             "PACKAGE_NAME": "com.baidu.fex.here"
         },
         "org.apache.cordova.globalization": {
-            "PACKAGE_NAME": "com.baidu.fex.here"
-        },
-        "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "com.baidu.fex.here"
         },
         "org.apache.cordova.media": {

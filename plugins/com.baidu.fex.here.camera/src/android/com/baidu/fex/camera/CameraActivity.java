@@ -100,6 +100,7 @@ public class CameraActivity extends Activity implements OnClickListener,
 		webView = (WebView) findViewById(R.id.mask);
 		webView.setBackgroundColor(0);
 		webView.getSettings().setJavaScriptEnabled(true);
+		webView.getSettings().setDomStorageEnabled(true);
 		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 		webView.setWebChromeClient(new WebChromeClient() {
 			@Override
@@ -110,6 +111,7 @@ public class CameraActivity extends Activity implements OnClickListener,
 				return true;
 			}
 		});
+
 		webView.loadUrl(maskUrl);
 	}
 

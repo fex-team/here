@@ -89,37 +89,35 @@
 		}
 
 
-		webdb.getAllPictures= function(callback) {
+		webdb.getAllPictures = function(callback) {
 			var db = webdb.db;
 			db.transaction(function(tx) {
 
-				tx.executeSql("select * from picture", [], function(){
-					callback(renderRs.apply(this,arguments));
+				tx.executeSql("select * from picture", [], function() {
+					callback(renderRs.apply(this, arguments));
 				}, webdb.onError);
 			});
 		}
-		
-		webdb.getPictureById = function(id,callback) {
+
+		webdb.getPictureById = function(id, callback) {
 			var db = webdb.db;
 			db.transaction(function(tx) {
 
-				tx.executeSql("select * from picture where id = ?", [id], function(){
-					callback(renderRs.apply(this,arguments));
+				tx.executeSql("select * from picture where id = ?", [id], function() {
+					callback(renderRs.apply(this, arguments));
 				}, webdb.onError);
 			});
 		}
-		
-		webdb.getPictureByPage = function(offset,limit,callback) {
+
+		webdb.getPictureByPage = function(offset, limit, callback) {
 			var db = webdb.db;
 			db.transaction(function(tx) {
 
-				tx.executeSql("select * from picture limit ?,?", [offset,limit], function(){
-					callback(renderRs.apply(this,arguments));
+				tx.executeSql("select * from picture limit ?,?", [offset, limit], function() {
+					callback(renderRs.apply(this, arguments));
 				}, webdb.onError);
 			});
 		}
-		
-		
 
 		webdb.init = function() {
 			this.open();
@@ -131,11 +129,50 @@
 		return webdb;
 	}();
 
-	var NATIVE = {
-		displayImage : displayImage,
-		webdb : webdb
-	}
+	win.Utils = win.Utils || {};
 
-	win.NATIVE = NATIVE;
+	var camera = (function() {
+		var started = false;
+		var _group_id,_picArray,_callback;
+		return {
+			start : function(group_id,picArray,callback) {
+				_callback = callback;
+				_picArray = picArray;
+				if (picArray) {
+					localStorage.setItem("maskPicArray", JSON.stringify(picArray));
+				}else{
+					localStorage.removeItem("maskPicArray");
+				}
+				_group_id = group_id;
+				if (!started) {
+					started = true;
+					var host = window.location.host;
+					window.here.openCamera("http://" + host + "/mask.html", function(a) {
+						a = eval("(" + a + ")");
+						if (group_id) {
+							a.groupId = group_id;
+						}
+						_callback&&_callback(a);
+						started = false;
+					}, function() {
+
+					});
+				}
+			},
+			getGroupId : function(){
+				return _group_id;
+			},
+			restart:function(){
+				this.start(_group_id,_picArray,_callback);
+			}
+		}
+
+	})();
+
+	win.Utils.NATIVE = {
+		displayImage : displayImage,
+		webdb : webdb,
+		camera : camera
+	};
 
 })(window, document);
