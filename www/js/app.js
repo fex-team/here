@@ -88,6 +88,14 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
       	}
       }
       
+    }).state('upload', {
+      url: "/upload",
+      views:{
+        'pager':{
+          templateUrl: "templates/upload.html"
+        }
+      }
+      
     });
   
 	$urlRouterProvider.otherwise("/sidemenu/home");

@@ -1,5 +1,6 @@
 Here = window.Here || {};
-Here.serverAddress = 'http://localhost/end/here/?m=here';
+
+Here.serverAddress = /hereend/.test(location.href) ? 'http://hereend.duapp.com/here/?m=here' : 'http://localhost/end/here/?m=here';
 Here.api = {
     /**
      * 获取数据的接口
