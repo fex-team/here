@@ -111,4 +111,4 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
                         });
 
     }
-})
+});

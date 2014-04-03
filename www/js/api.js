@@ -1,5 +1,5 @@
 Here = window.Here || {};
-Here.serverAddress = 'http://hereend.duapp.com/here/?m=here';
+Here.serverAddress = 'http://localhost/end/here/?m=here';
 Here.api = {
     /**
      * 获取数据的接口
@@ -37,11 +37,7 @@ Here.api = {
 
         url = '&c=' + url.split('/')[1] + '&a=' + url.split('/')[2];
         
-        if (/ \?/.test(url) ) {
-            url += "&_t=" + Date.now();
-        } else {
-            url += "?_t=" + Date.now();
-        }
+        url += "&_t=" + Date.now();
 
         $.post( Here.serverAddress + url, input, function( response ) {
             if ( 1 === response.no ) {
