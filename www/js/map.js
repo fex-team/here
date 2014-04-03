@@ -4,6 +4,12 @@
 
 		var map;
 
+		function loadScript() {
+			var script = document.createElement("script");
+			script.src = "http://api.map.baidu.com/api?v=1.5&ak=hmPxdBHxPZvZU2x3RN9SSKGt&callback=_map_ready";
+			document.body.appendChild(script);
+		}
+
 		function getBounds() {
 			var bs = map.getBounds();
 			var bssw = bs.getSouthWest();
@@ -22,10 +28,20 @@
 			}
 		}
 
+		var _callback;
+
+		window._map_ready = function() {
+			_callback && _callback();
+		}
+
 		return {
+			ready : function(callback) {
+				_callback = callback;
+				loadScript();
+			},
 			init : function(el, point, callback) {
 				map = new BMap.Map(el);
-				
+
 				map.centerAndZoom(point, 15);
 				map.addEventListener("dragend", function() {
 
@@ -35,9 +51,9 @@
 
 					callback && callback(getBounds());
 				});
-				callback&&callback(getBounds());
+				callback && callback(getBounds());
 			},
-			clearOverlays:function(){
+			clearOverlays : function() {
 				map.clearOverlays();
 			},
 			/**
@@ -80,27 +96,28 @@
 	})();
 
 	angular.module("map", ['ionic', 'hereApp.controllers']).controller('map_display', function($scope, $element) {
+		map.ready(function() {
+			map.init("map-container", new BMap.Point(116.404, 39.915), function(bounds) {
+				console.info(bounds);
+				map.clearOverlays();
+				map.addMarker("天安门广场", new BMap.Point(116.404, 39.915), {
+					album : "天安门广场",
+					city : "北京",
+					time : "2014-03-02",
+					follow : "10",
+					url : "detail",
+					photo : "http://img.51766.com/tamcl/1175499862824.jpg"
+				}, $scope);
 
-		map.init("map-container", new BMap.Point(116.404, 39.915), function(bounds) {
-			console.info(bounds);
-			map.clearOverlays();
-			map.addMarker("天安门广场", new BMap.Point(116.404, 39.915), {
-				album : "天安门广场",
-				city : "北京",
-				time : "2014-03-02",
-				follow : "10",
-				url : "detail",
-				photo : "http://img.51766.com/tamcl/1175499862824.jpg"
-			}, $scope);
-
-			map.addMarker("中南海", new BMap.Point(116.414, 39.925), {
-				album : "中南海",
-				city : "北京",
-				time : "2014-03-02",
-				follow : "1",
-				url : "detail",
-				photo : "http://img.51766.com/tamcl/1175499862824.jpg"
-			}, $scope);
+				map.addMarker("中南海", new BMap.Point(116.414, 39.925), {
+					album : "中南海",
+					city : "北京",
+					time : "2014-03-02",
+					follow : "1",
+					url : "detail",
+					photo : "http://img.51766.com/tamcl/1175499862824.jpg"
+				}, $scope);
+			});
 		});
 
 		$scope.closePopup = function() {
