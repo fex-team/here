@@ -1,50 +1,26 @@
 (function() {
-	var _capture_param,group_id;
-	var capture_action = (function() {
-		var started = false;
-		var gid;
-		return function(group_id) {
-			gid = group_id;
-			if (!started) {
-				started = true;
-				var host = window.location.host;
-				window.here.openCamera("http://" + host + "/mask.html", function(a) {
-					a = eval("(" + a + ")");
-					if(group_id){
-						a.groupId = group_id;	
-					}
-				
-					_capture_param = a;
-					location.href = "#/capture_confirm";
-					started = false;
-				}, function() {
-
-				});
-			}
+	
+	
+	var _capture_result;
+	angular.module("capture", ['ionic', 'hereApp.controllers']).controller('capture_action', function($rootScope, $scope, $stateParams, $element) {
+		$scope.start = function(groupId,pic){
+			Utils.NATIVE.camera.start(groupId,pic,function(res){
+				_capture_result = res;
+				location.href="#/capture_confirm";
+			});
 		}
-	})();
-	angular.module("capture", ['ionic', 'hereApp.controllers']).controller('capture_start', function($rootScope, $scope, $stateParams, $element) {
-		$element.bind("click", function() {
-			group_id = $stateParams['group_id'];
-			capture_action(group_id);
-		});
+		$scope.restart = function(){
+			Utils.NATIVE.camera.restart();
+			history.back();
+		}
+		$scope.ok = function(){
+			Utils.NATIVE.webdb.addPicture(_capture_result);
+			history.back();
+		}
 
 	}).controller('capture_picture', function($rootScope, $scope, $stateParams, $element) {
 
-		NATIVE.displayImage(_capture_param['filepath'], $element[0]);
-
-	}).controller('capture_restart', function($element) {
-		$element.bind("click", function() {
-			
-			capture_action(group_id);
-			history.back();
-		});
-
-	}).controller('capture_ok', function($element) {
-		$element.bind("click", function() {
-			NATIVE.webdb.addPicture(_capture_param);
-			history.back();
-		});
+		Utils.NATIVE.displayImage(_capture_result['filepath'], $element[0]);
 
 	});
 })();

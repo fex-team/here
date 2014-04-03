@@ -8,11 +8,11 @@
 </div>
 
 <div class="capture-actions">
-	<div class="capture-actions-cell">
-		<button ng-controller="capture_ok" class="button button-positive">
+	<div class="capture-actions-cell" ng-controller="capture_action">
+		<button ng-click="ok();" class="button button-positive">
 			确认
 		</button>
-		<button ng-controller="capture_restart" class="button button-stable">
+		<button ng-click="restart()" class="button button-stable">
 			重拍
 		</button>
 	</div>
