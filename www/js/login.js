@@ -26,6 +26,12 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                 
                                 $state.go('sidemenu.home');
 
+                                Here.userInfo = {
+                                    'username': data.username,
+                                    'nickname': data.nickname,
+                                    'appKey': data.appKey
+                                };
+
                                 console.log(data);
                             },
                             error: function(data) {
