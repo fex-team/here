@@ -18,6 +18,7 @@
 }
 .page-detail .actions {
     text-align: right;
+    padding-right: 8px;
 }
 .page-detail .img-wrap {
     text-align: center;
@@ -46,4 +47,35 @@
     font-size: 12px;
     line-height: 26px;
     margin-left: 10px;
+}
+.page-detail .img-wrap {
+    margin: 0;
+}
+.page-detail .actions .share,
+.page-detail .actions .follow,
+.page-detail .actions .comment {
+    line-height: 30px;
+    display: inline-block;
+    height: 30px;
+    margin-left: 10px;
+}
+.page-detail .actions .share:before,
+.page-detail .actions .follow:before,
+.page-detail .actions .comment:before {
+    content: "\f198";
+    font-family: "Ionicons";
+    color: #4A87EE;
+    font-size: 26px;
+    padding-right: 5px;
+    line-height: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+    font-weight: bolder;
+}
+.page-detail .actions .share:before {
+    content: "\f220";
+}
+.page-detail .actions .comment:before {
+    content: "\f16a";
 }
