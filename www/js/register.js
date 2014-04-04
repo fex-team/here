@@ -1,5 +1,5 @@
 angular.module('register', ['ionic', 'hereApp.controllers'])
-.controller('RegisterController', function($scope, $stateParams, $state) {
+.controller('RegisterController', function($rootScope, $scope, $stateParams, $state) {
         
     $scope.register = function(){
         var username = $scope.username;
@@ -22,7 +22,7 @@ angular.module('register', ['ionic', 'hereApp.controllers'])
 
         Here.api.post('/user/register', {
                             'username': username,
-                            'nickname': nickname,
+                            'nickname': nickname || '时光相机用户',
                             'password': md5(password)
                         }, {
                             success: function(data) {
@@ -31,6 +31,12 @@ angular.module('register', ['ionic', 'hereApp.controllers'])
                                 // document.cookie='appKey=' + data.appKey + ';expires=' + exdate.toGMTString();
                                 
                                 $state.go('sidemenu.home');
+
+                                Here.userInfo = {
+                                    'username': data.username,
+                                    'nickname': data.nickname,
+                                    'appKey': data.appKey
+                                };
 
                                 console.log(data);
                             },

@@ -74,7 +74,7 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
     };
 
 })
-.controller('CommentController', function($scope, $element){
+.controller('CommentController', function($rootScope, $scope, $element){
 
     $scope.submitComment = function(){
         var photoId = $element.find('input').attr('data-photoId');
@@ -95,7 +95,7 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
                                 $scope.group.photos.forEach(function(photo){
                                     if( photoId === photo.id ){
                                         photo.commentItems.push({
-                                            nickname: 'jianling',
+                                            nickname: Here.userInfo.nickname,
                                             content: $scope.commentContent,
                                             time: '刚刚'
                                         });
