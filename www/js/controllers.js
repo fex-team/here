@@ -12,7 +12,7 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 	});
 
 	$scope.back = [{
-		type : 'button back-button button-icon icon ion-arrow-left-c button back-button button-icon icon ion-arrow-left-c',
+		type : 'button back-button button-icon icon ion-arrow-left-c',
 		tap : function(e) {
 			window.history.back();
 		}

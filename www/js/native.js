@@ -1,6 +1,14 @@
 (function(win, doc) {
 
 	function displayImage(file, img, onsuccess, onerror) {
+		getImageData(file,function(base64){
+			img.src = base64;
+			onsuccess && onsuccess();
+		},onerror)
+		
+	};
+	
+	function getImageData(file,onsuccess,onerror){
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, onFail);
 
 		function onFail(message) {
@@ -24,8 +32,7 @@
 		function readDataUrl(file) {
 			var reader = new FileReader();
 			reader.onloadend = function(evt) {
-				img.src = evt.target.result;
-				onsuccess && onsuccess();
+				onsuccess && onsuccess(evt.target.result);
 			};
 			reader.readAsDataURL(file);
 		}
@@ -34,8 +41,7 @@
 			onerror && onerror(evt.code);
 			console.log(evt.code);
 		}
-
-	};
+	}
 
 	var webdb = function() {
 
@@ -108,6 +114,16 @@
 				}, webdb.onError);
 			});
 		}
+		
+		webdb.getPictureByGroupId = function(groupId, callback) {
+			var db = webdb.db;
+			db.transaction(function(tx) {
+
+				tx.executeSql("select * from picture where groupId = ?", [groupId], function() {
+					callback(renderRs.apply(this, arguments));
+				}, webdb.onError);
+			});
+		}
 
 		webdb.getPictureByPage = function(offset, limit, callback) {
 			var db = webdb.db;
@@ -170,6 +186,7 @@
 	})();
 
 	win.Utils.NATIVE = {
+		getImageData:getImageData,
 		displayImage : displayImage,
 		webdb : webdb,
 		camera : camera

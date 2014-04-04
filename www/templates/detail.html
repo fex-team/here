@@ -1,14 +1,15 @@
-<ion-view title="详情页" id="page-detail" class="page-detail">
+<ion-view title="详情页" id="page-detail" class="page-detail" >
 
 	<ion-header-bar
 		title="详情页"
 		left-buttons="back"
+		right-buttons="detailCamera"
 		type="bar-positive"
 		align-title="center"
 		id="detail-header"
-		></ion-header-bar>
+		ng-controller="DetailHeaderController"></ion-header-bar>
 
-	<ion-content has-header="true" padding="true" ng-controller="DetailController">
+	<ion-content has-header="true" padding="true"  ng-controller="DetailController">
 		<div class="photo-item" ng-repeat="photo in group.photos">
 			<div class="item-wrap">
 				<p><span class="user-avatar"></span><span class="nickname">{{photo.nickname}}</span></p>
