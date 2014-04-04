@@ -7,7 +7,7 @@ angular.module('detail', ['ionic', 'hereApp.controllers'])
                 }, {
                     success: function(data){
                         data.photos.forEach(function(photo, index){
-                            photo['src'] = 'http://localhost/end/here/here/api/img?hash=' + photo.hash;
+                            photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
                             photo.commentShow = false;
                         });
                         console.log(data);
