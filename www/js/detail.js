@@ -35,20 +35,6 @@
 				
 			});
 		});
-		/*commentShow: false
-comments: "3"
-direction: null
-environment: null
-follows: "2"
-hash: "/jianling/3432a67ad8b528dbb95e03ea5ee372d9.jpg"
-id: "25"
-latitude: ""
-longitude: ""
-measurement: "950X604"
-nickname: "chengyang"
-src: "http://hereend.duapp.com/here/?m=here&c=api&a=img&hash=/jianling/3432a67ad8b528dbb95e03ea5ee372d9.jpg"
-time: "2014-04-01 20:05:26"
-username: "jianling"*/
 
 	}
 
@@ -63,9 +49,7 @@ username: "jianling"*/
 				});
 				
 				Utils.NATIVE.camera.start($stateParams.groupId,arr,function(a){
-					Utils.NATIVE.webdb.addPicture(a);
-					location.reload();
-					// location.href="#/capture_confirm";
+					location.href="#/capture_confirm";
 				});
 			}
 		}]

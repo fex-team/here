@@ -149,7 +149,7 @@
 
 	var camera = (function() {
 		var started = false;
-		var _group_id,_picArray,_callback;
+		var _group_id,_picArray,_callback,_result;
 		return {
 			start : function(group_id,picArray,callback) {
 				_callback = callback;
@@ -168,12 +168,16 @@
 						if (group_id) {
 							a.groupId = group_id;
 						}
+						_result = a;
 						_callback&&_callback(a);
 						started = false;
 					}, function() {
 
 					});
 				}
+			},
+			getResult:function(){
+				return _result;
 			},
 			getGroupId : function(){
 				return _group_id;

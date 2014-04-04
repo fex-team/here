@@ -17,3 +17,6 @@ a{
 	border: none;
 }
 
+.platform-ios7.platform-cordova:not(.fullscreen) .bar-header{
+	height: auto !important;
+}
