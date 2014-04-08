@@ -2025,7 +2025,7 @@ window.ionic = {
       this.platforms = [];
       this.grade = 'a';
 
-      if(this.isCordova()) this.platforms.push('cordova');
+      // if(this.isCordova()) this.platforms.push('cordova');
       if(this.isIPad()) this.platforms.push('ipad');
 
       var platform = this.platform();

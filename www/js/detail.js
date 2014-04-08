@@ -1,84 +1,128 @@
 (function() {
 
 	var groups;
-	
-	function getNativePhoto(groupId,callback){
-		
+
+	function getNativePhoto(groupId, callback) {
+
 		var res = [];
-		
+
 		var i = 0;
 		var name = Here.userInfo ? Here.userInfo.nickname : "时光相机用户";
-		Utils.NATIVE.webdb.getPictureByGroupId(groupId,function(arr){
-			if(arr.length == 0){
+		Utils.NATIVE.webdb.getPictureByGroupId(groupId, function(arr) {
+			if (arr.length == 0) {
 				callback && callback([]);
 			}
-			arr.forEach(function(pic,index){
-				
-				Utils.NATIVE.getImageData(pic.filepath,function(base64){
+			arr.forEach(function(pic, index) {
+
+				Utils.NATIVE.getImageData(pic.filepath, function(base64) {
 					res.push({
-						commentShow:false,
-						id:pic.id,
-						latitude:pic.latitude,
-						longitude:pic.lontitude,
-						nickname:name,
-						src:base64,
-						time:pic.datetime,
-						measurement:pic.width+"X"+pic.height,
+						commentShow : false,
+						id : pic.id,
+						latitude : pic.latitude,
+						longitude : pic.lontitude,
+						nickname : name,
+						src : base64,
+						time : pic.datetime,
+						measurement : pic.width + "X" + pic.height,
 					});
-					
-					if(i == arr.length-1){
+
+					if (i == arr.length - 1) {
 						callback && callback(res);
 					}
 					i++;
 				});
-				
-				
+
 			});
 		});
 
 	}
-
-	angular.module('detail', ['ionic', 'hereApp.controllers','capture']).controller('DetailHeaderController', function($scope, $stateParams,$controller ) {
 	
+	var $headerScope;
+	
+	
+	
+
+	angular.module('detail', ['ionic', 'hereApp.controllers']).controller('DetailHeaderController', function($scope, $stateParams, $controller) {
+
+		$scope.droplist = {
+			visible : ""
+		}
+		
+		angular.element(document.getElementById("sharelist")).bind("click",function(){
+
+			$headerScope.sharelist.visible = "";
+		}).children().bind("click",function(e){
+
+			e.stopPropagation();
+			return false;
+		});
+		
+
+		angular.element(document).bind("click", function() {
+			
+			$scope.droplist.visible = "";
+			$scope.$apply();
+		});
+
 		$scope.detailCamera = [{
 			type : 'button ion-ios7-camera-outline button-icon icon',
 			tap : function(e) {
 				var arr = [];
-				groups.photos.forEach(function(photo,index){
+				groups.photos.forEach(function(photo, index) {
 					arr.push(photo.src);
 				});
-				
-				Utils.NATIVE.camera.start($stateParams.groupId,arr,function(a){
-					location.href="#/capture_confirm";
+
+				Utils.NATIVE.camera.start($stateParams.groupId, arr, function(a) {
+					location.href = "#/capture_confirm";
 				});
+			}
+		}, {
+			type : 'button ion-ios7-more button-icon icon',
+			tap : function(e) {
+
+				if ($scope.droplist.visible == "active") {
+					$scope.droplist.visible = "";
+				} else {
+					$scope.droplist.visible = "active";
+				}
+
+				e.stopPropagation();
 			}
 		}]
-	}).controller('DetailController', function($scope, $stateParams) {
+		$scope.sharelist = {
+			visible : ""
+		}
 		
-		Here.api.get('/api/get_group', {
-			groupId : $stateParams.groupId
-		}, {
-			success : function(data) {
-				data.photos.forEach(function(photo, index) {
-					photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
-					photo.commentShow = false;
-				});
-				
-				getNativePhoto($stateParams.groupId,function(res){
-					data.photos = res.concat(data.photos);
-					groups = data;
-					$scope.group = data;
-					$scope.$apply();
-					angular.element(document.querySelector('#detail-header')).find('h1').html(data.name);
-				});
-				
-				
-			},
-			error : function(data) {
-				console.log(data);
-			}
-		});
+		$headerScope = $scope;
+	}).controller('DetailController', function($scope, $stateParams) {
+		$scope.doRefresh = function() {
+			Here.api.get('/api/get_group', {
+				groupId : $stateParams.groupId
+			}, {
+				success : function(data) {
+					data.photos.forEach(function(photo, index) {
+						photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
+						photo.commentShow = false;
+					});
 
+					getNativePhoto($stateParams.groupId, function(res) {
+						data.photos = res.concat(data.photos);
+						groups = data;
+						$scope.group = data;
+						$scope.$apply();
+						angular.element(document.querySelector('#detail-header')).find('h1').html(data.name);
+						$scope.$broadcast('scroll.refreshComplete');
+					});
+
+				},
+				error : function(data) {
+					console.log(data);
+					$scope.$broadcast('scroll.refreshComplete');
+				}
+			});
+
+		}
+		$scope.doRefresh();
 		// 显示评论区域
 		$scope.showComment = function() {
 			var photoId = this.photo.id;
@@ -130,6 +174,12 @@
 			});
 		};
 
+		$scope.openShare = function() {
+			
+			$headerScope.sharelist.visible = "active";
+
+		};
+
 	}).controller('CommentController', function($rootScope, $scope, $element) {
 
 		$scope.submitComment = function() {
@@ -168,4 +218,4 @@
 
 		}
 	});
-})(); 
+})();
