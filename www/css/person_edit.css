@@ -1,0 +1,8 @@
+.person_edit .photo-item{
+	text-align: center;
+}
+.person_edit .photo-item img{
+	width: 80px;
+	height: 80px;
+	-webkit-border-radius: 40px;
+}

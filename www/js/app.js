@@ -1,4 +1,4 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings','detail','register','login','map','person_detail','zone'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings','detail','register','login','map','person_detail','zone','person_edit'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -101,6 +101,14 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
       views:{
         'pager':{
           templateUrl: "templates/person_detail.html"
+        }
+      }
+      
+    }).state('person_edit', {
+      url: "/person_edit",
+      views:{
+        'pager':{
+          templateUrl: "templates/person_edit.html"
         }
       }
       
