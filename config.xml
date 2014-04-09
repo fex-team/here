@@ -7,8 +7,8 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-    <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root" />
-
+    <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root,file,content" />
+    
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
 
@@ -16,6 +16,10 @@
  		<param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />  
 	</feature> 
 
-    <content src="http://172.22.81.214/" />
+	<feature name="Camera">
+	    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+	</feature>
+
+    <content src="http://172.22.81.198/" />
     <access origin="*" />
 </widget>
