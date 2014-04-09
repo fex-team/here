@@ -1,17 +1,17 @@
-<ion-view title="我的空间" left-buttons="leftButtons" class="page-zone">
-	<ion-content has-header="true">
+<ion-view title="我的空间" left-buttons="leftButtons" class="page-zone" >
+	<ion-content has-header="true" ng-controller="zoneController">
 		<div class="zone-hd">
 			<div class="zone-bg"></div>
 			<div class="zone-person">
 				<div style="margin-left: 20px">
-					<img src="http://tp4.sinaimg.cn/2129028663/180/5684393877/1" class="layout-left"/>
+					<img ng-click="openPhoto()" ng-src="{{user.photo}}" class="layout-left"/>
 					<div class="layout-right">
 						<p>
 							威廉萌
 						</p>
-						<button class="button icon-left button-outline button-positive button-small ion-ios7-person-outline">
+						<a href="#/person_detail" class="button icon-left button-outline button-positive button-small ion-ios7-person-outline">
 							详细资料
-						</button>
+						</a>
 					</div>
 				</div>
 

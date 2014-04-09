@@ -4,11 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 		<title>Ionic Seed App</title>
-		
-		
+
 		<!-- ionic css -->
 		<link href="lib/css/ionic.css" rel="stylesheet">
-
+		<link href="css/component/openshare.css" rel="stylesheet">
 		<!-- your app's css -->
 		<link href="css/app.css" rel="stylesheet">
 		<link href="css/sidemenu.css" rel="stylesheet">
@@ -20,12 +19,13 @@
 		<link href="css/detail.css" rel="stylesheet">
 		<link href="css/map.css" rel="stylesheet">
 		<link href="css/zone.css" rel="stylesheet">
+		<link href="css/person_detail.css" rel="stylesheet">
 
 		<!-- ionic/angularjs scripts -->
 		<script src="lib/js/ionic.bundle.js"></script>
-
-		<!-- cordova script (this will be a 404 during development)
-		<script src="cordova.js"></script> --> 
+		<script src="js/component/openPhoto.js"></script>
+		<!-- cordova script (this will be a 404 during development)-->
+		<script src="cordova.js"></script> 
 
 		<!-- your app's script -->
 		<script src="lib/js/zepto.js"></script>
@@ -39,22 +39,23 @@
 		<script src="js/detail.js"></script>
 		<script src="js/setting.js"></script>
 		<script src="js/register.js"></script>
+		<script src="js/person_detail.js"></script>
 		<script src="js/login.js"></script>
 		<script src="js/capture.js"></script>
 		<script src="js/map.js"></script>
+		<script src="js/zone.js"></script>
 	</head>
 	<body ng-app="hereApp" ng-controller="MainCtrl">
-		
-		<ion-nav-view animation="slide-left-right" name="pager"></ion-nav-view>
 
+		<ion-nav-view animation="slide-left-right" name="pager"></ion-nav-view>
+		
 	</body>
 	<script>
-		window.addEventListener("load", function(){
-			document.addEventListener("deviceready", function(){
+		window.addEventListener("load", function() {
+			document.addEventListener("deviceready", function() {
 				navigator.splashscreen.hide();
 			}, false);
 		}, false);
-		
-		
+
 	</script>
 </html>

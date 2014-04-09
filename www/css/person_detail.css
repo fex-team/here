@@ -1,0 +1,27 @@
+.person_detail a.item:after{
+	display: none;
+}
+.person_detail .item span{
+	display: inline-block;
+	vertical-align: middle;
+}
+.person_detail .item label{
+	display: inline-block;
+	width: 75px;
+	vertical-align: middle;
+}
+.person_detail .item-divider{
+	background: none;
+	margin: 10px 0;
+}
+.person_detail .item{
+	padding: 11px 15px;
+}
+.person_detail .photo-item{
+	text-align: center;
+}
+.person_detail .photo-item img{
+	width: 80px;
+	height: 80px;
+	-webkit-border-radius: 40px;
+}
