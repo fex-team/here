@@ -145,6 +145,16 @@
 			});
 		}
 
+		webdb.deleteById = function(id,callback) {
+			var db = webdb.db;
+			db.transaction(function(tx) {
+
+				tx.executeSql("delete from picture where id = ?", [id], function() {
+					callback && callback();
+				}, webdb.onError);
+			});
+		}
+
 		webdb.init = function() {
 			this.open();
 			this.createTable();
