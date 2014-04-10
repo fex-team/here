@@ -31,9 +31,11 @@
 					<p>
 						<span class="user-avatar"></span><span class="nickname">{{photo.nickname}}</span>
 					</p>
+					<i class="async" ng-show="photo.offline" ng-click="doAsync()"></i>
 					<p class="img-wrap"><img ng-src="{{photo.src}}" />
 					</p>
-					<p class="actions">
+					<p class="time"><span>{{photo.time}}</span></p>
+					<p class="actions" ng-show="!photo.offline">
 						<i class="share" ng-click="openShare()"></i>
 						<i class="follow" ng-click="doFollow()">{{photo.follows}}</i>
 						<i class="comment" ng-click="showComment()">{{photo.comments}}</i>
@@ -41,7 +43,7 @@
 					<div class="comment-panel" ng-controller="CommentController" ng-show="photo.commentShow">
 						<p>
 							<input type="text" class="comment-input" ng-model="commentContent" data-photoId="{{photo.id}}" />
-							<button class="comment-submit" ng-click="submitComment()">
+							<button class="comment-submit" ng-click="doComment()">
 								发表
 							</button>
 						</p>

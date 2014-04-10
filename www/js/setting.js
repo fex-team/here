@@ -41,9 +41,6 @@
 				});
 			};
 
-			$scope.isLogin = false;
-			//TODO 改成从cookies判断
-			Here.userInfo && Here.userInfo.appKey && ($scope.isLogin = true);
 		});
 })();
 

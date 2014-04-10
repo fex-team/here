@@ -1,5 +1,37 @@
 (function() {
-
+	var formate = function( date, fmt ) {         
+	    var o = {         
+	    "M+" : date.getMonth()+1, //月份         
+	    "d+" : date.getDate(), //日         
+	    "h+" : date.getHours()%12 == 0 ? 12 : date.getHours()%12, //小时         
+	    "H+" : date.getHours(), //小时         
+	    "m+" : date.getMinutes(), //分         
+	    "s+" : date.getSeconds(), //秒         
+	    "q+" : Math.floor((date.getMonth()+3)/3), //季度         
+	    "S" : date.getMilliseconds() //毫秒         
+	    };         
+	    var week = {         
+	    "0" : "/u65e5",         
+	    "1" : "/u4e00",         
+	    "2" : "/u4e8c",         
+	    "3" : "/u4e09",         
+	    "4" : "/u56db",         
+	    "5" : "/u4e94",         
+	    "6" : "/u516d"        
+	    };         
+	    if(/(y+)/.test(fmt)){         
+	        fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));         
+	    }         
+	    if(/(E+)/.test(fmt)){         
+	        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[date.getDay()+""]);         
+	    }         
+	    for(var k in o){         
+	        if(new RegExp("("+ k +")").test(fmt)){         
+	            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
+	        }         
+	    }         
+	    return fmt;
+	}
 	var groups;
 
 	function getNativePhoto(groupId, callback) {
@@ -16,14 +48,16 @@
 
 				Utils.NATIVE.getImageData(pic.filepath, function(base64) {
 					res.push({
+						offline: true,
 						commentShow : false,
-						id : pic.id,
+						localId : pic.id,
 						latitude : pic.latitude,
 						longitude : pic.lontitude,
 						nickname : name,
 						src : base64,
+						file : pic.filepath,
 						time : pic.datetime,
-						measurement : pic.width + "X" + pic.height,
+						measurement : pic.width + "X" + pic.height
 					});
 
 					if (i == arr.length - 1) {
@@ -35,6 +69,22 @@
 			});
 		});
 
+
+		// test
+		res.push({
+			offline: true,
+			commentShow : false,
+			localId : 25,
+			latitude : '',
+			longitude : '',
+			file : '',
+			nickname : '时光相机用户',
+			src : 'http://172.22.72.159/end/here/?m=here&c=api&a=img&hash=/testuser/d5f54c6c1dc5eb8edd8bd18c232708e8.png',
+			time : formate(new Date(Date.now()), "yyyy-MM-dd HH:mm:ss"),
+			measurement : 1024 + "X" + 768
+		});
+
+		callback && callback(res);
 	}
 	
 	var $headerScope;
@@ -107,6 +157,7 @@
 
 					getNativePhoto($stateParams.groupId, function(res) {
 						data.photos = res.concat(data.photos);
+
 						groups = data;
 						$scope.group = data;
 						$scope.$apply();
@@ -155,7 +206,10 @@
 
 		// 关注照片
 		$scope.doFollow = function() {
-			//TODO 先判断登录状态
+			if( !Here.isLogin ){
+				alert('请先登录');
+				return;
+			}
 			var photoId = this.photo.id;
 			Here.api.post('/api/follow', {
 				'photoId' : photoId
@@ -174,6 +228,19 @@
 			});
 		};
 
+		// 同步照片
+		$scope.doAsync = function(){
+			if( !Here.isLogin ){
+				alert('请先登录');
+				return;
+			}
+
+			console.log(this.photo);
+
+			this.photo.offline = false;
+			this.photo.id = 55;
+		};
+		
 		$scope.openShare = function() {
 			
 			$headerScope.sharelist.visible = "active";
@@ -182,11 +249,16 @@
 
 	}).controller('CommentController', function($rootScope, $scope, $element) {
 
-		$scope.submitComment = function() {
-			var photoId = $element.find('input').attr('data-photoId');
+		$scope.doComment = function() {
+			var photoId = this.photo.id;
 
 			if ($scope.commentContent === '' || !$scope.commentContent) {
 				alert('评论内容不能为空！');
+				return;
+			}
+
+			if( !Here.isLogin ){
+				alert('请先登录');
 				return;
 			}
 
@@ -215,7 +287,6 @@
 					alert(data.message);
 				}
 			});
-
-		}
+		};
 	});
 })();

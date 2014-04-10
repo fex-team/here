@@ -115,5 +115,17 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
     });
   
 	$urlRouterProvider.otherwise("/sidemenu/home");
+
+  Here.isLogin = false;
+      
+      if(cookie.get('username')){
+        Here.userInfo = {
+          'username': cookie.get('username'),
+                    'nickname': cookie.get('nickname'),
+                    'appKey': cookie.get('appKey')
+        }
+
+        Here.isLogin = true;
+      }
 	
 });

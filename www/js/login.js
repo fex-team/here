@@ -31,6 +31,7 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                     'nickname': data.nickname,
                                     'appKey': data.appKey
                                 };
+                                Here.isLogin = true;
 
                                 console.log(data);
                             },
