@@ -119,9 +119,6 @@
     transform: scale(0.9);
 }
 
-.page-home .toolbar {
-    position: relative;
-}
 .page-home .toolbar .map-icon {
     position: absolute;
     right: 5px;
