@@ -1,0 +1,14 @@
+.page-local .group img{
+	width: 100%;
+}
+.page-local .group p{
+	right: 0;
+	left: 0;
+	margin: 0;
+	width: auto;
+	
+}
+
+.page-local .group{
+	position: relative;
+}
