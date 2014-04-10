@@ -125,6 +125,15 @@
 				}, webdb.onError);
 			});
 		}
+		
+		webdb.getCover = function(callback){
+			var db = webdb.db;
+			db.transaction(function(tx) {
+				tx.executeSql("select * from picture where groupId is null", [], function() {
+					callback(renderRs.apply(this, arguments));
+				}, webdb.onError);
+			});
+		}
 
 		webdb.getPictureByPage = function(offset, limit, callback) {
 			var db = webdb.db;
@@ -200,7 +209,7 @@
 		options.params = params;
 
 		var ft = new FileTransfer();
-		ft.upload(filepath, encodeURI(url), onsuccess , onerror);
+		ft.upload(filepath, encodeURI(url), onsuccess , onerror,options);
 
 	};
 	

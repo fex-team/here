@@ -1,4 +1,4 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','capture','settings','detail','register','login','map','person_detail','zone','person_edit'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -112,6 +112,29 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
         }
       }
       
+    }).state('gallery', {
+      url: "/gallery",
+      abstract: true,
+      views:{
+        'pager':{
+          templateUrl: "templates/gallery.html"
+        }
+      }
+      
+    }).state('gallery.local', {
+      url: "/local",
+      views: {
+        'gallery-local-tab': {
+          templateUrl: "templates/local.html"
+        }
+      }
+    }).state('gallery.network', {
+      url: "/network",
+      views: {
+        'gallery-network-tab': {
+          templateUrl: "templates/network.html"
+        }
+      }
     });
   
 	$urlRouterProvider.otherwise("/sidemenu/home");

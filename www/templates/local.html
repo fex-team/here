@@ -1,0 +1,10 @@
+<ion-view title="本地相册" class="page-local">
+	<ion-content has-header="true" padding="true" ng-controller="galleryNetworkController">
+		<div class="group" ng-repeat="group in groups">
+			<img ng-src="{{group.photo}}">
+			<p>
+				{{group.name}}
+			</p>
+		</div>
+	</ion-content>
+</ion-view>
