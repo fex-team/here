@@ -1,14 +1,14 @@
 (function(win, doc) {
 
 	function displayImage(file, img, onsuccess, onerror) {
-		getImageData(file,function(base64){
+		getImageData(file, function(base64) {
 			img.src = base64;
 			onsuccess && onsuccess();
-		},onerror)
-		
+		}, onerror)
+
 	};
-	
-	function getImageData(file,onsuccess,onerror){
+
+	function getImageData(file, onsuccess, onerror) {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, onFail);
 
 		function onFail(message) {
@@ -41,6 +41,7 @@
 			onerror && onerror(evt.code);
 			console.log(evt.code);
 		}
+
 	}
 
 	var webdb = function() {
@@ -114,7 +115,7 @@
 				}, webdb.onError);
 			});
 		}
-		
+
 		webdb.getPictureByGroupId = function(groupId, callback) {
 			var db = webdb.db;
 			db.transaction(function(tx) {
@@ -149,14 +150,14 @@
 
 	var camera = (function() {
 		var started = false;
-		var _group_id,_picArray,_callback,_result;
+		var _group_id, _picArray, _callback, _result;
 		return {
-			start : function(group_id,picArray,callback) {
+			start : function(group_id, picArray, callback) {
 				_callback = callback;
 				_picArray = picArray;
 				if (picArray) {
 					localStorage.setItem("maskPicArray", JSON.stringify(picArray));
-				}else{
+				} else {
 					localStorage.removeItem("maskPicArray");
 				}
 				_group_id = group_id;
@@ -169,31 +170,48 @@
 							a.groupId = group_id;
 						}
 						_result = a;
-						_callback&&_callback(a);
+						_callback && _callback(a);
 						started = false;
 					}, function() {
 
 					});
 				}
 			},
-			getResult:function(){
+			getResult : function() {
 				return _result;
 			},
-			getGroupId : function(){
+			getGroupId : function() {
 				return _group_id;
 			},
-			restart:function(){
-				this.start(_group_id,_picArray,_callback);
+			restart : function() {
+				this.start(_group_id, _picArray, _callback);
 			}
 		}
 
 	})();
 
+	function uploadPhoto(url, filepath, params, onsuccess, onerror) {
+		filepath = "/sdcard/"+filepath;
+		var options = new FileUploadOptions();
+		options.fileKey = "file";
+		options.fileName = filepath.substr(filepath.lastIndexOf('/') + 1);
+		options.mimeType = "image/jpeg";
+
+		options.params = params;
+
+		var ft = new FileTransfer();
+		ft.upload(filepath, encodeURI(url), onsuccess , onerror);
+
+	};
+	
+	
+
 	win.Utils.NATIVE = {
-		getImageData:getImageData,
+		getImageData : getImageData,
 		displayImage : displayImage,
 		webdb : webdb,
-		camera : camera
+		camera : camera,
+		uploadPhoto:uploadPhoto
 	};
 
 })(window, document);
