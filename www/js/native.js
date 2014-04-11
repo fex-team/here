@@ -183,7 +183,7 @@
 				if (!started) {
 					started = true;
 					var host = window.location.host;
-					window.here.openCamera("http://" + host + "/mask.html", function(a) {
+					window.here.openCamera("http://" + host + "/here_hybird/mask.html", function(a) {
 						a = eval("(" + a + ")");
 						if (group_id) {
 							a.groupId = group_id;

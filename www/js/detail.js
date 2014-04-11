@@ -238,7 +238,7 @@
 			var me = this;
 
 			console.log(this.photo);
-			Utils.NATIVE.uploadPhoto('http://172.22.72.159/end/here/?m=here&c=api&a=upload', this.photo.filepath, {
+			Utils.NATIVE.uploadPhoto( Here.serverAddress + '&c=api&a=upload', this.photo.filepath, {
                 groupId: $stateParams.groupId,
                 longitude: this.photo.longitude,
                 latitude: this.photo.latitude,
@@ -248,6 +248,8 @@
 			}, function(result){
 				me.photo.offline = false;
 				me.photo.id = JSON.parse(result.response).data.photoId;
+
+				$scope.$apply();
 				
 				Utils.NATIVE.webdb.deleteById(me.photo.localId);
 				//TODO 删除本地图片

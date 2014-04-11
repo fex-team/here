@@ -20,6 +20,6 @@
 	    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
 	</feature>
 
-    <content src="http://172.22.81.198/" />
+    <content src="http://172.22.72.159/" />
     <access origin="*" />
 </widget>
