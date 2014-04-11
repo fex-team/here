@@ -56,7 +56,7 @@
 						nickname : name,
 						src : base64,
 						filepath : pic.filepath,
-						time : formate(new Date(ParseInt(pic.datetime)), "yyyy-MM-dd HH:mm:ss"),
+						time : formate(new Date(parseInt(pic.datetime)), "yyyy-MM-dd HH:mm:ss"),
 						measurement : pic.width + "X" + pic.height
 					});
 
@@ -71,20 +71,20 @@
 
 
 		// test
-		res.push({
-			offline: true,
-			commentShow : false,
-			localId : 25,
-			latitude : '',
-			longitude : '',
-			filepath : '',
-			nickname : '时光相机用户',
-			src : 'http://172.22.72.159/end/here/?m=here&c=api&a=img&hash=/testuser/d5f54c6c1dc5eb8edd8bd18c232708e8.png',
-			time : formate(new Date(Date.now()), "yyyy-MM-dd HH:mm:ss"),
-			measurement : 1024 + "X" + 768
-		});
+		// res.push({
+		// 	offline: true,
+		// 	commentShow : false,
+		// 	localId : 25,
+		// 	latitude : '',
+		// 	longitude : '',
+		// 	filepath : '',
+		// 	nickname : '时光相机用户',
+		// 	src : 'http://172.22.72.159/end/here/?m=here&c=api&a=img&hash=/testuser/d5f54c6c1dc5eb8edd8bd18c232708e8.png',
+		// 	time : formate(new Date(Date.now()), "yyyy-MM-dd HH:mm:ss"),
+		// 	measurement : 1024 + "X" + 768
+		// });
 
-		callback && callback(res);
+		// callback && callback(res);
 	}
 	
 	var $headerScope;
@@ -235,18 +235,24 @@
 				return;
 			}
 
+			var me = this;
+
 			console.log(this.photo);
-			Utils.NATIVE.uploadPhoto('http://172.22.72.159/end/here/?m=here&c=api&a=upload', this.photo.filepath, {
+			Utils.NATIVE.uploadPhoto( Here.serverAddress + '&c=api&a=upload', this.photo.filepath, {
                 groupId: $stateParams.groupId,
                 longitude: this.photo.longitude,
                 latitude: this.photo.latitude,
                 measurement: this.photo.measurement,
                 direction: this.photo.direction,
                 time: this.photo.time,
-			}, function(data){
-				this.photo.offline = false;
-				this.photo.id = data.id;
+			}, function(result){
+				me.photo.offline = false;
+				me.photo.id = JSON.parse(result.response).data.photoId;
+
+				$scope.$apply();
 				
+				Utils.NATIVE.webdb.deleteById(me.photo.localId);
+				//TODO 删除本地图片
 			}, function(){
 				alert('同步失败');
 			});

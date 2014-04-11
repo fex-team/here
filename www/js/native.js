@@ -145,6 +145,16 @@
 			});
 		}
 
+		webdb.deleteById = function(id,callback) {
+			var db = webdb.db;
+			db.transaction(function(tx) {
+
+				tx.executeSql("delete from picture where id = ?", [id], function() {
+					callback && callback();
+				}, webdb.onError);
+			});
+		}
+
 		webdb.init = function() {
 			this.open();
 			this.createTable();
@@ -173,7 +183,7 @@
 				if (!started) {
 					started = true;
 					var host = window.location.host;
-					window.here.openCamera("http://" + host + "/mask.html", function(a) {
+					window.here.openCamera("http://" + host + "/here_hybird/mask.html", function(a) {
 						a = eval("(" + a + ")");
 						if (group_id) {
 							a.groupId = group_id;

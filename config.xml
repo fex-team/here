@@ -20,6 +20,8 @@
 	    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
 	</feature>
 
-    <content src="http://172.22.72.143/end/here_hybird/#"/>
+
+    <content src="http://192.168.56.1"/>
+
     <access origin="*" />
 </widget>
