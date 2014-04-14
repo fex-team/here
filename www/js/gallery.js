@@ -1,6 +1,6 @@
 (function() {
-	
-	angular.module('gallery', ['ionic', 'hereApp.controllers', 'angular-gestures']).controller('galleryNetworkController', function($scope, $stateParams, $controller, $ionicActionSheet,$ionicPopup) {
+
+	angular.module('gallery', ['ionic', 'hereApp.controllers', 'angular-gestures']).controller('galleryNetworkController', function($scope, $stateParams, $controller, $ionicActionSheet, $ionicPopup) {
 		var groups = [];
 		var webdb = Utils.NATIVE.webdb;
 		var i = 0;
@@ -34,7 +34,7 @@
 				photo : "img/2.png",
 				name : "未命名相册2"
 			});
-			
+
 			$scope.groups = groups;
 			$scope.$apply();
 			//test end
@@ -54,11 +54,19 @@
 		}
 
 		function sync(index) {
-
+			location.href = "#/sync?groupId=1";
 		}
-		
-		function remove(index){
-			groups.remove(index,index)
+
+		function remove(index) {
+			$ionicPopup.confirm({
+					title : '删除',
+					content : '确定要删除本相册吗?'
+				}).then(function(res) {
+					if (res) {
+						groups.remove(index, index)
+					}
+				});
+			
 		}
 
 
@@ -74,7 +82,7 @@
 					destructiveText : '删除',
 					titleText : '操作相册',
 					cancelText : '取消',
-					buttonClicked : function(i) { 
+					buttonClicked : function(i) {
 						switch(i) {
 							case 1:
 								rename(index);

@@ -1,4 +1,4 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -135,6 +135,22 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
           templateUrl: "templates/network.html"
         }
       }
+    }).state('sync', {
+      url: "/sync?groupId",
+      views:{
+        'pager':{
+          templateUrl: "templates/sync.html"
+        }
+      }
+      
+    }).state('sync_confirm', {
+      url: "/sync_confirm?groupId",
+      views:{
+        'pager':{
+          templateUrl: "templates/sync_confirm.html"
+        }
+      }
+      
     });
   
 	$urlRouterProvider.otherwise("/sidemenu/home");
