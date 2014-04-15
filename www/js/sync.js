@@ -63,8 +63,13 @@
 			
 			$scope.detail_state="";
 			$scope.title="同步相册";
+			$scope.$apply();
 			
-		})
+		});
+		
+		$scope.detail_state="";
+		$scope.title="同步相册";
+		
 		$scope.$on('syncDetailProfile',function(obj,index){
 			$scope.detail_state="active";
 			$scope.$emit("syncDetailPosition",index);

@@ -1,44 +1,46 @@
 (function() {
 
 	angular.module('gallery', ['ionic', 'hereApp.controllers', 'angular-gestures']).controller('galleryNetworkController', function($scope, $stateParams, $controller, $ionicActionSheet, $ionicPopup) {
+		$scope.item_width = document.body.clientWidth / 2;
 		var groups = [];
 		var webdb = Utils.NATIVE.webdb;
 		var i = 0;
 		webdb.getCover(function(res) {
 			res.forEach(function(pic, index) {
 
-				Utils.NATIVE.getImageData(pic.filepath, function(base64) {
-
-					groups.push({
-						id : pic.id,
-						photo : base64,
-						name : "未命名相册"
-					});
-					i++;
-					if (i == res.length) {
-						$scope.groups = groups;
-						$scope.$apply();
-					}
+				groups.push({
+					id : pic.id,
+					photo : pic.filepath,
+					name : "未命名相册"
 				});
-
+				i++;
+				if (i == res.length) {
+					$scope.groups = groups;
+					$scope.$apply();
+				}
 			});
 
-			//test
-			groups.push({
-				id : "123123213",
-				photo : "img/1.png",
-				name : "未命名相册1"
-			});
-			groups.push({
-				id : "11",
-				photo : "img/2.png",
-				name : "未命名相册2"
-			});
-
-			$scope.groups = groups;
-			$scope.$apply();
-			//test end
+			
 		});
+		
+		//test
+
+			/*
+			groups.push({
+							id : "123123213",
+							photo : "img/1.png",
+							name : "112321321"
+						});
+						groups.push({
+							id : "11",
+							photo : "img/2.png",
+							name : "112321321"
+						});
+			
+						$scope.groups = groups;
+						$scope.$apply();*/
+			
+			//test end
 
 		var __hold = 0;
 
@@ -59,14 +61,14 @@
 
 		function remove(index) {
 			$ionicPopup.confirm({
-					title : '删除',
-					content : '确定要删除本相册吗?'
-				}).then(function(res) {
-					if (res) {
-						groups.remove(index, index)
-					}
-				});
-			
+				title : '删除',
+				content : '确定要删除本相册吗?'
+			}).then(function(res) {
+				if (res) {
+					groups.remove(index, index)
+				}
+			});
+
 		}
 
 

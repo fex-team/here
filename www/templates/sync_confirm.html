@@ -16,7 +16,7 @@
 				</label>
 				<label class="item item-input item-stacked-label"> <span class="input-label">相册列表</span>
 					<div class="img_list">
-						<span class="img" ng-repeat="data in listData | filter:{ selected: true }" ng-click="onItemClick($index);" style="background-image:url({{data.photo}});"></span>
+						<span class="img" ng-repeat="data in listData | filter:{ selected: true }" ng-click="onItemClick($index);" native-src="{{data.photo}}" native-src-type='background'></span>
 						<button class="button  ion-android-add" ng-click="add()"></button>
 					</div> </label>
 
@@ -43,7 +43,7 @@
 				<div class="sync-detail">
 					<ion-slide-box on-slide-changed="onSlideChange()" show-pager="false">
 						<ion-slide ng-repeat="data in listData | filter:{ selected: true }">
-							<div class="img" style="background-image:url({{data.photo}})"></div>
+							<div class="img" native-src="{{data.photo}}" native-src-type='background'></div>
 						</ion-slide>
 
 					</ion-slide-box>

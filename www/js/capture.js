@@ -18,7 +18,7 @@
 
 	}).controller('capture_picture', function($rootScope, $scope, $stateParams, $element) {
 
-		Utils.NATIVE.displayImage(Utils.NATIVE.camera.getResult()['filepath'], $element[0]);
+		$scope.data = Utils.NATIVE.camera.getResult();
 
 	});
 })();
