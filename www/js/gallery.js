@@ -2,6 +2,9 @@
 
 	angular.module('gallery', ['ionic', 'hereApp.controllers', 'angular-gestures']).controller('galleryNetworkController', function($scope, $stateParams, $controller, $ionicActionSheet, $ionicPopup) {
 		$scope.item_width = document.body.clientWidth / 2;
+		$scope.onItemClick = function(id){
+			location.href="#/detail?groupId="+id+"&native=true";
+		}
 		var groups = [];
 		var webdb = Utils.NATIVE.webdb;
 		var i = 0;
@@ -11,7 +14,7 @@
 				groups.push({
 					id : pic.id,
 					photo : pic.filepath,
-					name : "未命名相册"
+					name : pic.name || "未命名相册"
 				});
 				i++;
 				if (i == res.length) {
@@ -45,18 +48,20 @@
 		var __hold = 0;
 
 		function rename(index) {
-
+			
 			$ionicPopup.prompt({
 				title : '重命名'
 			}).then(function(res) {
-				//TODO update database
+
+				webdb.updateNameById(groups[index].id,res);
+				
 				groups[index].name = res;
 			});
 
 		}
 
 		function sync(index) {
-			location.href = "#/sync?groupId=1";
+			location.href = "#/sync?groupId="+groups[index].id;
 		}
 
 		function remove(index) {

@@ -17,9 +17,10 @@
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
+				
 				setTimeout(function() {
-					var width = $(element[0]).width();
-					var height = $(element[0]).height();
+					var width = attrs.nativeSrcWidth || $(element[0]).width();
+					var height = attrs.nativeSrcHeight || $(element[0]).height();
 
 					var type = attrs.nativeSrcType || "img";
 					getBase64(attrs.nativeSrc, width, height, function(base64) {

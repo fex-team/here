@@ -26,13 +26,21 @@
 			pulling-text="下拉刷新..."
 			refreshing-text="正在刷新!"
 			refreshing-icon="ion-loading-c"></ion-refresher>
-			<div class="photo-item" ng-repeat="photo in group.photos">
+			<div class="photo-item" ng-repeat="photo in group.photos | filter:{show:true}">
 				<div class="item-wrap">
 					<p>
 						<span class="user-avatar"></span><span class="nickname">{{photo.nickname}}</span>
 					</p>
-					<i class="async" ng-show="photo.offline" ng-click="doAsync()"></i>
-					<p class="img-wrap"><img ng-src="{{photo.src}}" />
+					<div class="actionbar">
+						<div class="offline-bar" ng-show="photo.offline">
+							<i class="button button-icon icon ion-ios7-cloud-upload-outline"  ng-click="doAsync()"></i>
+							<i class="button button-icon icon ion-ios7-trash-outline" ng-show="photo.offline" ng-click="doDel()"></i>
+						</div>
+						
+					</div>
+					
+					
+					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <img ng-src="{{photo.src}}" ng-switch-default/>
 					</p>
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" ng-show="!photo.offline">

@@ -81,6 +81,7 @@
 	bottom: 0;
 	background-repeat: no-repeat;
 	background-position: center center;
+	background-size: contain;
 }
 .sync-detail-outer {
 	display: none;

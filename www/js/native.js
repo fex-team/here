@@ -71,11 +71,21 @@
 		};
 		webdb.createTable = function() {
 			var db = webdb.db;
-			var table_picture = "CREATE TABLE IF NOT EXISTS `picture` ( `id` varchar(255) NOT NULL, `groupId` varchar(255) DEFAULT NULL, `sensorX` float DEFAULT NULL, `sensorY` float DEFAULT NULL, `sensorZ` float DEFAULT NULL, `datetime` datetime DEFAULT NULL, `latitude` double DEFAULT NULL, `lontitude` double DEFAULT NULL, `radius` double DEFAULT NULL, `orientation` int(11) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL, `filepath` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`));"
+			var table_picture = "CREATE TABLE IF NOT EXISTS `picture` ( `id` varchar(255) NOT NULL, `groupId` varchar(255) DEFAULT NULL,`name` varchar(255) DEFAULT NULL, `sensorX` float DEFAULT NULL, `sensorY` float DEFAULT NULL, `sensorZ` float DEFAULT NULL, `datetime` datetime DEFAULT NULL, `latitude` double DEFAULT NULL, `lontitude` double DEFAULT NULL, `radius` double DEFAULT NULL, `orientation` int(11) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL, `filepath` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`));"
 			db.transaction(function(tx) {
 				tx.executeSql(table_picture, [], webdb.onSuccess, webdb.onError);
 			});
 		};
+		
+		webdb.updateNameById = function(id,name){
+			var db = webdb.db;
+			db.transaction(function(tx) {
+
+				tx.executeSql("UPDATE picture set name=? where id=?", [name,id], function() {
+					
+				}, webdb.onError);
+			});
+		}
 
 		webdb.addPicture = function(picture) {
 
@@ -134,6 +144,17 @@
 				}, webdb.onError);
 			});
 		}
+		
+		webdb.getGroup = function(id,callback){
+			var db = webdb.db;
+			db.transaction(function(tx) {
+				tx.executeSql("select * from picture where groupId = ? or id = ?", [id,id], function() {
+					callback(renderRs.apply(this, arguments));
+				}, webdb.onError);
+			});
+		}
+		
+		
 
 		webdb.getPictureByPage = function(offset, limit, callback) {
 			var db = webdb.db;

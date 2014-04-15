@@ -42,8 +42,8 @@
 			<div  class="sync-detail-outer " style="display:block;">
 				<div class="sync-detail">
 					<ion-slide-box on-slide-changed="onSlideChange()" show-pager="false">
-						<ion-slide ng-repeat="data in listData | filter:{ selected: true }">
-							<div class="img" native-src="{{data.photo}}" native-src-type='background'></div>
+						<ion-slide ng-switch on="detail_state" ng-repeat="data in listData | filter:{ selected: true }">
+							<div class="img" native-src="{{data.photo}}"  native-src-width="{{screen_width}}" native-src-height="1" native-src-type='background' ng-switch-when="active"></div>
 						</ion-slide>
 
 					</ion-slide-box>
