@@ -16,7 +16,8 @@
                 "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>": 1,
                 "<feature name=\"FileSystemRoots\"><param name=\"android-package\" value=\"org.apache.cordova.filesystemroots.FileSystemRoots\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
                 "<feature name=\"Here\"><param name=\"android-package\" value=\"com.baidu.fex.camera.Plugin\" /></feature>": 1,
-                "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>": 1
+                "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>": 1,
+                "<feature name=\"com.baidu.fex.here.resizeImage.ImageResizePlugin\"><param name=\"android-package\" value=\"com.baidu.fex.here.resizeImage.ImageResizePlugin\" /></feature>": 1
             }
         },
         "AndroidManifest.xml": {
@@ -24,22 +25,22 @@
                 "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />": 1,
                 "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />": 1,
                 "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />": 1,
-                "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />": 5,
+                "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />": 6,
                 "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />": 1,
                 "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\" />": 1,
                 "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />": 1,
-                "<uses-permission android:name=\"android.permission.CAMERA\" />": 1,
-                "<uses-permission android:name=\"android.hardware.sensor.accelerometer\" />": 1,
-                "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.INTERNET\" />": 1,
-                "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"></uses-permission>": 1,
-                "<uses-permission android:name=\"android.permission.READ_LOGS\"></uses-permission>": 1
+                "<uses-permission android:name=\"android.permission.CAMERA\" />": 2,
+                "<uses-permission android:name=\"android.hardware.sensor.accelerometer\" />": 2,
+                "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.INTERNET\" />": 2,
+                "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"></uses-permission>": 2,
+                "<uses-permission android:name=\"android.permission.READ_LOGS\"></uses-permission>": 2
             },
             "/manifest": {
                 "<uses-permission android:name=\"android.permission.VIBRATE\" />": 1
@@ -85,6 +86,9 @@
             "PACKAGE_NAME": "com.baidu.fex.here"
         },
         "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "com.baidu.fex.here.resizeImage": {
             "PACKAGE_NAME": "com.baidu.fex.here"
         }
     },
