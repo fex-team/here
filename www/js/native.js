@@ -231,7 +231,7 @@
 	})();
 
 	function uploadPhoto(url, filepath, params, onsuccess, onerror) {
-		filepath = "/sdcard/"+filepath;
+		// filepath = "/sdcard/"+filepath;
 		var options = new FileUploadOptions();
 		options.fileKey = "file";
 		options.fileName = filepath.substr(filepath.lastIndexOf('/') + 1);
