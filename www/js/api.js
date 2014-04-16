@@ -40,16 +40,25 @@ Here.api = {
         
         url += "&_t=" + Date.now();
 
-        $.post( Here.serverAddress + url, input, function( response ) {
-            if ( 1 === response.no ) {
-                if ( $.isFunction(callbacks.success) ) {
-                    callbacks.success( response.data );
+        $.ajax({
+            url: Here.serverAddress + url,
+            type: 'POST',
+            data: input,
+            success: function( response ) {
+                if ( 1 === response.no ) {
+                    if ( $.isFunction(callbacks.success) ) {
+                        callbacks.success( response.data );
+                    }
+                }else {
+                    if ( $.isFunction(callbacks.error) ) {
+                        callbacks.error( response.data );
+                    }
                 }
-            }else {
-                if ( $.isFunction(callbacks.error) ) {
-                    callbacks.error( response.data );
-                }
+            },
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
             }
-        }, "json");
+        });
     }
 };
