@@ -2025,7 +2025,7 @@ window.ionic = {
       this.platforms = [];
       this.grade = 'a';
 
-      if(this.isCordova()) this.platforms.push('cordova');
+      // if(this.isCordova()) this.platforms.push('cordova');
       if(this.isIPad()) this.platforms.push('ipad');
 
       var platform = this.platform();
@@ -33391,12 +33391,12 @@ angular.module('ionic.service.popup', ['ionic.service.templateLoad'])
         title: opts.title || '',
         buttons: [
           {
-            text: opts.cancelText || 'Cancel' ,
+            text: opts.cancelText || '取消' ,
             type: opts.cancelType || 'button-default',
             onTap: function(e) { e.preventDefault(); }
           },
           {
-            text: opts.okText || 'OK',
+            text: opts.okText || '确认',
             type: opts.okType || 'button-positive',
             onTap: function(e) {
               return true;

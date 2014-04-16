@@ -1,34 +1,37 @@
-.home .tabs {
+.page-home .tabs {
     height: 36px;
     line-height: 36px;
     padding: 0 77px;
 }
-.home .tab-item.active {
+.page-home .tab-item.active {
     border-bottom: 3px solid #026ACA;
 }
-.home .tab-slide {
+.page-home .tab-slide {
     padding-top: 36px;
 }
-.home .recommend-collection {
+.home-pages {
+    height: 100%;
+}
+.page-home .recommend-collection {
     padding-top: 0;
     height: 132px;
 }
-.home .slider-pager {
+.page-home .slider-pager {
     text-align: right;
     padding-right: 15px;
     bottom: 2px;
 }
-.home .slider-pager .slider-pager-page {
+.page-home .slider-pager .slider-pager-page {
     color: #FFF;
     opacity: 1;
 }
-.home .slider-pager .slider-pager-page.active {
+.page-home .slider-pager .slider-pager-page.active {
     color: #026ACA;
 }
-.home .slider-container {
+.page-home .slider-container {
     position: relative;
 }
-.home .slider-container p {
+.page-home .slider-container p {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -51,13 +54,23 @@
     margin: 30px auto;
     margin-left: 5%;
 }
+.group:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
 .group:nth-child(odd){
     margin-left: 3%;
+}
+.group a {
+    display: block;
+    height: 85%;
+    width: 100%;
 }
 .group p {
     margin: 0;
     position: absolute;
-    bottom: 3%;
+    bottom: 15%;
     left: 5%;
     line-height: 26px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -67,10 +80,15 @@
 }
 .stack {
     padding: 0;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
+
 .stack img {
-    max-width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -111,25 +129,16 @@
 .stack-peekaboo.active img:nth-child(4) {
     -webkit-transform: scale(0.9);
     transform: scale(0.9);
+    height: 100%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.test-content {
-    line-height: 50px;
+.page-home .toolbar .map-icon {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    display: block;
+    height: 20px;
+    width: 15px;
+    background: url(images/circle.png) no-repeat 0 0;
+    background-size: 15px 20px;
 }

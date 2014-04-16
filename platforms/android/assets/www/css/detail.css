@@ -1,0 +1,189 @@
+.page-detail .item-wrap {
+	position: relative;
+}
+.page-detail .item-wrap .async {
+	line-height: 30px;
+	display: inline-block;
+	height: 30px;
+	margin-left: 10px;
+	position: absolute;
+	right: 10px;
+	top: 2px;
+}
+.page-detail .item-wrap .async:after {
+	content: "\f201";
+	font-family: "Ionicons";
+	color: #4A87EE;
+	font-size: 26px;
+	padding-right: 5px;
+	line-height: 30px;
+	height: 30px;
+	display: inline-block;
+	vertical-align: top;
+	font-weight: bolder;
+}
+.page-detail img {
+	max-width: 100%;
+	border-radius: 5px;
+	border: 1px solid #E2E2E2;
+}
+.page-detail .user-avatar {
+	display: inline-block;
+	border: 2px solid #E2E2E2;
+	vertical-align: middle;
+	margin-right: 0.5em;
+	height: 24px;
+	width: 24px;
+	background-color: #4A87EE;
+	border-radius: 12px;
+}
+.page-detail .nickname {
+	line-height: 24px;
+}
+.page-detail .actions {
+	text-align: right;
+	padding-right: 8px;
+	margin-top: -35px;
+}
+.page-detail .img-wrap {
+	text-align: center;
+}
+.comment-panel {
+	background-color: #E3E2E2;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+.comment-panel .user-avatar {
+	border-color: #FFF;
+}
+.comment-panel .comment-input {
+	width: calc(100% - 50px);
+	float: left;
+	height: 30px;
+	line-height: 26px;
+	padding: 2px 5px;
+}
+.comment-panel .comment-submit {
+	height: 30px;
+	width: 40px;
+	background-color: #3B8AD3;
+	border: 1px solid #E1E1E1;
+	color: #FFF;
+	font-size: 12px;
+	line-height: 26px;
+	margin-left: 10px;
+}
+.page-detail .img-wrap {
+	margin: 0;
+}
+.page-detail .actions .share, .page-detail .actions .follow, .page-detail .actions .comment {
+	line-height: 30px;
+	display: inline-block;
+	height: 30px;
+	margin-left: 10px;
+}
+.page-detail .actions .share:before, .page-detail .actions .follow:before, .page-detail .actions .comment:before {
+	content: "\f198";
+	font-family: "Ionicons";
+	color: #4A87EE;
+	font-size: 26px;
+	padding-right: 5px;
+	line-height: 30px;
+	height: 30px;
+	display: inline-block;
+	vertical-align: top;
+	font-weight: bolder;
+}
+.page-detail .actions .share:before {
+	content: "\f1d2";
+}
+.page-detail .actions .comment:before {
+	content: "\f16a";
+}
+.page-detail .ionic-refresher-content {
+	bottom: 15px;
+}
+.page-detail .scroll-refresher .icon-refreshing {
+	font-size: 15px;
+}
+.page-detail .ionic-refresher-content .icon-pulling {
+	font-size: 15px;
+}
+.page-detail .scroll-refresher {
+	height: 35px;
+	top: -16px;
+	overflow: visible;
+}
+.page-detail a.item:after {
+	display: none;
+}
+.page-detail i.icon {
+	color: #4a87ee;
+}
+.page-detail .droplist {
+	position: absolute;
+	z-index: 999;
+	right: 0;
+	top: 44px;
+	background: rgba(255,255,255,0.8);
+}
+.page-detail .droplist .item{
+	background: transparent;
+}
+.page-detail .droplist.active{
+	display: block;
+}
+.page-detail .droplist{
+	display: none;
+}
+.page-detail .droplist-inner.active{
+	-webkit-animation: fadein 0.5s;
+}
+.page-detail .sharelist{
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background: rgba(255,255,255,0.8);
+	z-index: 99999;
+	
+}
+.page-detail .sharelist li{
+	width: 32%;
+	text-align: center;
+	display: inline-block;
+	margin: 5px 0;
+	
+}
+.page-detail .sharelist-outer{
+	position: fixed;
+	z-index: 9999;
+	background: rgba(0,0,0,0.2);
+	left: 0;
+	width: 100%;
+	top: 0;
+	height: 100%;
+	display: none;
+}
+.page-detail i.icon.ion-ios7-trash-outline{
+	color: #EA3E0A;
+}
+.page-detail .actionbar{
+	position: absolute;
+	right: 0;
+	top: -10px;
+}
+.page-detail .actionbar .button{
+	margin-left: 5px;
+}
+.sharelist-outer.active{
+	display: block;
+}
+@-webkit-keyframes sharelistzoomin {
+    from { -webkit-transform: translateY(210px); }
+    to   { -webkit-transform: translateY(0px); }
+}
+.sharelist-outer.active .sharelist{
+	-webkit-animation: sharelistzoomin 0.5s ease-in-out;
+	-webkit-transition-timing-function: linear;
+}

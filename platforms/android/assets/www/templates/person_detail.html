@@ -1,0 +1,32 @@
+<ion-view title="个人详情页"  class="person_detail" >
+
+	<ion-header-bar
+	title="个人详情页"
+	left-buttons="back"
+	right-buttons="person_detail_edit"
+	type="bar-positive"
+	align-title="center"
+	ng-controller="person_detail_header">
+
+	</ion-header-bar>
+	<ion-content has-header="true" padding="true" ng-controller="person_detail">
+		<div class="photo-item">
+			<img ng-src="{{user.avatar}}" class="layout-left"/>
+		</div>
+		<div class="list">
+			<div class=" item-divider">
+				基本信息
+			</div>
+			<a class="item" > <label class="layout-left">登录名</label> <span class="layout-right">{{user.username}}</span> </a>
+			<a class="item" style="margin-top: 15px;"> <label class="layout-left">昵称</label> <span class="layout-right">{{user.nickname}}</span> </a>
+			<a class="item"> <label class="layout-left">性别</label> <span class="layout-right">{{user.sex}}</span> </a>
+			<a class="item"> <label class="layout-left">所在地</label> <span class="layout-right">{{user.address}}</span> </a>
+			<a class="item"> <label class="layout-left">简介</label> <span class="layout-right">{{user.intro}}</span> </a>
+			<div class="item-divider">
+				其他
+			</div>
+			<a class="item"> <label class="layout-left">注册时间</label> <span class="layout-right">{{user.time}}</span> </a>
+		</div>
+		
+	</ion-content>
+</ion-view>
