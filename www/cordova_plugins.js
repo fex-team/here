@@ -296,6 +296,13 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "file": "plugins/com.baidu.fex.here.resizeImage/www/imageresize.js",
+        "id": "com.baidu.fex.here.resizeImage.resizeImage",
+        "clobbers": [
+            "resizeImage"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -312,7 +319,8 @@ module.exports.metadata =
     "org.apache.cordova.vibration": "0.3.7",
     "org.apache.cordova.file-system-roots": "0.2.0-dev",
     "com.baidu.fex.here.camera": "0.0.1",
-    "org.apache.cordova.camera": "0.2.8"
+    "org.apache.cordova.camera": "0.2.8",
+    "com.baidu.fex.here.resizeImage": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

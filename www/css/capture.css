@@ -15,13 +15,16 @@
 	display: table;
 	vertical-align: middle;
 }
-.capture-wrap-cell{
-	vertical-align: middle;
-	display: table-cell;
-}
-.capture-wrap-cell img{
-	max-height: 100%;
-	max-width: 100%;
+
+.capture-wrap-cell .img{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
 }
 
 

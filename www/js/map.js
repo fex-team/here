@@ -77,7 +77,8 @@
 
 				myLabel.addEventListener("click", function() {
 					$scope.popup.album = obj.album;
-					$scope.popup.city = obj.city;
+					//TODO 从地图API取地址
+					// $scope.popup.city = obj.city;
 					$scope.popup.time = obj.time;
 					$scope.popup.follow = obj.follow;
 					$scope.popup.url = obj.url;
@@ -95,28 +96,47 @@
 
 	})();
 
-	angular.module("map", ['ionic', 'hereApp.controllers']).controller('map_display', function($scope, $element) {
-		map.ready(function() {
-			map.init("map-container", new BMap.Point(116.290328,40.050923), function(bounds) {
-				console.info(bounds);
-				map.clearOverlays();
-				map.addMarker("文思海辉", new BMap.Point(116.290328,40.050923), {
-					album : "文思海辉",
-					city : "北京",
-					time : "2014-03-02",
-					follow : "10",
-					url : "detail?groupId=1",
-					photo : "http://img.51766.com/tamcl/1175499862824.jpg"
-				}, $scope);
+	var addedGroup = {};
 
-				map.addMarker("百度大厦", new BMap.Point(116.307665,40.056695), {
-					album : "百度大厦",
-					city : "北京",
-					time : "2014-03-02",
-					follow : "1",
-					url : "detail?groupId=2",
-					photo : "http://img.51766.com/tamcl/1175499862824.jpg"
-				}, $scope);
+	angular.module("map", ['ionic', 'hereApp.controllers']).controller('map_display', function($scope, $element, $stateParams) {
+		var position = $stateParams.position;
+		var longitude = position.split(',')[0];
+		var latitude = position.split(',')[1];
+		map.ready(function() {
+			map.init("map-container", new BMap.Point(longitude,latitude), function(bounds) {
+				console.info(bounds);
+				// map.clearOverlays();
+
+				Here.api.get('/api/get_beside', {
+					position: (bounds.x1 + bounds.x2)/2 + ',' + (bounds.y1 + bounds.y2)/2
+				}, {
+                    success: function(data){
+                    	if(!$.isArray(data)){
+                    		return;
+                    	}
+                        data.forEach(function(group){
+                        	if(addedGroup[group.id]){
+                        		return;
+                        	}
+                            map.addMarker(group.name, new BMap.Point(parseFloat(group.longitude),parseFloat(group.latitude)), {
+								album : group.name,
+								// city : "北京",
+								time : group.time.split(' ')[0],
+								follow : group.count,
+								url : 'detail?groupId=' + group.id,
+								photo : Here.serverAddress + '&c=api&a=img&hash=' + group.hash
+							}, $scope);
+
+							addedGroup[group.id] = true;
+                        });
+
+                        $scope.$apply();
+                    },
+                    error: function(data){
+                        
+                    }
+                });
+
 			});
 		});
 

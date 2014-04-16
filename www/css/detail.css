@@ -165,6 +165,17 @@
 	height: 100%;
 	display: none;
 }
+.page-detail i.icon.ion-ios7-trash-outline{
+	color: #EA3E0A;
+}
+.page-detail .actionbar{
+	position: absolute;
+	right: 0;
+	top: -10px;
+}
+.page-detail .actionbar .button{
+	margin-left: 5px;
+}
 .sharelist-outer.active{
 	display: block;
 }

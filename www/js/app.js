@@ -1,4 +1,4 @@
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -33,7 +33,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
         }
       }
     }).state('detail', {
-      url: "/detail?groupId",
+      url: "/detail?groupId&native",
       views:{
       	'pager':{
       		templateUrl: "templates/detail.html"
@@ -81,7 +81,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
       }
       
     }).state('map', {
-      url: "/map",
+      url: "/map?position",
       views:{
       	'pager':{
       		templateUrl: "templates/map.html"
@@ -135,11 +135,28 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
           templateUrl: "templates/network.html"
         }
       }
+    }).state('sync', {
+      url: "/sync?groupId",
+      views:{
+        'pager':{
+          templateUrl: "templates/sync.html"
+        }
+      }
+      
+    }).state('sync_confirm', {
+      url: "/sync_confirm?groupId",
+      views:{
+        'pager':{
+          templateUrl: "templates/sync_confirm.html"
+        }
+      }
+      
     });
   
 	$urlRouterProvider.otherwise("/sidemenu/home");
 
   Here.isLogin = false;
+  cookie.defaults.path = '/';
       
       if(cookie.get('username')){
         Here.userInfo = {
@@ -149,6 +166,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers', '
         }
 
         Here.isLogin = true;
+        
       }
 	
 });

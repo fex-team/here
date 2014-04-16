@@ -34,37 +34,42 @@
 	}
 	var groups;
 
+	function convertPhoto(pic) {
+		var name = Here.userInfo ? Here.userInfo.nickname : "时光相机用户";
+		return {
+			offline : true,
+			commentShow : false,
+			localId : pic.id,
+			latitude : pic.latitude,
+			longitude : pic.lontitude,
+			nickname : name,
+			src : pic.filepath,
+			filepath : pic.filepath,
+			type : "native",
+			time : formate(new Date(parseInt(pic.datetime)), "yyyy-MM-dd HH:mm:ss"),
+			measurement : pic.width + "X" + pic.height,
+			show : true
+		};
+	}
+
 	function getNativePhoto(groupId, callback) {
 
 		var res = [];
 
 		var i = 0;
-		var name = Here.userInfo ? Here.userInfo.nickname : "时光相机用户";
+
 		Utils.NATIVE.webdb.getPictureByGroupId(groupId, function(arr) {
 			if (arr.length == 0) {
 				callback && callback([]);
 			}
 			arr.forEach(function(pic, index) {
 
-				Utils.NATIVE.getImageData(pic.filepath, function(base64) {
-					res.push({
-						offline: true,
-						commentShow : false,
-						localId : pic.id,
-						latitude : pic.latitude,
-						longitude : pic.lontitude,
-						nickname : name,
-						src : base64,
-						filepath : pic.filepath,
-						time : formate(new Date(parseInt(pic.datetime)), "yyyy-MM-dd HH:mm:ss"),
-						measurement : pic.width + "X" + pic.height
-					});
+				res.push(convertPhoto(pic));
 
-					if (i == arr.length - 1) {
-						callback && callback(res);
-					}
-					i++;
-				});
+				if (i == arr.length - 1) {
+					callback && callback(res);
+				}
+				i++;
 
 			});
 		});
@@ -144,18 +149,19 @@
 		}
 		
 		$headerScope = $scope;
-	}).controller('DetailController', function($scope, $stateParams) {
-		$scope.doRefresh = function() {
-			Here.api.get('/api/get_group', {
-				groupId : $stateParams.groupId
-			}, {
-				success : function(data) {
-					data.photos.forEach(function(photo, index) {
-						photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
-						photo.commentShow = false;
-					});
+	}).controller('DetailController', function($scope, $stateParams, $ionicPopup) {
 
-					getNativePhoto($stateParams.groupId, function(res) {
+		$scope.doRefresh = function() {
+			if ($stateParams['native']) {
+
+				Utils.NATIVE.webdb.getPictureById($stateParams.groupId, function(res) {
+					var cover = res[0];
+					var data = {
+						id : $stateParams.groupId,
+						name : cover.name,
+						photos : [convertPhoto(cover)]
+					};
+					getNativePhoto(cover.id, function(res) {
 						data.photos = res.concat(data.photos);
 
 						groups = data;
@@ -164,13 +170,35 @@
 						angular.element(document.querySelector('#detail-header')).find('h1').html(data.name);
 						$scope.$broadcast('scroll.refreshComplete');
 					});
+				});
 
-				},
-				error : function(data) {
-					console.log(data);
-					$scope.$broadcast('scroll.refreshComplete');
-				}
-			});
+			} else {
+				Here.api.get('/api/get_group', {
+					groupId : $stateParams.groupId
+				}, {
+					success : function(data) {
+						data.photos.forEach(function(photo, index) {
+							photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
+							photo.commentShow = false;
+						});
+
+						getNativePhoto($stateParams.groupId, function(res) {
+							data.photos = res.concat(data.photos);
+
+							groups = data;
+							$scope.group = data;
+							$scope.$apply();
+							angular.element(document.querySelector('#detail-header')).find('h1').html(data.name);
+							$scope.$broadcast('scroll.refreshComplete');
+						});
+
+					},
+					error : function(data) {
+						console.log(data);
+						$scope.$broadcast('scroll.refreshComplete');
+					}
+				});
+			}
 
 		}
 		$scope.doRefresh();
@@ -205,19 +233,19 @@
 		};
 
 		// 关注照片
-		$scope.doFollow = function() {
+		$scope.doLike = function() {
 			if( !Here.isLogin ){
 				alert('请先登录');
 				return;
 			}
 			var photoId = this.photo.id;
-			Here.api.post('/api/follow', {
+			Here.api.post('/api/like', {
 				'photoId' : photoId
 			}, {
 				success : function(data) {
 					$scope.group.photos.forEach(function(photo) {
 						if (photoId === photo.id) {
-							photo.follows = ++photo.follows;
+							photo.likes = ++photo.likes;
 						}
 					});
 					$scope.$apply();
@@ -228,9 +256,35 @@
 			});
 		};
 
+		$scope.doDel = function() {
+			// A confirm dialog
+			var me = this;
+			$ionicPopup.confirm({
+				title : '删除',
+				content : '你确认要删除该照片吗?'
+			}).then(function(res) {
+				if (res) {
+					Utils.NATIVE.webdb.deleteById(me.photo.localId);
+					me.photo.show = false;
+				}
+			});
+
+		}
 		// 同步照片
-		$scope.doAsync = function(){
-			if( !Here.isLogin ){
+		$scope.doAsync = function() {
+			var me = this;
+			if ($stateParams['native']) {
+				$ionicPopup.confirm({
+					title : '提醒',
+					content : '你还没有创建相册，是否要先创建相册?'
+				}).then(function(res) {
+					if (res) {
+						location.href = "#/sync?groupId="+me.photo.localId
+					}
+				});
+				return;
+			}
+			if (!Here.isLogin) {
 				alert('请先登录');
 				return;
 			}
@@ -238,29 +292,30 @@
 			var me = this;
 
 			console.log(this.photo);
-			Utils.NATIVE.uploadPhoto( Here.serverAddress + '&c=api&a=upload', this.photo.filepath, {
-                groupId: $stateParams.groupId,
-                longitude: this.photo.longitude,
-                latitude: this.photo.latitude,
-                measurement: this.photo.measurement,
-                direction: this.photo.direction,
-                time: this.photo.time,
-			}, function(result){
+			Utils.NATIVE.uploadPhoto(Here.serverAddress + '&c=api&a=upload', this.photo.filepath, {
+				groupId : $stateParams.groupId,
+				longitude : this.photo.longitude,
+				latitude : this.photo.latitude,
+				measurement : this.photo.measurement,
+				direction : this.photo.direction,
+				time : this.photo.time,
+				show : true
+			}, function(result) {
 				me.photo.offline = false;
 				me.photo.id = JSON.parse(result.response).data.photoId;
 
 				$scope.$apply();
-				
+
 				Utils.NATIVE.webdb.deleteById(me.photo.localId);
 				//TODO 删除本地图片
-			}, function(){
+			}, function() {
 				alert('同步失败');
 			});
 
 		};
-		
+
 		$scope.openShare = function() {
-			
+
 			$headerScope.sharelist.visible = "active";
 
 		};
@@ -275,7 +330,7 @@
 				return;
 			}
 
-			if( !Here.isLogin ){
+			if (!Here.isLogin) {
 				alert('请先登录');
 				return;
 			}
