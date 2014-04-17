@@ -13,6 +13,11 @@
 				group.push({
 					id : pic.id,
 					photo : pic.filepath,
+					localId : pic.id,
+					latitude : pic.latitude,
+					longitude : pic.lontitude,
+					time : window.DateFormate(new Date(parseInt(pic.datetime)), "yyyy-MM-dd HH:mm:ss"),
+					measurement : pic.width + "X" + pic.height,
 					selected : false
 				})
 			});
@@ -105,7 +110,7 @@
 		}
 	});
 
-	angular.module('syncConfirmModule', ['ionic', 'hereApp.controllers']).controller('syncConfirmController', function($stateParams, $location, $scope, $ionicSlideBoxDelegate) {
+	angular.module('syncConfirmModule', ['ionic', 'hereApp.controllers']).controller('syncConfirmController', function($rootScope, $stateParams, $location, $scope, $ionicSlideBoxDelegate) {
 		
 		$scope.screen_width = document.body.clientWidth;
 		var groupId = $stateParams.groupId;
@@ -144,7 +149,20 @@
 
 		$scope.syncConfirmRightButton = [{
 			type : 'button  button-positive',
-			tap : function(e) {
+			tap : function(e){
+				angular.element(document.querySelectorAll('#syncForm')[0]).scope().createAlbum(function(groupId){
+					var photos = [];
+					$scope.listData.forEach(function( photo ){
+						photos.push({
+							localId: photo.id,
+							latitude: photo.latitude,
+							longitude: photo.longitude,
+							filepath: photo.photo,
+							measurement: photo.measurement
+						});
+					});
+					syncPhoto(groupId, photos);
+				});
 				$location.path("sync_confirm");
 			},
 			content : "完成"
@@ -179,6 +197,54 @@
 		$scope.onItemClick = function(index) {
 			$location.hash("syncConfirmDetailProfile");
 			$scope.$emit("syncConfirmDetailProfile", index);
+		}
+
+		function syncPhoto(groupId, photos){
+			var photo = photos.shift();
+			console.log(photo);
+
+			Utils.NATIVE.uploadPhoto(Here.serverAddress + '&c=api&a=upload', photo.filepath, {
+				groupId : groupId,
+				longitude : photo.longitude,
+				latitude : photo.latitude,
+				measurement : photo.measurement,
+				// direction : this.photo.direction,
+				time : photo.time
+			}, function(result) {
+				if(JSON.parse(result.response).no === 1){
+					Utils.NATIVE.webdb.deleteById(photo.localId);
+				}
+				if(photos.length > 0){
+					syncPhoto(groupId, photos);
+				}else{
+					alert('创建成功');
+				}
+			}, function() {
+				if(photos.length > 0){
+					syncPhoto(groupId, photos);
+				}else{
+					alert('创建成功');
+				}
+			});
+		}
+
+
+	}).controller('syncFormController', function($stateParams, $location, $scope, $ionicSlideBoxDelegate) {
+		$scope.albumName = '';
+
+		$scope.createAlbum = function(callback){
+			console.log($scope.albumName);
+
+			Here.api.post('/api/create_group', {
+				'name' : $scope.albumName
+			}, {
+				success : function(data) {
+					callback(data.id);
+				},
+				error : function(data) {
+					alert('创建相册失败：' + data.message);
+				}
+			});
 		}
 	});
 

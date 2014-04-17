@@ -31,7 +31,11 @@
 	        }         
 	    }         
 	    return fmt;
-	}
+	};
+
+	// hack
+	window.DateFormate = formate;
+
 	var groups;
 
 	function convertPhoto(pic) {

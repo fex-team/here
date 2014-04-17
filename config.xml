@@ -21,7 +21,7 @@
 	</feature>
 
 
-    <content src="http://192.168.56.1"/>
+    <content src="http://172.22.72.210/end/here_hybird/"/>
 
     <access origin="*" />
 </widget>
