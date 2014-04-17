@@ -21,7 +21,10 @@
 	</feature>
 
 
-    <content src="http://172.22.72.210/end/here_hybird/"/>
+    <!--content src="http://172.22.72.140/end/here_hybird/"/-->
+    <content src="http://172.22.82.154"/>
+    
 
     <access origin="*" />
+    
 </widget>

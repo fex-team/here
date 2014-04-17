@@ -1,7 +1,0 @@
-int drawable icon 0x7f020000
-int id capture 0x7f060002
-int id layout 0x7f060000
-int id mask 0x7f060001
-int layout activity_main 0x7f030000
-int string app_name 0x7f050000
-int xml config 0x7f040000
