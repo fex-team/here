@@ -116,6 +116,8 @@
 		var groupId = $stateParams.groupId;
 		$scope.listData = JSON.parse(sessionStorage.getItem("sync_group" + groupId));
 
+		$scope.group = {};
+
 		function getDataLength() {
 			var i = 0;
 			$scope.listData.forEach(function(item) {
@@ -150,7 +152,11 @@
 		$scope.syncConfirmRightButton = [{
 			type : 'button  button-positive',
 			tap : function(e){
-				angular.element(document.querySelectorAll('#syncForm')[0]).scope().createAlbum(function(groupId){
+				angular.element(document.querySelectorAll('#syncForm')[0]).scope().createAlbum(function(groupId, groupName){
+
+					$scope.group.id = groupId;
+					$scope.group.name = groupName;
+
 					var photos = [];
 					$scope.listData.forEach(function( photo ){
 						photos.push({
@@ -183,6 +189,7 @@
 		}];
 
 		$scope.add = function() {
+
 			history.back();
 		}
 
@@ -211,8 +218,24 @@
 				// direction : this.photo.direction,
 				time : photo.time
 			}, function(result) {
-				if(JSON.parse(result.response).no === 1){
+				result = JSON.parse(result.response);
+				if(result.no === 1){
 					Utils.NATIVE.webdb.deleteById(photo.localId);
+
+					// 更新相册封面
+					if(!$scope.group.cover){
+						Here.api.post('/api/update_group', {
+							'groupId': groupId,
+							'cover': result.data.photoId
+						}, {
+							success : function(data) {
+								$scope.group.cover = result.data.photoId;
+							},
+							error : function(data) {
+								alert(data.message);
+							}
+						});
+					}
 				}
 				if(photos.length > 0){
 					syncPhoto(groupId, photos);
@@ -239,7 +262,7 @@
 				'name' : $scope.albumName
 			}, {
 				success : function(data) {
-					callback(data.id);
+					callback(data.id, $scope.albumName);
 				},
 				error : function(data) {
 					alert('创建相册失败：' + data.message);
