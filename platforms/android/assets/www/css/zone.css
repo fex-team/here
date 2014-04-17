@@ -1,0 +1,84 @@
+.zone-bg{
+	background: url("images/bg.jpg") no-repeat;
+	height:155px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-size: cover;
+}
+.zone-hd{
+	position: relative;
+	height: 264px;
+}
+.zone-person{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+
+}
+.zone-person .layout-left{
+	display: inline-block;
+	width: 90px;
+	height: 90px;
+	-webkit-border-radius: 10px;
+	vertical-align: middle;
+}
+.zone-person .layout-right{
+	display: inline-block;
+	margin-left: 20px;
+	color: #fff;
+	position: relative;
+	top: 10px;
+}
+.zone-person .layout-right p{
+	font-size: 20px;
+	
+}
+.zone-person .layout-right .button{
+	position: relative;
+	top: 12px;
+}
+.zone-actions{
+	display: table;
+	width: 100%;
+	border-top: 1px solid #BABABA;
+	margin-top: 18px;
+	border-bottom: 1px solid #BABABA;
+}
+.zone-actions li{
+	display: table-cell;
+	width: 25%;
+	text-align: center;
+	height: 50px;
+	vertical-align: middle;
+	position: relative;
+}
+.zone-actions li:after{
+	content: "";
+	width: 1px;
+	margin: 10px 0;
+	background: #BABABA;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+.zone-actions li:last-child:after{
+	display: none;
+}
+.zone-actions span{
+	color: #4676ab;
+}
+.zone-actions p{
+	margin: 0;
+
+}
+.zone-list{
+	margin-top: 20px;
+	
+}
+.zone-list .icon{
+	color: #4a87ee;
+}

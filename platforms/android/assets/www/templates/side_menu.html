@@ -1,0 +1,34 @@
+<ion-side-menus>
+
+	<ion-pane ion-side-menu-content drag-content="candrag" id="ion-pane" ng-controller="MenuContentController">
+		<ion-nav-bar type="bar-positive"></ion-nav-bar>
+		<ion-nav-view name="menuContent" animation="no"></ion-nav-view>
+	</ion-pane>
+
+	<ion-side-menu side="left" class="sidemenu-bg" ng-controller="SideMenuController">
+
+		<ion-content >
+			<div class="sidemenu-hd">
+				<div class="sidemenu-photo">
+					<img ng-src="{{avatar}}"/>
+				</div>
+
+				<label>{{nickname}}</label>
+			</div>
+			<ul class="list">
+				<a href="#/sidemenu/home" class="item">首页</a>
+				<a href="#/sidemenu/zone" class="item">我的空间</a>
+				<a href="#/sidemenu/setting" class="item">设置</a>
+
+			</ul>
+			<div class="sidemenu-fd" ng-controller="capture_action">
+				<div style="text-align: center;" >
+					<a class="button button-icon icon icon-camera-big" ng-click="start(null,[])"></a>
+					
+				</div>
+				<label>分享</label>
+			</div>
+		</ion-content>
+	</ion-side-menu>
+
+</ion-side-menus>
