@@ -66,6 +66,7 @@
         <source-file src="src/android/com/baidu/fex/camera/Result.java" target-dir="src/com/baidu/fex/camera/" />
         <source-file src="src/android/com/baidu/fex/camera/Utils.java" target-dir="src/com/baidu/fex/camera/" />
 
+        <source-file src="src/android/res/layout/activity_main.xml" target-dir="res/layout/"/>
         
     </platform>
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="../js/native.js"></script>
+	</head>
+	<body>
+		<script>
+			/*
+			NATIVE.webdb.addPicture({
+							"filepath" : "hereApp/capture-2117537924.jpg",
+							"width" : 1280,
+							"datetime" : 1396254036610,
+							"latitude" : 40.050311,
+							"lontitude" : 116.290509,
+							"radius" : 60.113014221191406,
+							"orientation" : 1,
+							"sensorX" : 7.410202,
+							"sensorY" : 2.8826447,
+							"sensorZ" : 5.0522156,
+							"height" : 768
+						});*/
+			NATIVE.webdb.getAllPictures(function(res){
+				console.info(res);
+			});
+			
+			NATIVE.webdb.getPictureById("1396255621144",function(res){
+				console.info(res);
+			});
+			NATIVE.webdb.getPictureByPage(0,2,function(res){
+				console.info(res);
+			});
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Capture Photo</title>
+		
+
+		<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+
+		<script src="../js/native.js"></script>
+		
+		<script>
+			function upload(){
+				Utils.NATIVE.webdb.getAllPictures(function(res){
+					console.info(res);
+				});
+			}
+		</script>
+		
+	</head>
+	<body>
+		<button onclick="upload()">上传</button>
+	</body>
+</html>

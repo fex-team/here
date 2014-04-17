@@ -1,34 +1,37 @@
-.home .tabs {
+.page-home .tabs {
     height: 36px;
     line-height: 36px;
     padding: 0 77px;
 }
-.home .tab-item.active {
+.page-home .tab-item.active {
     border-bottom: 3px solid #026ACA;
 }
-.home .tab-slide {
+.page-home .tab-slide {
     padding-top: 36px;
 }
-.home .recommend-collection {
+.home-pages {
+    height: 100%;
+}
+.page-home .recommend-collection {
     padding-top: 0;
     height: 132px;
 }
-.home .slider-pager {
+.page-home .slider-pager {
     text-align: right;
     padding-right: 15px;
     bottom: 2px;
 }
-.home .slider-pager .slider-pager-page {
+.page-home .slider-pager .slider-pager-page {
     color: #FFF;
     opacity: 1;
 }
-.home .slider-pager .slider-pager-page.active {
+.page-home .slider-pager .slider-pager-page.active {
     color: #026ACA;
 }
-.home .slider-container {
+.page-home .slider-container {
     position: relative;
 }
-.home .slider-container p {
+.page-home .slider-container p {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -54,6 +57,9 @@
 .group:nth-child(odd){
     margin-left: 3%;
 }
+.group a {
+    display: block;
+}
 .group p {
     margin: 0;
     position: absolute;
@@ -70,7 +76,7 @@
     position: relative;
 }
 .stack img {
-    max-width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -113,23 +119,13 @@
     transform: scale(0.9);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.test-content {
-    line-height: 50px;
+.page-home .toolbar .map-icon {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    display: block;
+    height: 20px;
+    width: 15px;
+    background: url(images/circle.png) no-repeat 0 0;
+    background-size: 15px 20px;
 }

@@ -12,8 +12,8 @@
 
 			function capture() {
 				window.here.openCamera("http://" + host + "/mask.html", function(a) {
+					
 					a = eval("("+a+")");
-					alert(a.filepath);
 					NATIVE.displayImage(a.filepath,document.getElementById("preview"));
 				}, function() {
 

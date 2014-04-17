@@ -1,0 +1,52 @@
+.setting-bg {
+	background: #f6f6f6;
+	color: #6d6d72;
+}
+.setting-bg a, .setting-bg h1 {
+	color: #6d6d72;
+	
+}
+.setting-bg h1 {
+	font-size: 14px;
+	padding-left: 20px;
+	margin-top: 20px;
+}
+.setting-list {
+	display: block;
+	padding: 0 20px;
+	background: #fff;
+	border-top: 1px solid #c8c7cc;
+	border-bottom: 1px solid #c8c7cc;
+}
+.setting-item {
+	display: block;
+	height: 42px;
+	padding: 0 2px;
+	position: relative;
+	line-height: 42px;
+	border-bottom: 1px solid #c8c7cc;
+}
+.setting-item:last-child {
+	border-bottom: 0;
+}
+.setting-item:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	height: 41px;
+	color: #ccc;
+	content: "\f125";
+	font-size: 16px;
+	font-family: 'Ionicons';
+	line-height: 41px;
+
+}
+.setting-photo {
+	width: 32px;
+	height: 32px;
+	-webkit-border-radius: 16px;
+	padding: 2px;
+	background: #e2e2e2;
+	vertical-align: middle;
+}

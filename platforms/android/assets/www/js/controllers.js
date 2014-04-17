@@ -12,7 +12,7 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 	});
 
 	$scope.back = [{
-		type : 'button back-button button-icon icon ion-arrow-left-c button back-button button-icon icon ion-arrow-left-c',
+		type : 'button back-button button-icon icon ion-arrow-left-c',
 		tap : function(e) {
 			window.history.back();
 		}
@@ -31,10 +31,16 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 		firstname : 'Steven',
 		lastname : 'Seagal'
 	}];
-}).controller('MenuContentController', function($scope, $element){
+}).controller('MenuContentController', function( $scope, $element){
 	$scope.candrag = true;
 	$scope.$on('candrag', function(event, can){
 		$scope.candrag = can;
-		$scope.$apply();
+		// $scope.$apply();
 	});
-} );
+
+}).controller('SideMenuController', function($rootScope, $scope, $ionicSideMenuDelegate){
+	
+	$rootScope.$on('$stateChangeSuccess', function(){
+		$ionicSideMenuDelegate.close($scope);
+	});
+});

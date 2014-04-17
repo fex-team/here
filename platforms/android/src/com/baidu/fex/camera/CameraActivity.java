@@ -100,6 +100,7 @@ public class CameraActivity extends Activity implements OnClickListener,
 		webView = (WebView) findViewById(R.id.mask);
 		webView.setBackgroundColor(0);
 		webView.getSettings().setJavaScriptEnabled(true);
+		webView.getSettings().setDomStorageEnabled(true);
 		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 		webView.setWebChromeClient(new WebChromeClient() {
 			@Override
@@ -110,6 +111,7 @@ public class CameraActivity extends Activity implements OnClickListener,
 				return true;
 			}
 		});
+
 		webView.loadUrl(maskUrl);
 	}
 
@@ -173,7 +175,7 @@ public class CameraActivity extends Activity implements OnClickListener,
 			File dir = new File("/sdcard/hereApp");
 			dir.mkdirs();
 			File outputFile = File.createTempFile("capture", ".jpg", dir);
-			String filepath = outputFile.toString().replace("/sdcard/","");
+//			String filepath = outputFile.toString().replace("/sdcard/","");
 			YuvImage image = new YuvImage(data, parameters.getPreviewFormat(),
 					size.width, size.height, null);
 			FileOutputStream filecon = new FileOutputStream(outputFile);
@@ -181,7 +183,7 @@ public class CameraActivity extends Activity implements OnClickListener,
 					new Rect(0, 0, image.getWidth(), image.getHeight()), 100,
 					filecon);
 			if(_cameraLisenter != null){
-				_cameraLisenter.onCapture(Result.createresult(filepath, image.getWidth(), image.getHeight(), 1, bdLocation, sensor));
+				_cameraLisenter.onCapture(Result.createresult(outputFile.toString(), image.getWidth(), image.getHeight(), 1, bdLocation, sensor));
 			}
 			_cameraLisenter = null;
 		} catch (IOException e) {
