@@ -54,16 +54,23 @@
     margin: 30px auto;
     margin-left: 5%;
 }
+.group:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
 .group:nth-child(odd){
     margin-left: 3%;
 }
 .group a {
     display: block;
+    height: 85%;
+    width: 100%;
 }
 .group p {
     margin: 0;
     position: absolute;
-    bottom: 3%;
+    bottom: 15%;
     left: 5%;
     line-height: 26px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -73,8 +80,13 @@
 }
 .stack {
     padding: 0;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
+
 .stack img {
     width: 100%;
     position: absolute;
@@ -117,6 +129,7 @@
 .stack-peekaboo.active img:nth-child(4) {
     -webkit-transform: scale(0.9);
     transform: scale(0.9);
+    height: 100%;
 }
 
 .page-home .toolbar .map-icon {

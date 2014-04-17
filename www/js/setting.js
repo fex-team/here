@@ -1,7 +1,12 @@
 (function() {
 
 	angular.module("settings", ['ionic', 'hereApp.controllers'])
-		.controller('settingsController', function($scope, $ionicPopup, $state) {
+		.controller('settingsController', function($rootScope, $scope, $ionicPopup, $state) {
+
+			if(cookie.get('appKey') && cookie.get('appKey').length > 0){
+				$rootScope.isLogin = true;
+			}
+
 			$scope.openMarket = function() {
 				if (/android/i.test(navigator.userAgent.toLowerCase())) {
 					window.open('market://details?id=com.baidu.fex.here');
@@ -29,6 +34,11 @@
 					                    success: function(data){
 					                        alert('你已退出');
 					                        Here.userInfo = {};
+					                        Here.isLogin = false;
+                                			$rootScope.isLogin = false;
+                                			cookie.remove('appKey');
+                                			cookie.remove('nickname');
+                                			cookie.remove('username');
 					                        $state.go('sidemenu.home');
 					                    },
 					                    error: function(data){

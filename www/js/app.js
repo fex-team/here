@@ -81,7 +81,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('map', {
-      url: "/map",
+      url: "/map?position",
       views:{
       	'pager':{
       		templateUrl: "templates/map.html"
@@ -156,6 +156,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
 	$urlRouterProvider.otherwise("/sidemenu/home");
 
   Here.isLogin = false;
+  cookie.defaults.path = '/';
       
       if(cookie.get('username')){
         Here.userInfo = {
@@ -165,6 +166,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
         }
 
         Here.isLogin = true;
+        
       }
 	
 });

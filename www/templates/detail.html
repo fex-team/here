@@ -45,7 +45,7 @@
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" ng-show="!photo.offline">
 						<i class="share" ng-click="openShare()"></i>
-						<i class="follow" ng-click="doFollow()">{{photo.follows}}</i>
+						<i class="like" ng-click="doLike()">{{photo.likes}}</i>
 						<i class="comment" ng-click="showComment()">{{photo.comments}}</i>
 					</p>
 					<div class="comment-panel" ng-controller="CommentController" ng-show="photo.commentShow">

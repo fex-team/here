@@ -1,6 +1,7 @@
 (function() {
 
-	angular.module('gallery', ['ionic', 'hereApp.controllers', 'angular-gestures']).controller('galleryNetworkController', function($scope, $stateParams, $controller, $ionicActionSheet, $ionicPopup) {
+	angular.module('gallery', ['ionic', 'hereApp.controllers', 'angular-gestures'])
+	.controller('galleryLocalController', function($scope, $stateParams, $controller, $ionicActionSheet, $ionicPopup) {
 		$scope.item_width = document.body.clientWidth / 2;
 		$scope.onItemClick = function(id){
 			location.href="#/detail?groupId="+id+"&native=true";
@@ -113,5 +114,24 @@
 			}
 
 		}
+	}).controller('galleryNetworkController', function($scope){
+		if(!Here.isLogin){
+			alert('没有联网');
+			return;
+		}
+		Here.api.get('/api/get_group_by_username', {
+					username : Here.userInfo.username
+				}, {
+					success : function(data) {
+						data.forEach(function(group){
+							group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
+						});
+						$scope.groups = data;
+						$scope.$apply();
+					},
+					error : function(data) {
+						
+					}
+				});
 	});
 })();

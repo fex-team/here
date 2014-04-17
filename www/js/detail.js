@@ -1,37 +1,41 @@
 (function() {
-	var formate = function(date, fmt) {
-		var o = {
-			"M+" : date.getMonth() + 1, //月份
-			"d+" : date.getDate(), //日
-			"h+" : date.getHours() % 12 == 0 ? 12 : date.getHours() % 12, //小时
-			"H+" : date.getHours(), //小时
-			"m+" : date.getMinutes(), //分
-			"s+" : date.getSeconds(), //秒
-			"q+" : Math.floor((date.getMonth() + 3) / 3), //季度
-			"S" : date.getMilliseconds() //毫秒
-		};
-		var week = {
-			"0" : "/u65e5",
-			"1" : "/u4e00",
-			"2" : "/u4e8c",
-			"3" : "/u4e09",
-			"4" : "/u56db",
-			"5" : "/u4e94",
-			"6" : "/u516d"
-		};
-		if (/(y+)/.test(fmt)) {
-			fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-		}
-		if (/(E+)/.test(fmt)) {
-			fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "/u661f/u671f" : "/u5468") : "") + week[date.getDay() + ""]);
-		}
-		for (var k in o) {
-			if (new RegExp("(" + k + ")").test(fmt)) {
-				fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-			}
-		}
-		return fmt;
-	}
+	var formate = function( date, fmt ) {         
+	    var o = {         
+	    "M+" : date.getMonth()+1, //月份         
+	    "d+" : date.getDate(), //日         
+	    "h+" : date.getHours()%12 == 0 ? 12 : date.getHours()%12, //小时         
+	    "H+" : date.getHours(), //小时         
+	    "m+" : date.getMinutes(), //分         
+	    "s+" : date.getSeconds(), //秒         
+	    "q+" : Math.floor((date.getMonth()+3)/3), //季度         
+	    "S" : date.getMilliseconds() //毫秒         
+	    };         
+	    var week = {         
+	    "0" : "/u65e5",         
+	    "1" : "/u4e00",         
+	    "2" : "/u4e8c",         
+	    "3" : "/u4e09",         
+	    "4" : "/u56db",         
+	    "5" : "/u4e94",         
+	    "6" : "/u516d"        
+	    };         
+	    if(/(y+)/.test(fmt)){         
+	        fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));         
+	    }         
+	    if(/(E+)/.test(fmt)){         
+	        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[date.getDay()+""]);         
+	    }         
+	    for(var k in o){         
+	        if(new RegExp("("+ k +")").test(fmt)){         
+	            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
+	        }         
+	    }         
+	    return fmt;
+	};
+
+	// hack
+	window.DateFormate = formate;
+
 	var groups;
 
 	function convertPhoto(pic) {
@@ -74,42 +78,47 @@
 			});
 		});
 
+
 		// test
 		// res.push({
-		// offline: true,
-		// commentShow : false,
-		// localId : 25,
-		// latitude : '',
-		// longitude : '',
-		// filepath : '',
-		// nickname : '时光相机用户',
-		// src : 'http://172.22.72.159/end/here/?m=here&c=api&a=img&hash=/testuser/d5f54c6c1dc5eb8edd8bd18c232708e8.png',
-		// time : formate(new Date(Date.now()), "yyyy-MM-dd HH:mm:ss"),
-		// measurement : 1024 + "X" + 768
+		// 	offline: true,
+		// 	commentShow : false,
+		// 	localId : 25,
+		// 	latitude : '',
+		// 	longitude : '',
+		// 	filepath : '',
+		// 	nickname : '时光相机用户',
+		// 	src : 'http://172.22.72.159/end/here/?m=here&c=api&a=img&hash=/testuser/d5f54c6c1dc5eb8edd8bd18c232708e8.png',
+		// 	time : formate(new Date(Date.now()), "yyyy-MM-dd HH:mm:ss"),
+		// 	measurement : 1024 + "X" + 768
 		// });
-		//
+
 		// callback && callback(res);
 	}
-
+	
 	var $headerScope;
+	
+	
+	
 
 	angular.module('detail', ['ionic', 'hereApp.controllers']).controller('DetailHeaderController', function($scope, $stateParams, $controller) {
 
 		$scope.droplist = {
 			visible : ""
 		}
-
-		angular.element(document.getElementById("sharelist")).bind("click", function() {
+		
+		angular.element(document.getElementById("sharelist")).bind("click",function(){
 
 			$headerScope.sharelist.visible = "";
-		}).children().bind("click", function(e) {
+		}).children().bind("click",function(e){
 
 			e.stopPropagation();
 			return false;
 		});
+		
 
 		angular.element(document).bind("click", function() {
-
+			
 			$scope.droplist.visible = "";
 			$scope.$apply();
 		});
@@ -142,7 +151,7 @@
 		$scope.sharelist = {
 			visible : ""
 		}
-
+		
 		$headerScope = $scope;
 	}).controller('DetailController', function($scope, $stateParams, $ionicPopup) {
 
@@ -175,6 +184,7 @@
 						data.photos.forEach(function(photo, index) {
 							photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
 							photo.commentShow = false;
+							photo.show = true;
 						});
 
 						getNativePhoto($stateParams.groupId, function(res) {
@@ -228,19 +238,19 @@
 		};
 
 		// 关注照片
-		$scope.doFollow = function() {
-			if (!Here.isLogin) {
+		$scope.doLike = function() {
+			if( !Here.isLogin ){
 				alert('请先登录');
 				return;
 			}
 			var photoId = this.photo.id;
-			Here.api.post('/api/follow', {
+			Here.api.post('/api/like', {
 				'photoId' : photoId
 			}, {
 				success : function(data) {
 					$scope.group.photos.forEach(function(photo) {
 						if (photoId === photo.id) {
-							photo.follows = ++photo.follows;
+							photo.likes = ++photo.likes;
 						}
 					});
 					$scope.$apply();

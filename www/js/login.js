@@ -1,5 +1,5 @@
 angular.module('login', ['ionic', 'hereApp.controllers'])
-.controller('LoginController', function($scope, $stateParams, $state) {
+.controller('LoginController', function($rootScope, $scope, $stateParams, $state) {
         
     $scope.login = function(){
         var username = $scope.username;
@@ -32,6 +32,7 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                     'appKey': data.appKey
                                 };
                                 Here.isLogin = true;
+                                $rootScope.isLogin = true;
 
                                 console.log(data);
                             },

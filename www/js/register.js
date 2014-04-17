@@ -38,6 +38,7 @@ angular.module('register', ['ionic', 'hereApp.controllers'])
                                     'appKey': data.appKey
                                 };
                                 Here.isLogin = true;
+                                $rootScope.isLogin = true;
 
                                 console.log(data);
                             },

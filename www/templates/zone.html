@@ -4,11 +4,9 @@
 			<div class="zone-bg"></div>
 			<div class="zone-person">
 				<div style="margin-left: 20px">
-					<img ng-click="openPhoto()" ng-src="{{user.photo}}" class="layout-left"/>
+					<img ng-click="openPhoto()" ng-src="{{user.avatar}}" class="layout-left"/>
 					<div class="layout-right">
-						<p>
-							威廉萌
-						</p>
+						<p>{{nickname}}</p>
 						<a href="#/person_detail" class="button icon-left button-outline button-positive button-small ion-ios7-person-outline">
 							详细资料
 						</a>
@@ -17,25 +15,25 @@
 
 				<ul class="zone-actions">
 					<li>
-						<span>152</span>
+						<span>{{user.groups}}</span>
 						<p>
-							积分
+							相册
 						</p>
 					</li>
 					<li>
-						<span>152</span>
+						<span>{{user.photos}}</span>
 						<p>
-							关注
+							照片
 						</p>
 					</li>
 					<li>
-						<span>152</span>
+						<span>{{user.follows}}</span>
 						<p>
-							粉丝
+							跟拍
 						</p>
 					</li>
 					<li>
-						<span>152</span>
+						<span>{{user.likes}}</span>
 						<p>
 							赞
 						</p>
