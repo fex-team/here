@@ -274,7 +274,7 @@
 					content : '你还没有创建相册，是否要先创建相册?'
 				}).then(function(res) {
 					if (res) {
-						location.href = "#/sync?groupId="+me.photo.localId
+						location.href = "#/sync?groupId="+$stateParams.groupId
 					}
 				});
 				return;
