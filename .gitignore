@@ -5,4 +5,8 @@ target
 .classpath
 .project
 .psd
-/config.xml
+
+
+ant-build
+ant-gen
+ant-build
