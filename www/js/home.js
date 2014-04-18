@@ -1,6 +1,25 @@
 angular.module('home', ['ionic', 'hereApp.controllers'])
-.controller('HomeController', function($scope, $ionicSideMenuDelegate) {
+.controller('HomeController', function($rootScope, $scope, $ionicSideMenuDelegate, $element, $ionicScrollDelegate) {
 
+    $rootScope.$on('homeSlide', function(e, index){
+        $ionicScrollDelegate.scrollTop();
+
+        if( index === 2 ){
+            $scope.favoritesgroups = [{
+                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
+                        name: '上海'
+                    },{
+                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
+                        name: '上海'
+                    },{
+                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
+                        name: '上海'
+                    },{
+                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
+                        name: '上海'
+                    }];
+        }
+    });
     Here.api.get('/api/get_hots', {}, {
                     success: function(data){
                         data.forEach(function(group){
@@ -11,6 +30,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
 
                         $scope.hotgroups = data;
                         $scope.$apply();
+
                     },
                     error: function(data){
                         console.log(data);
@@ -45,21 +65,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
     });
     
     
-
-
-    $scope.favoritesgroups = [{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    },{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    },{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    },{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    }];
+    
 
 }).controller('RecommendCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $timeout){
 
@@ -102,7 +108,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
 }).controller('SliderCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $ionicSideMenuDelegate){
 
     if($element.parent().hasClass('scroll')){
-        $element.parent().css('height', '100%');
+        $element.parent().css('min-height', '100%');
     }
 
     $element.bind('touchstart mousedown', function(e){

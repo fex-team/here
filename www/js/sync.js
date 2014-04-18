@@ -159,7 +159,7 @@
 
 					var photos = [];
 					$scope.listData.forEach(function( photo ){
-						photos.push({
+						photo.selected && photos.push({
 							localId: photo.id,
 							latitude: photo.latitude,
 							longitude: photo.longitude,
@@ -240,7 +240,13 @@
 				if(photos.length > 0){
 					syncPhoto(groupId, photos);
 				}else{
-					alert('创建成功');
+					// alert('创建成功');
+
+
+					// 更新本地groupId
+					Utils.NATIVE.webdb.updateGroupId(groupId, $stateParams.groupId);
+					
+					location.href = "#/gallery/network";
 				}
 			}, function() {
 				if(photos.length > 0){

@@ -115,7 +115,7 @@
 
 		}
 	}).controller('galleryNetworkController', function($scope){
-
+		$scope.item_width = document.body.clientWidth / 2;
 		if(!Here.isLogin){
 			alert('没有联网');
 			return;
