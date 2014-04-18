@@ -116,6 +116,10 @@
 			return false;
 		});
 		
+		$scope.shareWechat = function(sence){
+			nativeshare.wechat($headerScope.path,sence);
+		}
+		
 
 		angular.element(document).bind("click", function() {
 			
@@ -151,6 +155,7 @@
 		$scope.sharelist = {
 			visible : ""
 		}
+		$scope.path = "";
 		
 		$headerScope = $scope;
 	}).controller('DetailController', function($scope, $stateParams, $ionicPopup) {
@@ -320,7 +325,8 @@
 		};
 
 		$scope.openShare = function() {
-
+			
+			$headerScope.path = this.photo.src;
 			$headerScope.sharelist.visible = "active";
 
 		};

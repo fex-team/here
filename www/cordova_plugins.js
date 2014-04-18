@@ -303,6 +303,13 @@ module.exports = [
         "clobbers": [
             "resizeImage"
         ]
+    },
+    {
+        "file": "plugins/com.baidu.fex.here.share/www/share.js",
+        "id": "com.baidu.fex.here.share",
+        "clobbers": [
+            "nativeshare"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -320,7 +327,8 @@ module.exports.metadata =
     "org.apache.cordova.file-system-roots": "0.2.0-dev",
     "com.baidu.fex.here.camera": "0.0.1",
     "org.apache.cordova.camera": "0.2.8",
-    "com.baidu.fex.here.resizeImage": "1.0.0"
+    "com.baidu.fex.here.resizeImage": "1.0.0",
+    "com.baidu.fex.here.share": "1.0.0"
 }
 // BOTTOM OF METADATA
 });
