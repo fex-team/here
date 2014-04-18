@@ -1,0 +1,53 @@
+<ion-view title="我的空间" left-buttons="leftButtons" class="page-zone" >
+	<ion-content has-header="true" ng-controller="zoneController">
+		<div class="zone-hd">
+			<div class="zone-bg"></div>
+			<div class="zone-person">
+				<div style="margin-left: 20px">
+					<img ng-click="openPhoto()" ng-src="{{user.avatar}}" class="layout-left"/>
+					<div class="layout-right">
+						<p>{{nickname}}</p>
+						<a href="#/person_detail" class="button icon-left button-outline button-positive button-small ion-ios7-person-outline">
+							详细资料
+						</a>
+					</div>
+				</div>
+
+				<ul class="zone-actions">
+					<li>
+						<span>{{user.groups}}</span>
+						<p>
+							相册
+						</p>
+					</li>
+					<li>
+						<span>{{user.photos}}</span>
+						<p>
+							照片
+						</p>
+					</li>
+					<li>
+						<span>{{user.follows}}</span>
+						<p>
+							跟拍
+						</p>
+					</li>
+					<li>
+						<span>{{user.likes}}</span>
+						<p>
+							赞
+						</p>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="zone-list">
+			<a class="item item-icon-left" href="#/gallery/local"> <i class="icon ion-ios7-photos-outline"></i>我的相册 <span class="badge badge-assertive">17</span></a>
+			
+			<a class="item item-icon-left" > <i class="icon ion-ios7-bookmarks-outline"></i>我的收藏</a>
+			
+			<a class="item item-icon-left" style="margin-top: 20px;"> <i class="icon ion-ios7-chatbubble-outline"></i>我的评论 <span class="badge badge-assertive">14</span></a>
+		</div>
+	</ion-content>
+</ion-view>

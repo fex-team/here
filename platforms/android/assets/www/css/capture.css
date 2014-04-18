@@ -1,0 +1,49 @@
+.capture-wrap{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	top: 0;
+	bottom: 80px;
+}
+.capture-wrap-inner{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	top: 0;
+	height: 100%;
+	text-align: center;
+	display: table;
+	vertical-align: middle;
+}
+
+.capture-wrap-cell .img{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+
+.capture-actions{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width:100%;
+	height: 80px;
+	text-align: center;
+	display: table;
+	vertical-align: middle;
+}
+.capture-actions button{
+	width: 100px;
+	margin: 0 10px;
+}
+.capture-actions-cell{
+	vertical-align: middle;
+	display: table-cell;
+}
+

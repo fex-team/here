@@ -153,8 +153,13 @@
 				}, webdb.onError);
 			});
 		}
-		
-		
+
+		webdb.updateGroupId = function(newId, oldId){
+			var db = webdb.db;
+			db.transaction(function(tx) {
+				tx.executeSql("UPDATE picture set groupId=? where id=? or groupId=?", [newId,oldId,oldId], function() {}, webdb.onError);
+			});
+		}
 
 		webdb.getPictureByPage = function(offset, limit, callback) {
 			var db = webdb.db;
@@ -203,8 +208,8 @@
 				_group_id = group_id;
 				if (!started) {
 					started = true;
-					var host = window.location.host;
-					window.here.openCamera("http://" + host + "/here_hybird/mask.html", function(a) {
+					// var host = window.location.host;
+					window.here.openCamera("http://hereapp.duapp.com/here_hybird/mask.html", function(a) {
 						a = eval("(" + a + ")");
 						if (group_id) {
 							a.groupId = group_id;

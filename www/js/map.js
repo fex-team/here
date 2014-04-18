@@ -107,7 +107,7 @@
 				console.info(bounds);
 				// map.clearOverlays();
 
-				Here.api.get('/api/get_beside', {
+				Here.api.get('/api/get_besides_cover', {
 					position: (bounds.x1 + bounds.x2)/2 + ',' + (bounds.y1 + bounds.y2)/2
 				}, {
                     success: function(data){

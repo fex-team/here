@@ -1,9 +1,10 @@
-<ion-view title="ÍøÂçÏà²á" class="page-network">
+<ion-view title="ç½‘ç»œç›¸å†Œ" class="page-local">
+
     <ion-content has-header="true" >
         <div ng-controller="galleryNetworkController" class="local-list">
-            <div class="list-item" ng-repeat="group in groups">
+            <div class="list-item" style="width: {{item_width}}px;height:{{item_width}}px;" ng-repeat="group in groups">
                 <div class="inner">
-                    <a href="#/detail?groupId={{group.id}}"><img ng-src="{{group.src}}" /></a>
+                    <a href="#/detail?groupId={{group.id}}"><div style="background-image:url({{group.src}})" class="img"></div></a>
                     <p class="name">{{group.name}}</p>
                 </div>
 

@@ -1,0 +1,100 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "res/xml/config.xml": {
+            "/*": {
+                "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>": 1,
+                "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>": 1,
+                "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
+                "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>": 1,
+                "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>": 1,
+                "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>": 1,
+                "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /></feature>": 1,
+                "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>": 1,
+                "<feature name=\"FileSystemRoots\"><param name=\"android-package\" value=\"org.apache.cordova.filesystemroots.FileSystemRoots\" /><param name=\"onload\" value=\"true\" /></feature>": 1,
+                "<feature name=\"Here\"><param name=\"android-package\" value=\"com.baidu.fex.camera.Plugin\" /></feature>": 1,
+                "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>": 1,
+                "<feature name=\"com.baidu.fex.here.resizeImage.ImageResizePlugin\"><param name=\"android-package\" value=\"com.baidu.fex.here.resizeImage.ImageResizePlugin\" /></feature>": 1,
+                "<feature name=\"com.baidu.fex.here.share\"><param name=\"android-package\" value=\"com.baidu.fex.share.Plugin\" /></feature>": 1
+            }
+        },
+        "AndroidManifest.xml": {
+            "/*": {
+                "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />": 1,
+                "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />": 1,
+                "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />": 1,
+                "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />": 7,
+                "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />": 1,
+                "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\" />": 1,
+                "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />": 1,
+                "<uses-permission android:name=\"android.permission.CAMERA\" />": 3,
+                "<uses-permission android:name=\"android.hardware.sensor.accelerometer\" />": 3,
+                "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.INTERNET\" />": 3,
+                "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"></uses-permission>": 3,
+                "<uses-permission android:name=\"android.permission.READ_LOGS\"></uses-permission>": 3
+            },
+            "/manifest": {
+                "<uses-permission android:name=\"android.permission.VIBRATE\" />": 1
+            },
+            "/manifest/application": {
+                "<activity android:name=\"com.baidu.fex.camera.CameraActivity\" android:screenOrientation=\"landscape\"></activity>": 1,
+                "<meta-data android:name=\"com.baidu.lbsapi.API_KEY\" android:value=\"g04gwMkXIeGVa3GbZYEa91sI\" />": 1
+            }
+        }
+    },
+    "installed_plugins": {
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.contacts": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.file": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.globalization": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.media": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.splashscreen": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.vibration": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.file-system-roots": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "com.baidu.fex.here.camera": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "com.baidu.fex.here.resizeImage": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        },
+        "com.baidu.fex.here.share": {
+            "PACKAGE_NAME": "com.baidu.fex.here"
+        }
+    },
+    "dependent_plugins": {}
+}

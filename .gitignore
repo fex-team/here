@@ -5,8 +5,7 @@ target
 .classpath
 .project
 .psd
-
-
 ant-build
 ant-gen
 ant-build
+/platforms/android/cordova

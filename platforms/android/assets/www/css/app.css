@@ -1,0 +1,68 @@
+/* Your app's CSS, go crazy, make it your own */
+a{
+	text-decoration: none;
+}
+.ionic-logo {
+	display: block;
+	margin: 15px auto;
+	width: 96px;
+	height: 96px;
+}
+.capture-button-big{
+	background: url("images/camera_big.png") no-repeat;
+	width: 21.5px;
+	height:20px;
+	background-size: contain;
+	display: inline-block;
+	border: none;
+}
+
+.platform-ios7.platform-cordova:not(.fullscreen) .bar-header{
+	height: auto !important;
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+
+.icon-share-renren{
+	background: url("images/share_renren.png") no-repeat;
+	width: 60px;
+	height: 60px;
+	background-size: contain;
+	display: inline-block;
+}
+.icon-share-tencent{
+	background: url("images/share_tencent.png") no-repeat;
+	width: 60px;
+	height: 60px;
+	background-size: contain;
+	display: inline-block;
+}
+.icon-share-timeline{
+	background: url("images/share_timeline.png") no-repeat;
+	width: 60px;
+	height: 60px;
+	background-size: contain;
+	display: inline-block;
+}
+.icon-share-wechat{
+	background: url("images/share_wechat.png") no-repeat;
+	width: 60px;
+	height: 60px;
+	background-size: contain;
+	display: inline-block;
+}
+.icon-share-weibo{
+	background: url("images/share_weibo.png") no-repeat;
+	width: 60px;
+	height: 60px;
+	background-size: contain;
+	display: inline-block;
+}

@@ -115,6 +115,7 @@
 
 		}
 	}).controller('galleryNetworkController', function($scope){
+		$scope.item_width = document.body.clientWidth / 2;
 		if(!Here.isLogin){
 			alert('没有联网');
 			return;
@@ -133,5 +134,12 @@
 						
 					}
 				});
-	});
+	}).controller('gallery_header', function($scope) {
+        $scope.back = [{
+            type : 'button back-button button-icon icon ion-arrow-left-c',
+            tap : function(e) {
+                location.href = "#/sidemenu/zone";
+            }
+        }];
+	})
 })();

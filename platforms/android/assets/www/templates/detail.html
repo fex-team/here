@@ -1,0 +1,106 @@
+<ion-view title="详情页" id="page-detail" class="page-detail" >
+	<div ng-controller="DetailHeaderController" >
+		<ion-header-bar
+		title="详情页"
+		left-buttons="back"
+		right-buttons="detailCamera"
+		type="bar-positive"
+		align-title="center"
+		id="detail-header"
+		>
+
+		</ion-header-bar>
+
+		<div class="list droplist {{droplist.visible}}">
+			<div class="droplist-inner {{droplist.visible}}">
+				<a class="item item-icon-left "> <i class="icon ion-ios7-heart-outline"></i> 喜欢本系列 </a>
+
+				<a class="item item-icon-left "> <i class="icon ion-ios7-chatbubble-outline"></i> 评论本系列 </a>
+
+				<a class="item item-icon-left "> <i class="icon ion-ios7-redo-outline"></i> 分享本系列 </a>
+			</div>
+		</div>
+
+		<ion-content has-header="true" padding="true"  ng-controller="DetailController">
+			<ion-refresher on-refresh="doRefresh()"
+			pulling-text="下拉刷新..."
+			refreshing-text="正在刷新!"
+			refreshing-icon="ion-loading-c"></ion-refresher>
+			<div class="photo-item" ng-repeat="photo in group.photos | filter:{show:true}">
+				<div class="item-wrap">
+					<p>
+						<span class="user-avatar"></span><span class="nickname">{{photo.nickname}}</span>
+					</p>
+					<div class="actionbar">
+						<div class="offline-bar" ng-show="photo.offline">
+							<i class="button button-icon icon ion-ios7-cloud-upload-outline"  ng-click="doAsync()"></i>
+							<i class="button button-icon icon ion-ios7-trash-outline" ng-show="photo.offline" ng-click="doDel()"></i>
+						</div>
+						
+					</div>
+					
+					
+					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <img ng-src="{{photo.src}}" ng-switch-default/>
+					</p>
+					<p class="time"><span>{{photo.time}}</span></p>
+					<p class="actions" >
+						
+						<i class="share" ng-click="openShare()"></i>
+						<div ng-show="!photo.offline">
+							<i class="like" ng-click="doLike()">{{photo.likes}}</i>
+							<i class="comment" ng-click="showComment()">{{photo.comments}}</i>
+						</div>
+					</p>
+					<div class="comment-panel" ng-controller="CommentController" ng-show="photo.commentShow">
+						<p>
+							<input type="text" class="comment-input" ng-model="commentContent" data-photoId="{{photo.id}}" />
+							<button class="comment-submit" ng-click="doComment()">
+								发表
+							</button>
+						</p>
+
+						<p ng-repeat="comment in photo.commentItems">
+							<span class="user-avatar"></span><span class="nickname">{{comment.nickname}}</span>：<span class="comment-content">{{comment.content}}</span><span class="comment-time">({{comment.time}})</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</ion-content>
+		<div class="sharelist-outer {{sharelist.visible}}" id="sharelist">
+			<div class="sharelist">
+				<ul style="padding: 10px 0;">
+					<li>
+						<div style="text-align: center;">
+							<i class="icon-share-renren"></i>
+						</div>
+						<label>人人网</label>
+					</li>
+					<li>
+						<div style="text-align: center;">
+							<i class="icon-share-tencent"></i>
+						</div>
+						<label>腾讯微博</label>
+					</li>
+					<li>
+						<div style="text-align: center;">
+							<i class="icon-share-weibo"></i>
+						</div>
+						<label>新浪微博</label>
+					</li>
+					<li ng-click="shareWechat(0);">
+						<div style="text-align: center;">
+							<i class="icon-share-wechat"></i>
+						</div>
+						<label>微信好友</label>
+					</li>
+					<li ng-click="shareWechat(1);">
+						<div style="text-align: center;">
+							<i class="icon-share-timeline"></i>
+						</div>
+						<label>微信朋友圈</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</ion-view>

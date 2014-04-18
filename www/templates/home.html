@@ -25,7 +25,7 @@
 							</figure>
 							<p class="toolbar">
 								<span>{{group.name}}</span>
-								<a class="map-icon" href="#/map?position={{group.longitude}},{{group.latitude}}"></a>
+								<a class="map-icon" href="#/map?position={{group.longitude}},{{group.latitude}}" ng-show="group.longitude"></a>
 							</p>
 						</div>
 					</div>
@@ -33,12 +33,16 @@
 			</ion-slide>
 			<ion-slide>
 				<div class="beside-slide">
+					<p ng-show="getCurrentPositionFailure" class="failure-tips">定位失败，请重试!</p>
 					<div class="beside-groups">
 						<div class="group" ng-repeat="group in besidegroups">
 							<figure class="stack stack-peekaboo active">
-								<img ng-src="{{photo}}" ng-repeat="photo in group.photos">
+								<a href="#/detail?groupId={{group.id}}"><img ng-src="{{photo}}" ng-repeat="photo in group.photos"></a>
 							</figure>
-							<p>{{group.name}}</p>
+							<p class="toolbar">
+								<span>{{group.name}}</span>
+								<a class="map-icon" href="#/map?position={{group.longitude}},{{group.latitude}}"></a>
+							</p>
 						</div>
 					</div>
 			    </div>
@@ -48,7 +52,7 @@
 					<div class="favorites-groups">
 						<div class="group" ng-repeat="group in favoritesgroups">
 							<figure class="stack stack-peekaboo active">
-								<img ng-src="{{photo}}" ng-repeat="photo in group.photos">
+								<a href="#/detail?groupId={{group.id}}"><img ng-src="{{photo}}" ng-repeat="photo in group.photos"></a>
 							</figure>
 							<p>{{group.name}}</p>
 						</div>
