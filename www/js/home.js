@@ -4,67 +4,79 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
     $rootScope.$on('homeSlide', function(e, index){
         $ionicScrollDelegate.scrollTop();
 
-        if( index === 2 ){
-            $scope.favoritesgroups = [{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    },{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    },{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    },{
-                        photos: ['./img/1.png', './img/2.png', './img/3.png', './img/4.png'],
-                        name: '上海'
-                    }];
+        if( index === 1 && !$scope.besidegroups ){
+            navigator.geolocation.getCurrentPosition(function(position){
+                console.log(position);
+                Here.api.get('/api/get_besides', {
+                        position: position.coords.longitude + ',' + position.coords.latitude
+                    }, {
+                        success: function(data){
+                            data.forEach(function(group){
+                                group.photos.forEach(function(photo, index){
+                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo + '&maxWidth=' + window.innerWidth/2;
+                                });
+                            });
+
+                            $scope.besidegroups = data;
+                            $scope.$apply();
+                        },
+                        error: function(data){
+                            $scope.besidegroups = [];
+                            $scope.getCurrentPositionFailure = true;
+                            $scope.$apply();
+                        }
+                    });
+            }, function(){
+                console.log('定位失败');
+                $scope.besidegroups = [];
+                $scope.getCurrentPositionFailure = true;
+                $scope.$apply();
+            }, {
+                timeout: 3000
+            });
+        }
+
+        if( index === 2 && !$scope.collectgroups ){
+            $scope.collectgroups = [];
+             Here.api.get('/api/get_collectGroup', {}, {
+                        success: function(data){
+                            data.forEach(function(group){
+                                group.photos.forEach(function(photo, index){
+                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash + '&maxWidth=' + window.innerWidth/2;
+                                });
+                            });
+
+                            $scope.collectgroups = data;
+                            $scope.$apply();
+                        },
+                        error: function(data){
+                            $scope.collectgroups = [];
+                            $scope.getCollectGroupsFailure = true;
+                            $scope.$apply();    
+                        }
+                    });
         }
     });
-    Here.api.get('/api/get_hots', {}, {
-                    success: function(data){
-                        data.forEach(function(group){
-                            group.photos.forEach(function(photo, index){
-                                group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo;
+
+    setTimeout(function(){
+        Here.api.get('/api/get_hots', {}, {
+                        success: function(data){
+                            data.forEach(function(group){
+                                group.photos.forEach(function(photo, index){
+                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo + '&maxWidth=' + window.innerWidth/2;
+                                });
                             });
-                        });
 
-                        $scope.hotgroups = data;
-                        $scope.$apply();
+                            $scope.hotgroups = data;
+                            $scope.$apply();
 
-                    },
-                    error: function(data){
-                        console.log(data);
-                    }
-                });
-
-    navigator.geolocation.getCurrentPosition(function(position){
-        console.log(position);
-        Here.api.get('/api/get_besides', {
-                position: position.coords.longitude + ',' + position.coords.latitude
-            }, {
-                success: function(data){
-                    data.forEach(function(group){
-                        group.photos.forEach(function(photo, index){
-                            group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo;
-                        });
+                        },
+                        error: function(data){
+                            console.log(data);
+                        }
                     });
+    }, 100);
 
-                    $scope.besidegroups = data;
-                    $scope.$apply();
-                },
-                error: function(data){
-                    console.log(data);
-                }
-            });
-    }, function(){
-        console.log('定位失败');
-        $scope.getCurrentPositionFailure = true;
-        $scope.$apply();
-    }, {
-        timeout: 3000
-    });
-    
-    
     
 
 }).controller('RecommendCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $timeout){
@@ -72,7 +84,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
     Here.api.get('/api/get_recommends', {}, {
                     success: function(data){
                         data.forEach(function(group){
-                            group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
+                            group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash + '&maxWidth=' + window.innerWidth;
                         });
 
                         $scope.recommends = data;

@@ -100,43 +100,52 @@
 			$scope.user.city = '';
 		});
 
+        $scope.updateUserInfo = function(userData){
+            $scope.user.username = userData.username;
+            $scope.user.nickname = userData.nickname;
+
+            $scope.sexs.forEach(function( sex, index ){
+                if(sex.name == userData.sex){
+                    $scope.user.sex = $scope.sexs[index];
+                }
+            });
+
+            $scope.provinces.forEach(function( province, index ){
+                if(province.name == userData.address.split('|')[0]){
+                    $scope.user.province = $scope.provinces[index];
+                }
+            });
+
+            $scope.user.province && $scope.user.province.citys.forEach(function( city, index ){
+                if(city.name == userData.address.split('|')[1]){
+                    $scope.user.city = $scope.user.province.citys[index];
+                }
+            });
+
+            $scope.user.address = userData.address;
+            $scope.user.intro = userData.intro;
+            $scope.user.time = userData.time.split(' ')[0];
+
+
+            if (userData.avatar.length > 0){
+                $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + userData.avatar;
+            }else{
+                $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+            }
+        }
+
+
+        if( localStorage.getItem('here_userInfo') ){
+            $scope.updateUserInfo( JSON.parse(localStorage.getItem('here_userInfo')) );
+        }
+
         Here.isLogin && Here.api.get('/api/get_user', {
             username : Here.userInfo.username
         }, {
             success : function(data) {
-                $scope.user.username = data.username;
-                $scope.user.nickname = data.nickname;
-
-                $scope.sexs.forEach(function( sex, index ){
-                	if(sex.name == data.sex){
-                		$scope.user.sex = $scope.sexs[index];
-                	}
-                });
-
-                $scope.provinces.forEach(function( province, index ){
-                	if(province.name == data.address.split('|')[0]){
-                		$scope.user.province = $scope.provinces[index];
-                	}
-                });
-
-                $scope.user.province && $scope.user.province.citys.forEach(function( city, index ){
-                	if(city.name == data.address.split('|')[1]){
-                		$scope.user.city = $scope.user.province.citys[index];
-                	}
-                });
-
-                $scope.user.address = data.address;
-                $scope.user.intro = data.intro;
-                $scope.user.time = data.time.split(' ')[0];
-
-
-                if (data.avatar.length > 0){
-                    $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + data.avatar;
-                }else{
-                    $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
-                }
-
+                $scope.updateUserInfo(data);
                 $scope.$apply();
+                localStorage.setItem( 'here_userInfo', JSON.stringify(data) );
             },
             error : function(data) {
 

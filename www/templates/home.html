@@ -48,13 +48,17 @@
 			    </div>
 			</ion-slide>
 			<ion-slide>
-				<div class="favorites-slide">
-					<div class="favorites-groups">
-						<div class="group" ng-repeat="group in favoritesgroups">
+				<div class="collect-slide">
+					<p ng-show="getCollectGroupsFailure" class="failure-tips">暂无收藏的相册!</p>
+					<div class="collect-groups">
+						<div class="group" ng-repeat="group in collectgroups">
 							<figure class="stack stack-peekaboo active">
 								<a href="#/detail?groupId={{group.id}}"><img ng-src="{{photo}}" ng-repeat="photo in group.photos"></a>
 							</figure>
-							<p>{{group.name}}</p>
+							<p class="toolbar">
+								<span>{{group.name}}</span>
+								<a class="map-icon" href="#/map?position={{group.longitude}},{{group.latitude}}"></a>
+							</p>
 						</div>
 					</div>
 			    </div>

@@ -23,27 +23,38 @@
 			avatar: Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg'
 		};
 
-		// 取操作放在common server中
-		// TODO 取一次，存在localstorage里面
+		$scope.updateUserInfo = function(userData){
+			$scope.user.groups = userData.groups;
+			$scope.user.photos = userData.photos;
+			$scope.user.follows = userData.follows;
+			$scope.user.likes = userData.likes;
+			$scope.user.nickname = userData.nickname;
+
+			if (userData.avatar && userData.avatar.length > 0){
+				angular.element(document.querySelectorAll('.sidemenu-bg')[0]).scope().avatar = 
+					$scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + userData.avatar;
+
+			}else{
+				angular.element(document.querySelectorAll('.sidemenu-bg')[0]).scope().avatar = 
+					$scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+			}
+
+		};
+
+		// TODO 取操作放在common server中
+	
+
+		if( localStorage.getItem('here_userInfo') ){
+			$scope.updateUserInfo( JSON.parse(localStorage.getItem('here_userInfo')) );
+		}
+
 		Here.isLogin && Here.api.get('/api/get_user', {
 			username : Here.userInfo.username
 		}, {
 			success : function(data) {
-				$scope.user.groups = data.groups;
-				$scope.user.photos = data.photos;
-				$scope.user.follows = data.follows;
-				$scope.user.likes = data.likes;
-
-				if (data.avatar && data.avatar.length > 0){
-					angular.element(document.querySelectorAll('.sidemenu-bg')[0]).scope().avatar = 
-						$scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + data.avatar;
-
-				}else{
-					angular.element(document.querySelectorAll('.sidemenu-bg')[0]).scope().avatar = 
-						$scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
-				}
-
+				$scope.updateUserInfo( data );
 				$scope.$apply();
+				localStorage.setItem( 'here_userInfo', JSON.stringify(data) );
 			},
 			error : function(data) {
 

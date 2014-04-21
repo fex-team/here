@@ -1,9 +1,7 @@
 cordova.define("com.baidu.fex.here.share", function(require, exports, module) {
 
-	function getBase64FromImageUrl(URL,callback) {
-		
+	function getBase64FromImageUrl(URL) {
 		var img = new Image();
-		img.crossOrigin = 'anonymous';
 		img.src = URL;
 		img.onload = function() {
 
@@ -15,37 +13,31 @@ cordova.define("com.baidu.fex.here.share", function(require, exports, module) {
 			ctx.drawImage(this, 0, 0);
 
 			var dataURL = canvas.toDataURL("image/png");
+
 			dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-			callback && callback(dataURL);
 
 		}
-		
 	}
-	
-	function launch(type,data,scene){
-		cordova.exec(function() {
+
+
+	module.exports = {
+		wechat : function(data, scene) {
+			debugger;
+			var type;
+			if (/^http:\/\//.test(data)) {
+				type = "datauri";
+				data = getBase64FromImageUrl(data);
+			}else{
+				type = "file";
+			}
+
+			cordova.exec(function() {
 			}, function() {
 			}, "com.baidu.fex.here.share", "wechat", [{
 				"type" : type,
 				"data" : data,
 				"scene" : scene
 			}]);
-	}
-
-	module.exports = {
-		wechat : function(data, scene) {
-			var type;
-			if (/^http:\/\//.test(data)) {
-				type = "datauri";
-				getBase64FromImageUrl(data,function(base64){
-					launch(type,base64,scene);
-				});
-			}else{
-				type = "file";
-				launch(type,data,scene);
-			}
-
-			
 		},
 		WECHAT_SCENE : {
 			session : 0,

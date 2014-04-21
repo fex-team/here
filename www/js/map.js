@@ -96,12 +96,12 @@
 
 	})();
 
-	var addedGroup = {};
 
 	angular.module("map", ['ionic', 'hereApp.controllers']).controller('map_display', function($scope, $element, $stateParams) {
 		var position = $stateParams.position;
 		var longitude = position.split(',')[0];
 		var latitude = position.split(',')[1];
+		var addedGroup = {};
 		map.ready(function() {
 			map.init("map-container", new BMap.Point(longitude,latitude), function(bounds) {
 				console.info(bounds);

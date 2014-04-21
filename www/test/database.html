@@ -1,22 +1,37 @@
-<script type="text/javascript">
-(function(){
-var p = {
-url:"http://qzonestyle.gtimg.cn/open_proj/qqconnect/css/sprite/common.jpg?max_age=19830212&d=20140314154327",
-showcount:'1',/*是否显示分享总数,显示：'1'，不显示：'0' */
-desc:'',/*默认分享理由(可选)*/
-summary:'dsadsadsa',/*分享摘要(可选)*/
-title:'时光相机图片',/*分享标题(可选)*/
-site:'时光相机',/*分享来源 如：腾讯网(可选)*/
-pics:'http://qzonestyle.gtimg.cn/open_proj/qqconnect/css/sprite/common.jpg?max_age=19830212&d=20140314154327', /*分享图片的路径(可选)*/
-style:'203',
-width:98,
-height:22
-};
-var s = [];
-for(var i in p){
-s.push(i + '=' + encodeURIComponent(p[i]||''));
-}
-document.write(['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">分享</a>'].join(''));
-})();
-</script>
-<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="../js/native.js"></script>
+	</head>
+	<body>
+		<script>
+			/*
+			NATIVE.webdb.addPicture({
+							"filepath" : "hereApp/capture-2117537924.jpg",
+							"width" : 1280,
+							"datetime" : 1396254036610,
+							"latitude" : 40.050311,
+							"lontitude" : 116.290509,
+							"radius" : 60.113014221191406,
+							"orientation" : 1,
+							"sensorX" : 7.410202,
+							"sensorY" : 2.8826447,
+							"sensorZ" : 5.0522156,
+							"height" : 768
+						});*/
+			NATIVE.webdb.getAllPictures(function(res){
+				console.info(res);
+			});
+			
+			NATIVE.webdb.getPictureById("1396255621144",function(res){
+				console.info(res);
+			});
+			NATIVE.webdb.getPictureByPage(0,2,function(res){
+				console.info(res);
+			});
+			
+			
+		</script>
+	</body>
+</html>
