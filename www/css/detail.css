@@ -139,32 +139,7 @@
 .page-detail .droplist-inner.active{
 	-webkit-animation: fadein 0.5s;
 }
-.page-detail .sharelist{
-	position: absolute;
-	width: 100%;
-	left: 0;
-	bottom: 0;
-	background: rgba(255,255,255,0.8);
-	z-index: 99999;
-	
-}
-.page-detail .sharelist li{
-	width: 32%;
-	text-align: center;
-	display: inline-block;
-	margin: 5px 0;
-	
-}
-.page-detail .sharelist-outer{
-	position: fixed;
-	z-index: 9999;
-	background: rgba(0,0,0,0.2);
-	left: 0;
-	width: 100%;
-	top: 0;
-	height: 100%;
-	display: none;
-}
+
 .page-detail i.icon.ion-ios7-trash-outline{
 	color: #EA3E0A;
 }
@@ -176,14 +151,4 @@
 .page-detail .actionbar .button{
 	margin-left: 5px;
 }
-.sharelist-outer.active{
-	display: block;
-}
-@-webkit-keyframes sharelistzoomin {
-    from { -webkit-transform: translateY(210px); }
-    to   { -webkit-transform: translateY(0px); }
-}
-.sharelist-outer.active .sharelist{
-	-webkit-animation: sharelistzoomin 0.5s ease-in-out;
-	-webkit-transition-timing-function: linear;
-}
+

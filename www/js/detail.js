@@ -107,18 +107,8 @@
 			visible : ""
 		}
 		
-		angular.element(document.getElementById("sharelist")).bind("click",function(){
-
-			$headerScope.sharelist.visible = "";
-		}).children().bind("click",function(e){
-
-			e.stopPropagation();
-			return false;
-		});
 		
-		$scope.shareWechat = function(sence){
-			nativeshare.wechat($headerScope.path,sence);
-		}
+		
 		
 
 		angular.element(document).bind("click", function() {
@@ -152,13 +142,11 @@
 				e.stopPropagation();
 			}
 		}]
-		$scope.sharelist = {
-			visible : ""
-		}
+		
 		$scope.path = "";
 		
 		$headerScope = $scope;
-	}).controller('DetailController', function($scope, $stateParams, $ionicPopup) {
+	}).controller('DetailController', function($scope, $stateParams, $ionicPopup,shareDialogAPI) {
 
 		$scope.doRefresh = function() {
 			if ($stateParams['native']) {
@@ -212,6 +200,10 @@
 
 		}
 		$scope.doRefresh();
+		$scope.openShare = function(){
+			
+			shareDialogAPI.open(this.photo.offline,this.photo.src);
+		}
 		// 显示评论区域
 		$scope.showComment = function() {
 			var photoId = this.photo.id;
@@ -324,12 +316,7 @@
 
 		};
 
-		$scope.openShare = function() {
-			
-			$headerScope.path = this.photo.src;
-			$headerScope.sharelist.visible = "active";
-
-		};
+		
 
 	}).controller('CommentController', function($rootScope, $scope, $element) {
 
