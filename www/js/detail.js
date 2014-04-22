@@ -358,7 +358,7 @@
 
 		};
 
-	}).controller('CommentController', function($rootScope, $scope, $element) {
+	}).controller('CommentController', function($rootScope, $scope, $element, $ionicPopup) {
 
 		$scope.doComment = function() {
 			var photoId = this.photo.id;
