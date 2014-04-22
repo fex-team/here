@@ -114,7 +114,7 @@
 			}
 
 		}
-	}).controller('galleryNetworkController', function($scope){
+	}).controller('galleryNetworkController', function($scope, $ionicPopup){
 		$scope.item_width = document.body.clientWidth / 2;
 		if(!Here.isLogin){
 			$ionicPopup.alert({

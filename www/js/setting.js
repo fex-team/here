@@ -32,10 +32,10 @@
 					if (res) {
 						Here.api.get('/user/logout', {}, {
 					                    success: function(data){
-					                        $ionicPopup.alert({
-			                                    title: '通知',
-			                                    content: '您已退出，即将返回首页'
-			                                });
+					                        // $ionicPopup.alert({
+			                          //           title: '通知',
+			                          //           content: '您已退出，即将返回首页'
+			                          //       });
 					                        Here.userInfo = {};
 					                        Here.isLogin = false;
                                 			$rootScope.isLogin = false;

@@ -101,7 +101,7 @@
 	
 	
 
-	angular.module('detail', ['ionic', 'hereApp.controllers']).controller('DetailHeaderController', function($scope, $stateParams, $controller) {
+	angular.module('detail', ['ionic', 'hereApp.controllers']).controller('DetailHeaderController', function($scope, $stateParams, $controller, $ionicPopup) {
 
 		$scope.droplist = {
 			visible : ""

@@ -41,6 +41,9 @@
     line-height: 26px;
     padding-left: 1em;
 }
+.hot-groups {
+    padding-top: 10px;
+}
 .hot-groups:after {
     content: '';
     height: 0;
@@ -51,7 +54,7 @@
     width: 45%;
     float: left;
     position: relative;
-    margin: 30px auto;
+    margin: 20px auto 0;
     margin-left: 5%;
 }
 .group:after {
