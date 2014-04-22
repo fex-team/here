@@ -187,7 +187,7 @@
 				}, {
 					success : function(data) {
 						data.photos.forEach(function(photo, index) {
-							photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
+							photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash + '&maxWidth=' + window.innerWidth;
 
 							if( photo.avatar == '' ){
 								photo['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
