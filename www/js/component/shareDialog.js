@@ -50,7 +50,6 @@
 				
 				$scope.api = shareDialogAPI;
 				$scope.shareWechat = function(sence){
-					debugger;
 					nativeshare.wechat(this.api.pic,sence);
 				};
 				$scope.shareWeibo = function(){

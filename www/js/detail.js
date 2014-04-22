@@ -96,7 +96,6 @@
 		// callback && callback(res);
 	}
 	
-	var $headerScope;
 	
 	
 	
@@ -107,18 +106,9 @@
 			visible : ""
 		}
 		
-		angular.element(document.getElementById("sharelist")).bind("click",function(){
-
-			$headerScope.sharelist.visible = "";
-		}).children().bind("click",function(e){
-
-			e.stopPropagation();
-			return false;
-		});
 		
-		$scope.shareWechat = function(sence){
-			nativeshare.wechat($headerScope.path,sence);
-		}
+		
+		
 		
 
 		angular.element(document).bind("click", function() {
@@ -152,13 +142,11 @@
 				e.stopPropagation();
 			}
 		}]
-		$scope.sharelist = {
-			visible : ""
-		}
+		
 		$scope.path = "";
 		
-		$headerScope = $scope;
-	}).controller('DetailController', function($scope, $stateParams, $ionicPopup) {
+		
+	}).controller('DetailController', function($scope, $stateParams, $ionicPopup,shareDialogAPI) {
 
 		$scope.doRefresh = function() {
 			if ($stateParams['native']) {
@@ -324,12 +312,9 @@
 
 		};
 
-		$scope.openShare = function() {
-			
-			$headerScope.path = this.photo.src;
-			$headerScope.sharelist.visible = "active";
-
-		};
+		$scope.openShare = function(){
+			shareDialogAPI.open(this.photo.offline,this.photo.src);
+		}
 
 	}).controller('CommentController', function($rootScope, $scope, $element) {
 
@@ -390,9 +375,7 @@
 							}
 						});
 
-		$scope.openShare = function() {
-			$headerScope.sharelist.visible = "active";
-		};
+		
 
 		$scope.doCollect = function($event){
 			if($scope.collected){
