@@ -10,34 +10,40 @@
 
 	</ion-header-bar>
 	<ion-content has-header="true" padding="true" ng-controller="person_edit" id="person-edit">
-		
+
 		<div class="photo-item">
 			<img ng-src="{{user.avatar}}" ng-click="openPhoto()"/>
 		</div>
-		
+
 		<div class="list">
 
 			<label class="item item-input item-stacked-label"> <span class="input-label">昵称</span>
 				<input type="text" ng-model="user.nickname">
 			</label>
+			<label class="item item-input item-stacked-label"> <span class="input-label">出生年月</span>
+				<input type="text" mobiscroll-date ng-model="user.birthday" value="user.birthday" readonly="readonly">
+			</label>
+			
 			<label class="item item-input item-stacked-label"> <span class="input-label">性别</span>
-				<select ng-model="user.sex" ng-options="sex.name for sex in sexs">
-					<option value="">-- 选择性别 --</option>
+				<select ng-model="user.sex" mobiscroll-group>
+					<option value="男">男</option>
+					<option value="女">女</option>
 				</select>
 			</label>
 			<label class="item item-input item-stacked-label"> <span class="input-label">所在地</span>
-				<div>
-					<select ng-model="user.province" ng-options="province.name for province in provinces" style="display: inline-block;">
-						<option value="">-- 选择省份 --</option>
-					</select>
-					<select ng-model="user.city" ng-options="city.name for city in user.province.citys" style="display: inline-block;">
-						<option value="">-- 选择市 --</option>
-					</select>
-				</div> </label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">简介</span>
-				<textarea ng-model="user.intro"></textarea>
-			</label>
+				<select ng-model="user.city" ng-value="user.city" mobiscroll-group group="true">
+					<optgroup label="{{pinyin}}" ng-repeat="(pinyin, list) in cityList">
+						<option value="{{city}}"  ng-repeat="city in list">{{city}}</option>
+					</optgroup>
+				</select> <!--<div>
+				<select ng-model="user.province" ng-options="province.name for province in provinces" style="display: inline-block;">
+				<option value="">-- 选择省份 --</option>
+				</select>
+				<select ng-model="user.city" ng-options="city.name for city in user.province.citys" style="display: inline-block;">
+				<option value="">-- 选择市 --</option>
+				</select>
+				</div>--> </label>
+			<label class="item item-input item-stacked-label"> <span class="input-label">简介</span> 				<textarea ng-model="user.intro"></textarea> </label>
 		</div>
 
 	</ion-content>
