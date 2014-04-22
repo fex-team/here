@@ -232,7 +232,10 @@
 								$scope.group.cover = result.data.photoId;
 							},
 							error : function(data) {
-								alert(data.message);
+								$ionicPopup.alert({
+			                        title: '错误',
+			                        content: data.message
+			                    });
 							}
 						});
 					}
@@ -252,7 +255,10 @@
 				if(photos.length > 0){
 					syncPhoto(groupId, photos);
 				}else{
-					alert('创建成功');
+					$ionicPopup.alert({
+                        title: '通知',
+                        content: '创建成功'
+                    });
 				}
 			});
 		}
@@ -271,7 +277,10 @@
 					callback(data.id, $scope.albumName);
 				},
 				error : function(data) {
-					alert('创建相册失败：' + data.message);
+					$ionicPopup.alert({
+                        title: '错误',
+                        content: '创建相册失败：' + data.message
+                    });
 				}
 			});
 		}

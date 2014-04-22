@@ -117,7 +117,10 @@
 	}).controller('galleryNetworkController', function($scope){
 		$scope.item_width = document.body.clientWidth / 2;
 		if(!Here.isLogin){
-			alert('没有登录');
+			$ionicPopup.alert({
+				title: '警告',
+          		content: '请先登录'
+			});
 			return;
 		}
 		Here.api.get('/api/get_group_by_username', {

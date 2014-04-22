@@ -188,6 +188,12 @@
 					success : function(data) {
 						data.photos.forEach(function(photo, index) {
 							photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
+
+							if( photo.avatar == '' ){
+								photo['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+							}else{
+								photo['avatar'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.avatar;
+							}
 							photo.commentShow = false;
 							photo.show = true;
 						});
@@ -223,6 +229,15 @@
 							photoId : photoId
 						}, {
 							success : function(data) {
+								if( data != null ){
+									data.forEach(function(comment){
+										if( comment.avatar == '' ){
+											comment['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+										}else{
+											comment['avatar'] = Here.serverAddress + '&c=api&a=img&hash=' + comment.avatar;
+										}
+									});
+								}
 								$scope.group.photos.forEach(function(photo) {
 									if (photoId === photo.id) {
 										photo.commentItems = data || [];
@@ -245,7 +260,10 @@
 		// 关注照片
 		$scope.doLike = function() {
 			if( !Here.isLogin ){
-				alert('请先登录');
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '请先登录'
+				});
 				return;
 			}
 			var photoId = this.photo.id;
@@ -261,7 +279,10 @@
 					$scope.$apply();
 				},
 				error : function(data) {
-					alert(data.message);
+					$ionicPopup.alert({
+						title: '警告',
+		          		content: data.message
+					});
 				}
 			});
 		};
@@ -295,7 +316,10 @@
 				return;
 			}
 			if (!Here.isLogin) {
-				alert('请先登录');
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '请先登录'
+				});
 				return;
 			}
 
@@ -319,7 +343,10 @@
 				Utils.NATIVE.webdb.deleteById(me.photo.localId);
 				//TODO 删除本地图片
 			}, function() {
-				alert('同步失败');
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '同步失败'
+				});
 			});
 
 		};
@@ -337,12 +364,18 @@
 			var photoId = this.photo.id;
 
 			if ($scope.commentContent === '' || !$scope.commentContent) {
-				alert('评论内容不能为空！');
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '评论内容不能为空！'
+				});
 				return;
 			}
 
 			if (!Here.isLogin) {
-				alert('请先登录');
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '请先登录'
+				});
 				return;
 			}
 
@@ -356,7 +389,11 @@
 				success : function(data) {
 					$scope.group.photos.forEach(function(photo) {
 						if (photoId === photo.id) {
+
+							var userInfo = JSON.parse(localStorage.getItem('here_userInfo'));
+
 							photo.commentItems.push({
+								avatar: userInfo.avatar ? Here.serverAddress + '&c=api&a=img&hash=' + userInfo.avatar : Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg',
 								nickname : Here.userInfo.nickname,
 								content : $scope.commentContent,
 								time : '刚刚'
@@ -368,7 +405,10 @@
 					$scope.$apply();
 				},
 				error : function(data) {
-					alert(data.message);
+					$ionicPopup.alert({
+						title: '警告',
+		          		content: data.message
+					});
 				}
 			});
 		};
@@ -416,7 +456,10 @@
 					$scope.collected = true;
 				},
 				error : function(data) {
-					alert(data.message);
+					$ionicPopup.alert({
+						title: '警告',
+		          		content: data.message
+					});
 				}
 			});
 		}

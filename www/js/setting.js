@@ -32,14 +32,20 @@
 					if (res) {
 						Here.api.get('/user/logout', {}, {
 					                    success: function(data){
-					                        alert('你已退出');
+					                        $ionicPopup.alert({
+			                                    title: '通知',
+			                                    content: '您已退出，即将返回首页'
+			                                });
 					                        Here.userInfo = {};
 					                        Here.isLogin = false;
                                 			$rootScope.isLogin = false;
                                 			cookie.remove('appKey');
                                 			cookie.remove('nickname');
                                 			cookie.remove('username');
-					                        $state.go('sidemenu.home');
+
+                                			setTimeout(function(){
+					                        	$state.go('sidemenu.home');
+                                			}, 200);
 					                    },
 					                    error: function(data){
 					                        console.log(data);

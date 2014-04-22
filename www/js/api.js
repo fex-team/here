@@ -1,6 +1,6 @@
 Here = window.Here || {};
 
-Here.serverAddress = /hereapp/.test(location.href) ? 'http://hereapp.duapp.com/here/?m=here' : 'http://172.22.72.178/end/here/?m=here';
+Here.serverAddress = /hereapp/.test(location.href) ? 'http://hereapp.duapp.com/here/?m=here' : 'http://172.22.72.195/end/here/?m=here';
 
 // Here.serverAddress = 'http://hereapp.duapp.com/here/?m=here';
 // Here.serverAddress = 'http://localhost/end/here/?m=here';
