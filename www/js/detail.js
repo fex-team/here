@@ -107,8 +107,18 @@
 			visible : ""
 		}
 		
+		angular.element(document.getElementById("sharelist")).bind("click",function(){
+
+			$headerScope.sharelist.visible = "";
+		}).children().bind("click",function(e){
+
+			e.stopPropagation();
+			return false;
+		});
 		
-		
+		$scope.shareWechat = function(sence){
+			nativeshare.wechat($headerScope.path,sence);
+		}
 		
 
 		angular.element(document).bind("click", function() {
@@ -142,11 +152,13 @@
 				e.stopPropagation();
 			}
 		}]
-		
+		$scope.sharelist = {
+			visible : ""
+		}
 		$scope.path = "";
 		
 		$headerScope = $scope;
-	}).controller('DetailController', function($scope, $stateParams, $ionicPopup,shareDialogAPI) {
+	}).controller('DetailController', function($scope, $stateParams, $ionicPopup) {
 
 		$scope.doRefresh = function() {
 			if ($stateParams['native']) {
@@ -200,10 +212,6 @@
 
 		}
 		$scope.doRefresh();
-		$scope.openShare = function(){
-			
-			shareDialogAPI.open(this.photo.offline,this.photo.src);
-		}
 		// 显示评论区域
 		$scope.showComment = function() {
 			var photoId = this.photo.id;
@@ -316,7 +324,12 @@
 
 		};
 
-		
+		$scope.openShare = function() {
+			
+			$headerScope.path = this.photo.src;
+			$headerScope.sharelist.visible = "active";
+
+		};
 
 	}).controller('CommentController', function($rootScope, $scope, $element) {
 
@@ -359,5 +372,53 @@
 				}
 			});
 		};
+	}).controller('DropController', function($scope, $stateParams, $ionicPopup, $element){
+		var groupId = $stateParams.groupId;
+		var element = $element;
+		$scope.collected = false;
+
+		Here.api.get('/api/check_collect', {
+							groupId : groupId
+						}, {
+							success : function(data) {
+								$scope.collected = true;
+								element.children().children()[0].innerHTML = '已收藏';
+								$scope.$apply();
+							},
+							error : function(data) {
+
+							}
+						});
+
+		$scope.openShare = function() {
+			$headerScope.sharelist.visible = "active";
+		};
+
+		$scope.doCollect = function($event){
+			if($scope.collected){
+				return;
+			}
+			
+
+			if(!Here.isLogin){
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '您未登录'
+				});
+				return;
+			}
+
+			Here.api.post('/api/collect', {
+				'groupId' : groupId
+			}, {
+				success : function(data) {
+					$event.toElement.innerHTML = '已收藏';
+					$scope.collected = true;
+				},
+				error : function(data) {
+					alert(data.message);
+				}
+			});
+		}
 	});
 })();

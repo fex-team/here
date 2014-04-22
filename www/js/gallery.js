@@ -117,7 +117,7 @@
 	}).controller('galleryNetworkController', function($scope){
 		$scope.item_width = document.body.clientWidth / 2;
 		if(!Here.isLogin){
-			alert('没有联网');
+			alert('没有登录');
 			return;
 		}
 		Here.api.get('/api/get_group_by_username', {
@@ -131,7 +131,8 @@
 						$scope.$apply();
 					},
 					error : function(data) {
-						
+						$scope.groups = [];
+						$scope.$apply();
 					}
 				});
 	}).controller('gallery_header', function($scope) {

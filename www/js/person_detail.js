@@ -15,27 +15,35 @@
         }];
 	})
     .controller('person_detail', function($scope){
-        $scope.user = {};
+        $scope.user = {
+            avatar: Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg'
+        };
+
+        $scope.updateUserInfo = function(userData){
+            $scope.user.username = userData.username;
+            $scope.user.nickname = userData.nickname;
+            $scope.user.sex = userData.sex;
+            $scope.user.address = userData.address.replace('|', ' ');
+            $scope.user.intro = userData.intro;
+            $scope.user.time = userData.time.split(' ')[0];
+
+
+            if (userData.avatar.length > 0){
+                $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + userData.avatar;
+            }
+        }
+
+        if( localStorage.getItem('here_userInfo') ){
+            $scope.updateUserInfo( JSON.parse(localStorage.getItem('here_userInfo')) );
+        }
 
         Here.isLogin && Here.api.get('/api/get_user', {
             username : Here.userInfo.username
         }, {
             success : function(data) {
-                $scope.user.username = data.username;
-                $scope.user.nickname = data.nickname;
-                $scope.user.sex = data.sex;
-                $scope.user.address = data.address.replace('|', ' ');
-                $scope.user.intro = data.intro;
-                $scope.user.time = data.time.split(' ')[0];
-
-
-                if (data.avatar.length > 0){
-                    $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + data.avatar;
-                }else{
-                    $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
-                }
-
+                $scope.updateUserInfo(data);
                 $scope.$apply();
+                localStorage.setItem( 'here_userInfo', JSON.stringify(data) );
             },
             error : function(data) {
 
