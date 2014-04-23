@@ -13,7 +13,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                         success: function(data){
                             data.forEach(function(group){
                                 group.photos.forEach(function(photo, index){
-                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo + '&maxWidth=' + window.innerWidth/2;
+                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo;
                                 });
                             });
 
@@ -42,7 +42,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                         success: function(data){
                             data.forEach(function(group){
                                 group.photos.forEach(function(photo, index){
-                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash + '&maxWidth=' + window.innerWidth/2;
+                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
                                 });
                             });
 
@@ -63,7 +63,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                         success: function(data){
                             data.forEach(function(group){
                                 group.photos.forEach(function(photo, index){
-                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo + '&maxWidth=' + window.innerWidth/2;
+                                    group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo;
                                 });
                             });
 
@@ -80,11 +80,11 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
     
 
 }).controller('RecommendCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $timeout){
-
+var ratio = window.devicePixelRatio || 1;
     Here.api.get('/api/get_recommends', {}, {
                     success: function(data){
                         data.forEach(function(group){
-                            group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash + '&maxWidth=' + window.innerWidth;
+                            group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash + '&maxWidth=' + window.innerWidth*ratio;
                         });
 
                         $scope.recommends = data;

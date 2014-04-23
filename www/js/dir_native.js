@@ -40,5 +40,51 @@
 
 			}
 		};
+	}).directive("srcResize",function(){
+		return {
+			restrict : 'A',
+			link : function(scope, element, attrs) {
+				var src = attrs.srcResize;
+				var ratio = window.devicePixelRatio || 1;
+				setTimeout(function() {
+					var width = $(element[0]).width()*ratio;
+
+					var type = attrs.srcType || "img";
+					if (type == "img") {
+						element.attr("src", src+"&maxWidth="+width);
+					} else if (type == "background") {
+
+						element.css({
+							"background-image" : "url(" + src+"&maxWidth="+width + ")"
+						});
+
+					}
+				}, 50);
+
+			}
+		};
+	}).directive("srcResize",function(){
+		return {
+			restrict : 'A',
+			link : function(scope, element, attrs) {
+				var src = attrs.srcResize;
+				var ratio = window.devicePixelRatio || 1;
+				setTimeout(function() {
+					var width = $(element[0]).width()*ratio;
+
+					var type = attrs.srcType || "img";
+					if (type == "img") {
+						element.attr("src", src+"&maxWidth="+width);
+					} else if (type == "background") {
+
+						element.css({
+							"background-image" : "url(" + src+"&maxWidth="+width + ")"
+						});
+
+					}
+				}, 50);
+
+			}
+		};
 	});
 })();

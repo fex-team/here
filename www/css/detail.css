@@ -35,8 +35,11 @@
 	height: 24px;
 	width: 24px;
 	background-color: #4A87EE;
+	background-size: cover;
+	background-position: center center;
 	border-radius: 12px;
 }
+
 .page-detail .nickname {
 	line-height: 24px;
 }
@@ -119,6 +122,9 @@
 }
 .page-detail i.icon {
 	color: #4a87ee;
+}
+.page-detail .detail-img{
+	
 }
 .page-detail .droplist {
 	position: absolute;

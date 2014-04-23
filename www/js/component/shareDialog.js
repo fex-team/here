@@ -70,7 +70,7 @@
 			},
 			templateUrl : 'templates/component/share_dialog.html',
 			link : function(scope, element, attrs) {
-				console.info(scope);
+				
 			},
 			replace : true
 		}

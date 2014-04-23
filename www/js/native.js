@@ -194,7 +194,7 @@
 	win.Utils = win.Utils || {};
 
 	var camera = (function() {
-		var started = false;
+		// var started = false;
 		var _group_id, _picArray, _callback, _result;
 		return {
 			start : function(group_id, picArray, callback) {
@@ -202,8 +202,8 @@
 				_picArray = picArray;
 				
 				_group_id = group_id;
-				if (!started) {
-					started = true;
+				// if (!started) {
+					// started = true;
 					// var host = window.location.host;
 					window.here.openCamera("file:///android_asset/www/mask.html?d="+escape(JSON.stringify(_picArray)), function(a) {
 						a = eval("(" + a + ")");
@@ -212,11 +212,11 @@
 						}
 						_result = a;
 						_callback && _callback(a);
-						started = false;
+						
 					}, function() {
 
 					});
-				}
+				// }
 			},
 			getResult : function() {
 				return _result;

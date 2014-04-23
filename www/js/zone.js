@@ -24,10 +24,10 @@
 		};
 
 		$scope.updateUserInfo = function(userData){
-			$scope.user.groups = userData.groups;
-			$scope.user.photos = userData.photos;
-			$scope.user.follows = userData.follows;
-			$scope.user.likes = userData.likes;
+			$scope.user.groups = userData.groups || 0;
+			$scope.user.photos = userData.photos || 0;
+			$scope.user.follows = userData.follows || 0;
+			$scope.user.likes = userData.likes || 0;
 			$scope.user.nickname = userData.nickname;
 
 			if (userData.avatar && userData.avatar.length > 0){

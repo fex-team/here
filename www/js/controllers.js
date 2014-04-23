@@ -1,8 +1,10 @@
-angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope, $ionicSideMenuDelegate) {
-
+angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope, $ionicSideMenuDelegate,$ionicLoading) {
+	$scope.screen_width = document.body.clientWidth;
+	
 	$scope.leftButtons = [{
 		type : 'button-icon button-clear ion-navicon',
 		tap : function(e) {
+			debugger;
 			$ionicSideMenuDelegate.toggleLeft($scope.$$childHead);
 		}
 	}];

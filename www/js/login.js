@@ -6,11 +6,17 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
         var password = $scope.password;
 
         if( !/^(\d|\w){5,10}$/.test(username) ){
-            alert('用户名必须为5到10个英文字符或数字');
+            $ionicPopup.alert({
+                title: '警告',
+                content: '用户名必须为5到10个英文字符或数字'
+            });
             return;
         }
         if( !password || password == '' ){
-            alert('密码必填');
+            $ionicPopup.alert({
+                title: '警告',
+                content: '密码必填'
+            });
             return;
         }
 
@@ -37,7 +43,10 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                 console.log(data);
                             },
                             error: function(data) {
-                                alert(data.message);
+                                $ionicPopup.alert({
+                                    title: '警告',
+                                    content: data.message
+                                });
                             }
                         });
     }

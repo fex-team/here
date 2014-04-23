@@ -27,7 +27,7 @@
 			<div class="photo-item" ng-repeat="photo in group.photos | filter:{show:true}">
 				<div class="item-wrap">
 					<p>
-						<span class="user-avatar"></span><span class="nickname">{{photo.nickname}}</span>
+						<span class="user-avatar" style="background-image:url({{photo.avatar}});"></span><span class="nickname">{{photo.nickname}}</span>
 					</p>
 					<div class="actionbar">
 						<div class="offline-bar" ng-show="photo.offline">
@@ -38,16 +38,13 @@
 					</div>
 					
 					
-					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <img ng-src="{{photo.src}}" ng-switch-default/>
+					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <img src-resize="{{photo.src}}" width="100%" ng-switch-default/>
 					</p>
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" >
-						
 						<i class="share" ng-click="openShare()"></i>
-						<div ng-show="!photo.offline">
-							<i class="like" ng-click="doLike()">{{photo.likes}}</i>
-							<i class="comment" ng-click="showComment()">{{photo.comments}}</i>
-						</div>
+						<i class="like" ng-click="doLike()" ng-show="!photo.offline">{{photo.likes}}</i>
+						<i class="comment" ng-click="showComment()" ng-show="!photo.offline">{{photo.comments}}</i>
 					</p>
 					<div class="comment-panel" ng-controller="CommentController" ng-show="photo.commentShow">
 						<p>
@@ -58,7 +55,7 @@
 						</p>
 
 						<p ng-repeat="comment in photo.commentItems">
-							<span class="user-avatar"></span><span class="nickname">{{comment.nickname}}</span>：<span class="comment-content">{{comment.content}}</span><span class="comment-time">({{comment.time}})</span>
+							<span class="user-avatar" style="background-image:url({{comment.avatar}});"></span><span class="nickname">{{comment.nickname}}</span>：<span class="comment-content">{{comment.content}}</span><span class="comment-time">({{comment.time}})</span>
 						</p>
 					</div>
 				</div>
@@ -67,3 +64,5 @@
 		
 	</div>
 </ion-view>
+<share-dialog></share-dialog>
+<share-detail-dialog></share-detail-dialog>

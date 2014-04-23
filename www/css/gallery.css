@@ -1,4 +1,4 @@
-.page-local .list-item .img {
+.local-list .list-item .img {
 	position: absolute;
 	left: 0;
 	width: 100%;
@@ -8,30 +8,44 @@
 	background-size: cover;
 	background-position: center center;
 }
-.page-local .local-list:after{
+.local-list:after{
 	content:".";display:block;height:0;clear:both;visibility:hidden
 }
-.page-local .list-item p {
+.local-list .list-item p {
 	right: 0;
 	left: 0;
 	position: absolute;
 	bottom: 0;
 	background: rgba(0,0,0,0.5);
 	color: #fff;
-	padding: 0 5px;
+	height: 30px;
+	line-height: 30px;
+	padding:0 5px;
 	margin: 0;
 }
 
-.page-local .list-item {
+.local-list .list-item {
 	position: relative;
 	float: left;
 }
-.page-local .list-item .inner {
+.local-list .list-item .inner {
 	position: absolute;
 	top: 5px;
 	bottom: 5px;
 	left: 5px;
 	right: 5px;
+	
+}
+.local-list .list-item .icon{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 30px;
+	width: 35px;
+	line-height: 32px;
+	font-size: 25px;
+	color: #FF6136;
+	text-align: center;
 }
 
 

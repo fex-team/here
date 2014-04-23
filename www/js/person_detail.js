@@ -19,17 +19,17 @@
             avatar: Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg'
         };
 
-        $scope.updateUserInfo = function(userData){
-            $scope.user.username = userData.username;
-            $scope.user.nickname = userData.nickname;
-            $scope.user.sex = userData.sex;
-            $scope.user.address = userData.address.replace('|', ' ');
-            $scope.user.intro = userData.intro;
-            $scope.user.time = userData.time.split(' ')[0];
+        $scope.updateUserInfo = function(data){
+            $scope.user.username = data.username;
+            $scope.user.nickname = data.nickname;
+            $scope.user.sex = data.sex;
+            $scope.user.birthday = data.birthday;
+            $scope.user.city = data.city;
+            $scope.user.intro = data.intro;
+            $scope.user.time = data.time.split(' ')[0];
 
-
-            if (userData.avatar.length > 0){
-                $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + userData.avatar;
+            if (data.avatar.length > 0){
+                $scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=' + data.avatar;
             }
         }
 

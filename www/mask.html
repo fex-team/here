@@ -60,30 +60,39 @@
 		<script src="lib/js/swipe.js"></script>
 		<script>
 			//http://location/mask.html?d=%5B%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/08cbb8afbe995a4d42d17f7e9d5c2c04.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/fc818a668ca9733d889b2535d28850b5.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/4b864a202f077dd30b252432a18b4e7b.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/5f4d8e2026fe664d466c04317c6445a9.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/62a0a584788ae118a974c88627cfa26f.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/dcb132bb52071e9bade684de6d4e7a49.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/d7fb2bbef7f2e5428ab88b0246529212.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/e4083b612bb582789fc45b3a45f133a9.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/6f4b8bc26dc12a14ca5672189776a266.png%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/c9dcd9634778c4670849ecb546c4d667.png%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/0fd3126d214f272b06358cbadc3aa123.png%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/fcb15797d9be5e73c5faa7ab50729260.png%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/d8315c153ba29c57f6e9453243deb61c.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/19055c83b867dc0025a569b6c6e3ff04.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/poolk001/4255dfac28678c0f7d13fb2f66df6950.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/019648e84929e1cdb2efe13d84145122.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/74ee0c42bb51d69fd550cbb501465a40.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/cross/b4dde41f5c0ac6d646a32a303b980578.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/cross/37e7c08b1a7f7d72f475401d892bd87c.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/321927b202c16e3a197a601d9207efce.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/2adc52e3bf609f800bb771d33c2a16c0.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/3432a67ad8b528dbb95e03ea5ee372d9.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/ed4e68949b16740ad4f931aa9385fc3b.jpg%22%2C%22http%3A//hereapp.duapp.com/here/%3Fm%3Dhere%26c%3Dapi%26a%3Dimg%26hash%3D/jianling/d1c6f67cae18c902cdd099242b572b7e.jpg%22%5D
-			document.addEventListener("deviceready", function() {
-				window.mySwipe = new Swipe(document.getElementById('slider'), {
-					continuous : true,
-					disableScroll : false,
-					stopPropagation : false,
-					callback : function(index, elem) {
-					},
-					transitionEnd : function(index, elem) {
-					},
-					callback : function(index, div) {
-						lazyload(div);
-					}
-				});
-				window.addEventListener('load', function() {
-					lazyload(document.getElementById("swipe_item_0"));
-				}, false);
 
-				var clientWidth = document.documentElement.clientWidth;
-				var clientHeight = document.documentElement.clientHeight;
-				function lazyload(div) {
+			window.mySwipe = new Swipe(document.getElementById('slider'), {
+				continuous : true,
+				disableScroll : false,
+				stopPropagation : false,
+				callback : function(index, elem) {
+				},
+				transitionEnd : function(index, elem) {
+				},
+				callback : function(index, div) {
+					load(div);
 
+				}
+			});
+			function load(div) {
+				lazyload(div);
+				lazyload(div.nextSibling);
+			}
+
+
+			window.addEventListener('load', function() {
+				(function(div) {
+					load(div);
+				})(document.getElementById("swipe_item_0"));
+
+			}, false);
+
+			var clientWidth = document.documentElement.clientWidth;
+			var clientHeight = document.documentElement.clientHeight;
+			function lazyload(dom) {
+				(function(div) {
 					if (div.getAttribute("loaded") != "true") {
 
-						var canvas = div.getElementsByTagName("canvas")[0];
 						(function(canvas) {
 
 							canvas.width = clientWidth;
@@ -113,13 +122,12 @@
 
 							}
 
-						})(canvas);
+						})(div.getElementsByTagName("canvas")[0]);
 						div.setAttribute("loaded", "true");
 					}
+				})(dom);
 
-				}
-
-			}, false);
+			}
 
 		</script>
 	</body>
