@@ -1,4 +1,5 @@
 (function() {
+
 	angular.module('nativeDirective', []).directive('nativeSrc', function() {
 
 		function getBase64(file, width, height, callback) {
@@ -17,7 +18,7 @@
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
-				
+
 				setTimeout(function() {
 					var width = attrs.nativeSrcWidth || $(element[0]).width();
 					var height = attrs.nativeSrcHeight || $(element[0]).height();
@@ -40,22 +41,22 @@
 
 			}
 		};
-	}).directive("srcResize",function(){
+	}).directive("srcResize", function() {
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
 				var src = attrs.srcResize;
 				var ratio = window.devicePixelRatio || 1;
 				setTimeout(function() {
-					var width = $(element[0]).width()*ratio;
+					var width = $(element[0]).width() * ratio;
 
 					var type = attrs.srcType || "img";
 					if (type == "img") {
-						element.attr("src", src+"&maxWidth="+width);
+						element.attr("src", src + "&maxWidth=" + width);
 					} else if (type == "background") {
 
 						element.css({
-							"background-image" : "url(" + src+"&maxWidth="+width + ")"
+							"background-image" : "url(" + src + "&maxWidth=" + width + ")"
 						});
 
 					}
@@ -63,26 +64,43 @@
 
 			}
 		};
-	}).directive("srcResize",function(){
+	}).directive("srcResize", function() {
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
 				var src = attrs.srcResize;
 				var ratio = window.devicePixelRatio || 1;
 				setTimeout(function() {
-					var width = $(element[0]).width()*ratio;
+					var width = $(element[0]).width() * ratio;
 
 					var type = attrs.srcType || "img";
 					if (type == "img") {
-						element.attr("src", src+"&maxWidth="+width);
+						element.attr("src", src + "&maxWidth=" + width);
 					} else if (type == "background") {
 
 						element.css({
-							"background-image" : "url(" + src+"&maxWidth="+width + ")"
+							"background-image" : "url(" + src + "&maxWidth=" + width + ")"
 						});
 
 					}
 				}, 50);
+
+			}
+		};
+	}).directive("iframeSrc", function() {
+		return {
+			restrict : 'A',
+			link : function(scope, element, attrs) {
+
+				function jump(url) {
+					element[0].contentWindow.location.replace(url);
+				}
+
+
+				scope.$watch(attrs.iframeSrc, function(value) {
+
+					jump(value);
+				});
 
 			}
 		};

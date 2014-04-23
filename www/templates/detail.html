@@ -38,7 +38,7 @@
 					</div>
 					
 					
-					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <img src-resize="{{photo.src}}" width="100%" ng-switch-default/>
+					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <span style="height:{{screen_width/16*9}}px;" src-type="background" src-resize="{{photo.src}}" width="100%" ng-switch-default></span>
 					</p>
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" >

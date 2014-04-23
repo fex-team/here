@@ -4,7 +4,6 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 	$scope.leftButtons = [{
 		type : 'button-icon button-clear ion-navicon',
 		tap : function(e) {
-			debugger;
 			$ionicSideMenuDelegate.toggleLeft($scope.$$childHead);
 		}
 	}];
