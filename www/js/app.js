@@ -135,6 +135,13 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
           templateUrl: "templates/network.html"
         }
       }
+    }).state('my_groups', {
+      url: "/my_groups",
+      views: {
+        'pager': {
+          templateUrl: "templates/my_groups.html"
+        }
+      }
     }).state('sync', {
       url: "/sync?groupId",
       views:{

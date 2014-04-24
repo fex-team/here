@@ -116,16 +116,24 @@
 		}
 	}).controller('galleryNetworkController', function($scope, $ionicPopup){
 		$scope.item_width = document.body.clientWidth / 2;
-		if(!Here.isLogin){
-			$ionicPopup.alert({
-				title: '警告',
-          		content: '请先登录'
-			});
-			return;
-		}
 		Here.api.get('/api/get_group_by_username', {
 					username : Here.userInfo.username
 				}, {
+					success : function(data) {
+						data.forEach(function(group){
+							group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
+						});
+						$scope.groups = data;
+						$scope.$apply();
+					},
+					error : function(data) {
+						$scope.groups = [];
+						$scope.$apply();
+					}
+				});
+	}).controller('myGroupController', function($scope, $ionicPopup){
+		$scope.item_width = document.body.clientWidth / 2;
+		Here.api.get('/api/get_collectGroup', {}, {
 					success : function(data) {
 						data.forEach(function(group){
 							group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
