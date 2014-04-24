@@ -53,10 +53,12 @@
 			$ionicPopup.prompt({
 				title : '重命名'
 			}).then(function(res) {
-
-				webdb.updateNameById(groups[index].id,res);
+				if(res){
+					webdb.updateNameById(groups[index].id,res);
 				
-				groups[index].name = res;
+					groups[index].name = res;
+				}
+				
 			});
 
 		}

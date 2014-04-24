@@ -54,6 +54,7 @@ angular.module('register', ['ionic', 'hereApp.controllers'])
                                 console.log(data);
                             },
                             error: function(data) {
+                            	loading.hide();
                                 $ionicPopup.alert({
                                     title: '警告',
                                     content: data.message

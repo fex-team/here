@@ -148,7 +148,7 @@
 		$scope.path = "";
 		
 		
-	}).controller('DetailController', function($scope, $stateParams, $ionicPopup,shareDialogAPI) {
+	}).controller('DetailController', function($scope, $stateParams, $ionicPopup,shareDialogAPI,$ionicLoading) {
 
 		$scope.doRefresh = function() {
 			if ($stateParams['native']) {
@@ -157,7 +157,7 @@
 					var cover = res[0];
 					var data = {
 						id : $stateParams.groupId,
-						name : cover.name,
+						name : cover.name || "未命名相册",
 						photos : [convertPhoto(cover)]
 					};
 					getNativePhoto(cover.id, function(res) {
@@ -297,6 +297,7 @@
 		}
 		// 同步照片
 		$scope.doAsync = function() {
+			
 			var me = this;
 			if ($stateParams['native']) {
 				$ionicPopup.confirm({
@@ -320,7 +321,9 @@
 			}
 
 			var me = this;
-
+			var loading = $ionicLoading.show({
+		      content: '同步中...',
+		    });
 			console.log(this.photo);
 			Utils.NATIVE.uploadPhoto(Here.serverAddress + '&c=api&a=upload', this.photo.filepath, {
 				groupId : $stateParams.groupId,
@@ -331,6 +334,7 @@
 				time : this.photo.time,
 				show : true
 			}, function(result) {
+				loading.hide();
 				me.photo.offline = false;
 				me.photo.id = JSON.parse(result.response).data.photoId;
 

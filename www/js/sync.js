@@ -1,7 +1,7 @@
 (function() {
 
 var loading;
-	angular.module('syncModule', ['ionic', 'hereApp.controllers']).controller('syncController', function($rootScope, $stateParams, $scope, $location, $stateParams, $controller, $ionicSlideBoxDelegate,$ionicLoading) {
+	angular.module('syncModule', ['ionic', 'hereApp.controllers']).controller('syncController', function($rootScope, $stateParams, $scope, $location, $stateParams, $controller, $ionicSlideBoxDelegate,$ionicLoading,$ionicPopup) {
 		$scope.item_width = document.body.clientWidth / 3;
 		$scope.screen_width = document.body.clientWidth;
 		var groupId = $stateParams.groupId;
@@ -111,7 +111,7 @@ var loading;
 		}
 	});
 
-	angular.module('syncConfirmModule', ['ionic', 'hereApp.controllers']).controller('syncConfirmController', function($rootScope, $stateParams, $location, $scope, $ionicSlideBoxDelegate) {
+	angular.module('syncConfirmModule', ['ionic', 'hereApp.controllers']).controller('syncConfirmController', function($rootScope, $stateParams, $location, $scope, $ionicSlideBoxDelegate,$ionicPopup) {
 		
 		$scope.screen_width = document.body.clientWidth;
 		var groupId = $stateParams.groupId;
@@ -233,6 +233,7 @@ var loading;
 								$scope.group.cover = result.data.photoId;
 							},
 							error : function(data) {
+								loading.hide();
 								$ionicPopup.alert({
 			                        title: '错误',
 			                        content: data.message
@@ -241,10 +242,11 @@ var loading;
 						});
 					}
 				}
-				loading.hide();
+				
 				if(photos.length > 0){
 					syncPhoto(groupId, photos);
 				}else{
+					loading.hide();
 					// alert('创建成功');
 
 					
@@ -257,6 +259,7 @@ var loading;
 				if(photos.length > 0){
 					syncPhoto(groupId, photos);
 				}else{
+					loading.hide();
 					$ionicPopup.alert({
                         title: '通知',
                         content: '创建成功'
@@ -266,7 +269,7 @@ var loading;
 		}
 
 
-	}).controller('syncFormController', function($stateParams, $location, $scope, $ionicSlideBoxDelegate,$ionicLoading) {
+	}).controller('syncFormController', function($stateParams, $location, $scope, $ionicSlideBoxDelegate,$ionicLoading,$ionicPopup) {
 		$scope.albumName = '';
 		
 		$scope.createAlbum = function(callback){
@@ -281,6 +284,7 @@ var loading;
 					callback(data.id, $scope.albumName);
 				},
 				error : function(data) {
+					loading.hide();
 					$ionicPopup.alert({
                         title: '错误',
                         content: '创建相册失败：' + data.message

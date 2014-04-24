@@ -20,7 +20,7 @@
                     postData.avatar = user.avatar;
                 }
 				var loading = $ionicLoading.show({
-			      content: '登录中...',
+			      content: '保存中...',
 			    });
 				Here.api.post('/user/update', postData, {
 					success : function(data) {
@@ -28,6 +28,7 @@
 						$state.go('person_detail');
 					},
 					error : function(data) {
+						loading.hide();
 						$ionicPopup.alert({
                             title: '警告',
                             content: data.message
