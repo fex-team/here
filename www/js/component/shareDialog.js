@@ -5,15 +5,17 @@
 			restrict : 'E',
 			scope : {},
 			controller : function($scope, $element, $sce,shareDetailDialogAPI) {
-				$scope.trustSrc = function(src) {
-					if(src != null && src.length>0){
-						return $sce.trustAsResourceUrl(src+"&time="+(+new Date));
-						
-					}
-					return $sce.trustAsResourceUrl("");
+				
+				
+				
+				$element.find("iframe")[0].onload = function(){
 					
+					$scope.api.loading = false;
+					$scope.$apply();
 				}
+			
 				$scope.api = shareDetailDialogAPI;
+				
 			},
 			templateUrl : 'templates/component/share_detail_dialog.html',
 			replace : true
@@ -22,9 +24,11 @@
 		return {
 			show:false,
 			url:"",
+			loading:true,
 			open:function(url){
 				this.show = true;
 				this.url = url;
+				this.loading = true;
 			}
 		}
 	}).factory('shareDialogAPI',function(){
@@ -50,7 +54,6 @@
 				
 				$scope.api = shareDialogAPI;
 				$scope.shareWechat = function(sence){
-					debugger;
 					nativeshare.wechat(this.api.pic,sence);
 				};
 				$scope.shareWeibo = function(){
@@ -71,7 +74,7 @@
 			},
 			templateUrl : 'templates/component/share_dialog.html',
 			link : function(scope, element, attrs) {
-				console.info(scope);
+				
 			},
 			replace : true
 		}

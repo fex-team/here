@@ -157,3 +157,14 @@
 .beside-slide {
     min-height: 10px;
 }
+
+.page-home .tab-slide .slide-img{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}

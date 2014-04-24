@@ -1,40 +1,36 @@
 (function() {
-	var formate = function( date, fmt ) {         
-	    var o = {         
-	    "M+" : date.getMonth()+1, //月份         
-	    "d+" : date.getDate(), //日         
-	    "h+" : date.getHours()%12 == 0 ? 12 : date.getHours()%12, //小时         
-	    "H+" : date.getHours(), //小时         
-	    "m+" : date.getMinutes(), //分         
-	    "s+" : date.getSeconds(), //秒         
-	    "q+" : Math.floor((date.getMonth()+3)/3), //季度         
-	    "S" : date.getMilliseconds() //毫秒         
-	    };         
-	    var week = {         
-	    "0" : "/u65e5",         
-	    "1" : "/u4e00",         
-	    "2" : "/u4e8c",         
-	    "3" : "/u4e09",         
-	    "4" : "/u56db",         
-	    "5" : "/u4e94",         
-	    "6" : "/u516d"        
-	    };         
-	    if(/(y+)/.test(fmt)){         
-	        fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));         
-	    }         
-	    if(/(E+)/.test(fmt)){         
-	        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[date.getDay()+""]);         
-	    }         
-	    for(var k in o){         
-	        if(new RegExp("("+ k +")").test(fmt)){         
-	            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
-	        }         
-	    }         
-	    return fmt;
-	};
+	function CalculateTimeDifference(myDate) {
+		
+		var second = 1000;
+		var minutes = second * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var months = days * 30;
+		var twomonths = days * 365;
+	
+		var nowtime = new Date();
+		var longtime = nowtime.getTime() - myDate.getTime();
+		var showtime = 0;
+		if (longtime > months * 2) {
+			return "2个月前";
+		} else if (longtime > months) {
+			return "1个月前";
+		} else if (longtime > days * 7) {
+			return ("1周前");
+		} else if (longtime > days) {
+			return (Math.floor(longtime / days) + "天前");
+		} else if (longtime > hours) {
+			return (Math.floor(longtime / hours) + "小时前");
+		} else if (longtime > minutes) {
+			return (Math.floor(longtime / minutes) + "分钟前");
+		} else if (longtime > second) {
+			return (Math.floor(longtime / second) + "秒前");
+		} else {
+			return ("1秒前");
+		}
+	}
 
-	// hack
-	window.DateFormate = formate;
+
 
 	var groups;
 
@@ -50,7 +46,7 @@
 			src : pic.filepath,
 			filepath : pic.filepath,
 			type : "native",
-			time : formate(new Date(parseInt(pic.datetime)), "yyyy-MM-dd HH:mm:ss"),
+			time : CalculateTimeDifference(new Date(parseInt(pic.datetime))),
 			measurement : pic.width + "X" + pic.height,
 			show : true
 		};
@@ -96,7 +92,6 @@
 		// callback && callback(res);
 	}
 	
-	var $headerScope;
 	
 	
 	
@@ -107,24 +102,15 @@
 			visible : ""
 		}
 		
-		angular.element(document.getElementById("sharelist")).bind("click",function(){
-
-			$headerScope.sharelist.visible = "";
-		}).children().bind("click",function(e){
-
-			e.stopPropagation();
-			return false;
-		});
 		
-		$scope.shareWechat = function(sence){
-			nativeshare.wechat($headerScope.path,sence);
-		}
+		
+		
 		
 
 		angular.element(document).bind("click", function() {
 			
 			$scope.droplist.visible = "";
-			$scope.$apply();
+		
 		});
 
 		$scope.detailCamera = [{
@@ -152,13 +138,11 @@
 				e.stopPropagation();
 			}
 		}]
-		$scope.sharelist = {
-			visible : ""
-		}
+		
 		$scope.path = "";
 		
-		$headerScope = $scope;
-	}).controller('DetailController', function($scope, $stateParams, $ionicPopup) {
+		
+	}).controller('DetailController', function($scope, $stateParams, $ionicPopup,shareDialogAPI) {
 
 		$scope.doRefresh = function() {
 			if ($stateParams['native']) {
@@ -187,7 +171,8 @@
 				}, {
 					success : function(data) {
 						data.photos.forEach(function(photo, index) {
-							photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash + '&maxWidth=' + window.innerWidth;
+							photo['time'] = CalculateTimeDifference(new Date(photo['time']));
+							photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash ;
 
 							if( photo.avatar == '' ){
 								photo['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
@@ -203,9 +188,10 @@
 
 							groups = data;
 							$scope.group = data;
-							$scope.$apply();
+							
 							angular.element(document.querySelector('#detail-header')).find('h1').html(data.name);
 							$scope.$broadcast('scroll.refreshComplete');
+							$scope.$apply();
 						});
 
 					},
@@ -355,12 +341,9 @@
 
 		};
 
-		$scope.openShare = function() {
-			
-			$headerScope.path = this.photo.src;
-			$headerScope.sharelist.visible = "active";
-
-		};
+		$scope.openShare = function(){
+			shareDialogAPI.open(this.photo.offline,this.photo.src);
+		}
 
 	}).controller('CommentController', function($rootScope, $scope, $element, $ionicPopup) {
 
@@ -436,9 +419,7 @@
 							}
 						});
 
-		$scope.openShare = function() {
-			$headerScope.sharelist.visible = "active";
-		};
+		
 
 		$scope.doCollect = function($event){
 			if($scope.collected){

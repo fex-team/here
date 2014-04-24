@@ -78,7 +78,15 @@
 }
 .page-detail .img-wrap {
 	margin: 0;
+	margin-bottom: 5px;
 }
+.page-detail .img-wrap span{
+	display: block;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
 .page-detail .actions .share, .page-detail .actions .like, .page-detail .actions .comment {
 	line-height: 30px;
 	display: inline-block;
@@ -103,6 +111,9 @@
 .page-detail .actions .comment:before {
 	content: "\f16a";
 }
+.page-detail .time{
+	color: #444;
+}
 .page-detail .ionic-refresher-content {
 	bottom: 15px;
 }
@@ -122,6 +133,9 @@
 }
 .page-detail i.icon {
 	color: #4a87ee;
+}
+.page-detail .detail-img{
+	
 }
 .page-detail .droplist {
 	position: absolute;

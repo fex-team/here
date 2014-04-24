@@ -26,13 +26,14 @@
 		<link href="css/person_edit.css" rel="stylesheet">
 		<link href="css/gallery.css" rel="stylesheet">
 		<link href="css/sync.css" rel="stylesheet">
+		<link href="css/loading.css" rel="stylesheet">
 
 		<!-- ionic/angularjs scripts -->
 		<script src="lib/js/ionic.bundle.js"></script>
 		<script src="js/component/openPhoto.js"></script>
 		<script src="js/component/shareDialog.js"></script>
-		<!-- cordova script (this will be a 404 during development)
-		<script src="cordova.js"></script>-->
+		<!-- cordova script (this will be a 404 during development)-->
+		<script src="cordova.js"></script>
 
 		<!-- your app's script -->
 		<script src="lib/js/zepto.js"></script>
@@ -66,11 +67,12 @@
 		<script src="js/zone.js"></script>
 		<script src="js/gallery.js"></script>
 		<script src="js/sync.js"></script>
+		
 	</head>
 	<body ng-app="hereApp" ng-controller="MainCtrl">
-
+		
 		<ion-nav-view animation="slide-left-right" name="pager"></ion-nav-view>
-
+		
 	</body>
 	<script>
 		Array.prototype.remove = function(from, to) {

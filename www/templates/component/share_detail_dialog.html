@@ -1,6 +1,28 @@
 <div class="share-dialog" ng-show="api.show">
 	<div class="inner">
-		<iframe ng-src="{{trustSrc(api.url)}}" asd={{api.url}}></iframe>
+		<div class="match_parent" style="overflow: hidden;">
+			<iframe iframe-src="api.url" ></iframe>
+		</div>
+		<div class="common-loading" ng-show="api.loading" style="background: #fff;">
+			<div class="windows8">
+				<div class="wBall" id="wBall_1">
+					<div class="wInnerBall"></div>
+				</div>
+				<div class="wBall" id="wBall_2">
+					<div class="wInnerBall"></div>
+				</div>
+				<div class="wBall" id="wBall_3">
+					<div class="wInnerBall"></div>
+				</div>
+				<div class="wBall" id="wBall_4">
+					<div class="wInnerBall"></div>
+				</div>
+				<div class="wBall" id="wBall_5">
+					<div class="wInnerBall"></div>
+				</div>
+			</div>
+		</div>
 		<button class="button button-icon icon ion-ios7-close close" ng-click="api.show=false"></button>
+		
 	</div>
 </div>

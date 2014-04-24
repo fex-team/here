@@ -38,7 +38,7 @@
 					</div>
 					
 					
-					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <img ng-src="{{photo.src}}" ng-switch-default/>
+					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <span style="height:{{screen_width/16*9}}px;" src-type="background" src-resize="{{photo.src}}" width="100%" ng-switch-default></span>
 					</p>
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" >
@@ -61,41 +61,8 @@
 				</div>
 			</div>
 		</ion-content>
-		<div class="sharelist-outer {{sharelist.visible}}" id="sharelist">
-			<div class="sharelist">
-				<ul style="padding: 10px 0;">
-					<li>
-						<div style="text-align: center;">
-							<i class="icon-share-renren"></i>
-						</div>
-						<label>人人网</label>
-					</li>
-					<li>
-						<div style="text-align: center;">
-							<i class="icon-share-tencent"></i>
-						</div>
-						<label>腾讯微博</label>
-					</li>
-					<li>
-						<div style="text-align: center;">
-							<i class="icon-share-weibo"></i>
-						</div>
-						<label>新浪微博</label>
-					</li>
-					<li ng-click="shareWechat(0);">
-						<div style="text-align: center;">
-							<i class="icon-share-wechat"></i>
-						</div>
-						<label>微信好友</label>
-					</li>
-					<li ng-click="shareWechat(1);">
-						<div style="text-align: center;">
-							<i class="icon-share-timeline"></i>
-						</div>
-						<label>微信朋友圈</label>
-					</li>
-				</ul>
-			</div>
-		</div>
+		
 	</div>
 </ion-view>
+<share-dialog></share-dialog>
+<share-detail-dialog></share-detail-dialog>
