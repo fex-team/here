@@ -1,0 +1,21 @@
+<ion-view title="我收到的评论" class="page-detail">
+    <ion-header-bar
+        title="我收到的评论"
+        left-buttons="back"
+        type="bar-positive"
+        align-title="center"></ion-header-bar>
+
+    <ion-content has-header="true" padding="true"  ng-controller="ReceivedCommentsController">
+        <loading></loading>
+        <p ng-show="!comments" class="failure-tips">暂未收到任何评论</p>
+
+        <div class="photo-item" ng-repeat="comment in comments">
+            <div class="item-wrap">
+                <p class="img-wrap" ng-switch>
+                    <span ng-switch-default class="img" style="height:{{screen_width/16*9}}px;" src-type="background" src-resize="{{comment.src}}"></span></span>
+                </p>
+                <p class="content"><span>{{comment.nickname}}：{{comment.content}}({{comment.time}})</span></p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -2,6 +2,7 @@
 
     <ion-content has-header="true" style="padding-bottom: 44px;">
         <div ng-controller="galleryNetworkController" class="local-list">
+            <loading></loading>
             <p ng-show="!groups" class="failure-tips">暂无网络相册</p>
             <div class="list-item" style="width: {{item_width}}px;height:{{item_width}}px;" ng-repeat="group in groups">
             <div class="inner">
