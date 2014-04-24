@@ -263,6 +263,8 @@
 				$ionicPopup.alert({
 					title: '警告',
 	          		content: '请先登录'
+				}).then(function(res) {
+					location.href = "#/login?referer=" + encodeURIComponent(location.hash);
 				});
 				return;
 			}
@@ -319,6 +321,8 @@
 				$ionicPopup.alert({
 					title: '警告',
 	          		content: '请先登录'
+				}).then(function(res) {
+					location.href = "#/login?referer=" + encodeURIComponent(location.hash);
 				});
 				return;
 			}
@@ -375,6 +379,8 @@
 				$ionicPopup.alert({
 					title: '警告',
 	          		content: '请先登录'
+				}).then(function(res) {
+					location.href = "#/login?referer=" + encodeURIComponent(location.hash);
 				});
 				return;
 			}
@@ -392,7 +398,7 @@
 
 							var userInfo = JSON.parse(localStorage.getItem('here_userInfo'));
 
-							photo.commentItems.push({
+							photo.commentItems.unshift({
 								avatar: userInfo.avatar ? Here.serverAddress + '&c=api&a=img&hash=' + userInfo.avatar : Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg',
 								nickname : Here.userInfo.nickname,
 								content : $scope.commentContent,
@@ -443,7 +449,9 @@
 			if(!Here.isLogin){
 				$ionicPopup.alert({
 					title: '警告',
-	          		content: '您未登录'
+	          		content: '请先登录'
+				}).then(function(res) {
+					location.href = "#/login?referer=" + encodeURIComponent(location.hash);
 				});
 				return;
 			}

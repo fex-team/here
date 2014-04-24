@@ -50,7 +50,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('login', {
-      url: "/login",
+      url: "/login?referer",
       views:{
       	'pager':{
       		templateUrl: "templates/login.html"

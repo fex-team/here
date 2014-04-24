@@ -1,11 +1,11 @@
 angular.module('login', ['ionic', 'hereApp.controllers'])
-.controller('LoginController', function($rootScope, $scope, $stateParams, $state) {
-        
+.controller('LoginController', function($rootScope, $scope, $stateParams, $state, $ionicPopup) {
+    console.log($stateParams.referer);
     $scope.login = function(){
         var username = $scope.username;
         var password = $scope.password;
 
-        if( !/^(\d|\w){5,10}$/.test(username) ){
+        if( !username || !/^(\d|\w){5,10}$/.test(username) ){
             $ionicPopup.alert({
                 title: '警告',
                 content: '用户名必须为5到10个英文字符或数字'
@@ -30,7 +30,7 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                 // exdate.setDate(exdate.getDate()+7);
                                 // document.cookie='appKey=' + data.appKey + ';expires=' + exdate.toGMTString();
                                 
-                                $state.go('sidemenu.home');
+                                // $state.go('sidemenu.home');
 
                                 Here.userInfo = {
                                     'username': data.username,
@@ -40,6 +40,7 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                 Here.isLogin = true;
                                 $rootScope.isLogin = true;
 
+                                $stateParams.referer && (location.href = $stateParams.referer);
                                 console.log(data);
                             },
                             error: function(data) {
