@@ -35,6 +35,7 @@
 			</ion-slide>
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">
 				<div class="beside-slide">
+					<loading></loading>
 					<p ng-show="getCurrentPositionFailure" class="failure-tips">定位失败，请重试!</p>
 					<div class="beside-groups">
 						<div class="local-list">
@@ -56,12 +57,13 @@
 			</ion-slide>
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">
 				<div class="collect-slide">
+					<loading></loading>
 					<p ng-show="getCollectGroupsFailure" class="failure-tips">暂无收藏的相册!</p>
 					<div class="collect-groups">
 						<div class="local-list">
 							<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in collectgroups">
 								<div class="inner">
-									<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.photos[0]}}"  class="img"></span> </a>
+									<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.cover}}"  class="img"></span> </a>
 									<p>
 										{{group.name}}
 										<a href="#/map?position={{group.longitude}},{{group.latitude}}" ng-show="group.longitude" class="icon ion-ios7-location"></a>
