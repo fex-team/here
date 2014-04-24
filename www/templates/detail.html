@@ -38,7 +38,9 @@
 					</div>
 					
 					
-					<p class="img-wrap" ng-switch on="photo.type"> <img native-src="{{photo.src}}" ng-switch-when="native" width="100%" /> <span style="height:{{screen_width/16*9}}px;" src-type="background" src-resize="{{photo.src}}" width="100%" ng-switch-default></span>
+					<p class="img-wrap" ng-switch on="photo.type"> 
+						<font ng-switch-when="native" class="img" style="height:{{screen_width/16*9}}px;" native-src="{{photo.src}}" native-src-type='background'></font> 
+						<span ng-switch-default class="img" style="height:{{screen_width/16*9}}px;" src-type="background" src-resize="{{photo.src}}"></span>
 					</p>
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" >
@@ -65,4 +67,4 @@
 	</div>
 </ion-view>
 <share-dialog></share-dialog>
-<share-detail-dialog></share-detail-dialog>
+		<share-detail-dialog></share-detail-dialog>

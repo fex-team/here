@@ -1,5 +1,5 @@
 (function() {
-	angular.module('person_edit', ['ionic', 'hereApp.controllers','component.openPhoto']).controller('person_edit_header', function($scope, $stateParams,$openPhoto, $state, $ionicPopup) {
+	angular.module('person_edit', ['ionic', 'hereApp.controllers','component.openPhoto']).controller('person_edit_header', function($scope, $stateParams,$openPhoto, $state, $ionicPopup,$ionicLoading) {
 		$scope.person_edit_ok = [{
 			type : 'button ion-ios7-checkmark-outline button-icon icon',
 			tap : function(e) {
@@ -19,9 +19,12 @@
                 if( /data:/.test(user.avatar) ){
                     postData.avatar = user.avatar;
                 }
-				
+				var loading = $ionicLoading.show({
+			      content: '登录中...',
+			    });
 				Here.api.post('/user/update', postData, {
 					success : function(data) {
+						loading.hide();
 						$state.go('person_detail');
 					},
 					error : function(data) {

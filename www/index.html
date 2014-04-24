@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html  ng-app="hereApp">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -30,8 +30,7 @@
 
 		<!-- ionic/angularjs scripts -->
 		<script src="lib/js/ionic.bundle.js"></script>
-		<script src="js/component/openPhoto.js"></script>
-		<script src="js/component/shareDialog.js"></script>
+		
 		<!-- cordova script (this will be a 404 during development)-->
 		<script src="cordova.js"></script>
 
@@ -67,9 +66,11 @@
 		<script src="js/zone.js"></script>
 		<script src="js/gallery.js"></script>
 		<script src="js/sync.js"></script>
+		<script src="js/component/openPhoto.js"></script>
+		<script src="js/component/shareDialog.js"></script>
 		
 	</head>
-	<body ng-app="hereApp" ng-controller="MainCtrl">
+	<body ng-controller="MainCtrl">
 		
 		<ion-nav-view animation="slide-left-right" name="pager"></ion-nav-view>
 		

@@ -80,7 +80,7 @@
 	margin: 0;
 	margin-bottom: 5px;
 }
-.page-detail .img-wrap span{
+.page-detail .img-wrap .img{
 	display: block;
 	background-position: center center;
 	background-repeat: no-repeat;

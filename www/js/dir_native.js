@@ -1,6 +1,6 @@
 (function() {
 
-	angular.module('nativeDirective', []).directive('nativeSrc', function() {
+	angular.module('nativeDirective', []).directive('nativeSrc', function($timeout) {
 
 		function getBase64(file, width, height, callback) {
 			/*
@@ -19,35 +19,39 @@
 			restrict : 'A',
 			link : function(scope, element, attrs) {
 
-				setTimeout(function() {
+				
+				$timeout(function() {
+					
 					var width = attrs.nativeSrcWidth || $(element[0]).width();
 					var height = attrs.nativeSrcHeight || $(element[0]).height();
 
 					var type = attrs.nativeSrcType || "img";
-					getBase64(attrs.nativeSrc, width, height, function(base64) {
+					(function(el){
+						
+						getBase64(attrs.nativeSrc, width, height, function(base64) {
 
-						if (type == "img") {
-							element.attr("src", base64);
-						} else if (type == "background") {
-
-							element.css({
-								"background-image" : "url(" + base64 + ")"
-							});
-
-						}
-
-					});
-				}, 50);
+							if (type == "img") {
+								el.attr("src", base64);
+							} else if (type == "background") { 
+							
+								
+								el.css("background-image","url(" + base64 + ")");
+							}
+	
+						});
+					})(element);
+					
+				});
 
 			}
 		};
-	}).directive("srcResize", function() {
+	}).directive("srcResize", function($timeout) {
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
 				var src = attrs.srcResize;
 				var ratio = window.devicePixelRatio || 1;
-				setTimeout(function() {
+				$timeout(function() {
 					var width = $(element[0]).width() * ratio;
 
 					var type = attrs.srcType || "img";
@@ -60,30 +64,7 @@
 						});
 
 					}
-				}, 50);
-
-			}
-		};
-	}).directive("srcResize", function() {
-		return {
-			restrict : 'A',
-			link : function(scope, element, attrs) {
-				var src = attrs.srcResize;
-				var ratio = window.devicePixelRatio || 1;
-				setTimeout(function() {
-					var width = $(element[0]).width() * ratio;
-
-					var type = attrs.srcType || "img";
-					if (type == "img") {
-						element.attr("src", src + "&maxWidth=" + width);
-					} else if (type == "background") {
-
-						element.css({
-							"background-image" : "url(" + src + "&maxWidth=" + width + ")"
-						});
-
-					}
-				}, 50);
+				});
 
 			}
 		};
@@ -93,6 +74,10 @@
 			link : function(scope, element, attrs) {
 
 				function jump(url) {
+				
+					if(!url){
+						url = "about:blank";
+					}
 					element[0].contentWindow.location.replace(url);
 				}
 

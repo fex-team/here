@@ -1,6 +1,7 @@
 (function() {
 
-	angular.module('syncModule', ['ionic', 'hereApp.controllers']).controller('syncController', function($rootScope, $stateParams, $scope, $location, $stateParams, $controller, $ionicSlideBoxDelegate) {
+var loading;
+	angular.module('syncModule', ['ionic', 'hereApp.controllers']).controller('syncController', function($rootScope, $stateParams, $scope, $location, $stateParams, $controller, $ionicSlideBoxDelegate,$ionicLoading) {
 		$scope.item_width = document.body.clientWidth / 3;
 		$scope.screen_width = document.body.clientWidth;
 		var groupId = $stateParams.groupId;
@@ -209,7 +210,7 @@
 		function syncPhoto(groupId, photos){
 			var photo = photos.shift();
 			console.log(photo);
-
+			
 			Utils.NATIVE.uploadPhoto(Here.serverAddress + '&c=api&a=upload', photo.filepath, {
 				groupId : groupId,
 				longitude : photo.longitude,
@@ -240,12 +241,13 @@
 						});
 					}
 				}
+				loading.hide();
 				if(photos.length > 0){
 					syncPhoto(groupId, photos);
 				}else{
 					// alert('创建成功');
 
-
+					
 					// 更新本地groupId
 					Utils.NATIVE.webdb.updateGroupId(groupId, $stateParams.groupId);
 					
@@ -264,12 +266,14 @@
 		}
 
 
-	}).controller('syncFormController', function($stateParams, $location, $scope, $ionicSlideBoxDelegate) {
+	}).controller('syncFormController', function($stateParams, $location, $scope, $ionicSlideBoxDelegate,$ionicLoading) {
 		$scope.albumName = '';
-
+		
 		$scope.createAlbum = function(callback){
 			console.log($scope.albumName);
-
+			loading = $ionicLoading.show({
+		      content: '同步中...',
+		    });
 			Here.api.post('/api/create_group', {
 				'name' : $scope.albumName
 			}, {
