@@ -1,5 +1,5 @@
 
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('sidemenu', {
@@ -158,6 +158,22 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
         }
       }
       
+    }).state('my_received_comments', {
+      url: "/my_received_comments",
+      views:{
+        'pager':{
+          templateUrl: "templates/my_received_comments.html"
+        }
+      }
+      
+    }).state('my_comments', {
+      url: "/my_comments",
+      views:{
+        'pager':{
+          templateUrl: "templates/my_comments.html"
+        }
+      }
+      
     });
   
 	$urlRouterProvider.otherwise("/sidemenu/home");
@@ -175,5 +191,27 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
         Here.isLogin = true;
         
       }
-	
-});
+}).directive('loading', function() {
+    return {
+        restrict: 'E',
+        template: '<div class="position-loading">'+
+                        '<div class="windows9">'+
+                            '<div class="wBall" id="wBall_1">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_2">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_3">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_4">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_5">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'
+    };
+})
