@@ -53,7 +53,6 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                     });
             }, function(){
                 loadingEl.remove();
-                console.log('定位失败');
                 $scope.besidegroups = [];
                 $scope.getCurrentPositionFailure = true;
                 $scope.$apply();
