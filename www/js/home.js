@@ -12,7 +12,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                         position: position.coords.longitude + ',' + position.coords.latitude
                     }, {
                         success: function(data){
-                            $scope.element.find('loading').remove();
+                            $scope.element.find('loading')[0].remove();
                             data.forEach(function(group){
                                 group.photos.forEach(function(photo, index){
                                     group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo;
@@ -24,7 +24,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
 
                         },
                         error: function(data){
-                            $scope.element.find('loading').remove();
+                            $scope.element.find('loading')[0].remove();
                             $scope.besidegroups = [];
                             $scope.getCurrentPositionFailure = true;
                             $scope.$apply();
@@ -44,7 +44,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
             $scope.collectgroups = [];
              Here.api.get('/api/get_collectGroup', {}, {
                         success: function(data){
-                            $scope.element.find('loading').remove();
+                            $scope.element.find('loading')[1].remove();
                             data.forEach(function(group){
                                 group.cover = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
                             });
@@ -53,7 +53,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                             $scope.$apply();
                         },
                         error: function(data){
-                            $scope.element.find('loading').remove();
+                            $scope.element.find('loading')[1].remove();
                             $scope.collectgroups = [];
                             $scope.getCollectGroupsFailure = true;
                             $scope.$apply();    
