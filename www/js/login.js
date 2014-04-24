@@ -1,5 +1,5 @@
 angular.module('login', ['ionic', 'hereApp.controllers'])
-.controller('LoginController', function($rootScope, $scope, $stateParams, $state, $ionicPopup) {
+.controller('LoginController', function($rootScope, $scope, $stateParams, $state, $ionicPopup,$ionicLoading) {
     console.log($stateParams.referer);
     $scope.login = function(){
         var username = $scope.username;
@@ -20,7 +20,9 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
             return;
         }
 
-
+		var loading = $ionicLoading.show({
+	      content: '登录中...',
+	    });
         Here.api.post('/user/login', {
                             'username': username,
                             'password': md5(password)
@@ -31,7 +33,7 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                 // document.cookie='appKey=' + data.appKey + ';expires=' + exdate.toGMTString();
                                 
                                 // $state.go('sidemenu.home');
-
+								loading.hide();
                                 Here.userInfo = {
                                     'username': data.username,
                                     'nickname': data.nickname,
