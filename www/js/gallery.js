@@ -114,19 +114,37 @@
 			}
 
 		}
-	}).controller('galleryNetworkController', function($scope, $ionicPopup){
+	}).controller('galleryNetworkController', function($scope, $ionicPopup, $element){
+		$scope.groups = [];
+		var loading = '<div class="position-loading">'+
+                        '<div class="windows9">'+
+                            '<div class="wBall" id="wBall_1">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_2">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_3">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_4">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_5">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+        var loadingEl = angular.element(loading);
 		$scope.item_width = document.body.clientWidth / 2;
-		if(!Here.isLogin){
-			$ionicPopup.alert({
-				title: '警告',
-          		content: '请先登录'
-			});
-			return;
-		}
+
+		$element.append(loadingEl);
 		Here.api.get('/api/get_group_by_username', {
 					username : Here.userInfo.username
 				}, {
 					success : function(data) {
+						loadingEl.remove();
 						data.forEach(function(group){
 							group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
 						});
@@ -134,7 +152,48 @@
 						$scope.$apply();
 					},
 					error : function(data) {
-						$scope.groups = [];
+						loadingEl.remove();
+						$scope.groups = null;
+						$scope.$apply();
+					}
+				});
+	}).controller('myGroupController', function($scope, $ionicPopup, $element){
+		$scope.groups = [];
+		var loading = '<div class="position-loading">'+
+                        '<div class="windows9">'+
+                            '<div class="wBall" id="wBall_1">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_2">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_3">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_4">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_5">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+        var loadingEl = angular.element(loading);
+		$scope.item_width = document.body.clientWidth / 2;
+		$element.append(loadingEl);
+		Here.api.get('/api/get_collectGroup', {}, {
+					success : function(data) {
+						loadingEl.remove();
+						data.forEach(function(group){
+							group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
+						});
+						$scope.groups = data;
+						$scope.$apply();
+					},
+					error : function(data) {
+						loadingEl.remove();
+						$scope.groups = null;
 						$scope.$apply();
 					}
 				});

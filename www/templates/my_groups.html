@@ -1,10 +1,18 @@
-<ion-view title="网络相册" class="page-local">
+<ion-view title="我的收藏" class="page-local">
+    <ion-header-bar
+        title="我的收藏"
+        left-buttons="back"
+        right-buttons="detailCamera"
+        type="bar-positive"
+        align-title="center"
+        >
 
+        </ion-header-bar>
     <ion-content has-header="true" style="padding-bottom: 44px;">
-        <div ng-controller="galleryNetworkController" class="local-list">
-            <p ng-show="!groups" class="failure-tips">暂无网络相册</p>
+        <div ng-controller="myGroupController" class="local-list">
+            <p ng-show="!groups" class="failure-tips">暂未收藏相册</p>
             <div class="list-item" style="width: {{item_width}}px;height:{{item_width}}px;" ng-repeat="group in groups">
-            <div class="inner">
+                <div class="inner">
                     <a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.src}}"  class="img"></span> </a>
                     <p>{{group.name}}</p>
                 </div>

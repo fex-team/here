@@ -42,7 +42,8 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 }).controller('SideMenuController', function($rootScope, $scope, $ionicSideMenuDelegate){
 	
 	$scope.nickname = cookie.get('nickname');
-	$scope.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';;
+	$scope.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+	$scope.isLogin = Here.isLogin;
 
 	$rootScope.$on('$stateChangeSuccess', function(){
 		$ionicSideMenuDelegate.close($scope);

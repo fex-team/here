@@ -49,7 +49,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('login', {
-      url: "/login",
+      url: "/login?referer",
       views:{
       	'pager':{
       		templateUrl: "templates/login.html"
@@ -133,6 +133,13 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       views: {
         'gallery-network-tab': {
           templateUrl: "templates/network.html"
+        }
+      }
+    }).state('my_groups', {
+      url: "/my_groups",
+      views: {
+        'pager': {
+          templateUrl: "templates/my_groups.html"
         }
       }
     }).state('sync', {

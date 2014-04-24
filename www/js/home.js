@@ -4,13 +4,36 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
     $rootScope.$on('homeSlide', function(e, index){
         $ionicScrollDelegate.scrollTop();
 
+        var loading = '<div class="position-loading">'+
+                        '<div class="windows9">'+
+                            '<div class="wBall" id="wBall_1">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_2">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_3">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_4">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                            '<div class="wBall" id="wBall_5">'+
+                                '<div class="wInnerBall"></div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
         if( index === 1 && !$scope.besidegroups ){
+
+            var loadingEl = $(loading).appendTo('.beside-slide');
+
             navigator.geolocation.getCurrentPosition(function(position){
                 console.log(position);
                 Here.api.get('/api/get_besides', {
                         position: position.coords.longitude + ',' + position.coords.latitude
                     }, {
                         success: function(data){
+                            loadingEl.remove();
                             data.forEach(function(group){
                                 group.photos.forEach(function(photo, index){
                                     group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo;
@@ -19,14 +42,17 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
 
                             $scope.besidegroups = data;
                             $scope.$apply();
+
                         },
                         error: function(data){
+                            loadingEl.remove();
                             $scope.besidegroups = [];
                             $scope.getCurrentPositionFailure = true;
                             $scope.$apply();
                         }
                     });
             }, function(){
+                loadingEl.remove();
                 console.log('定位失败');
                 $scope.besidegroups = [];
                 $scope.getCurrentPositionFailure = true;
@@ -37,9 +63,11 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
         }
 
         if( index === 2 && !$scope.collectgroups ){
+            var loadingEl = $(loading).appendTo('.collect-slide');
             $scope.collectgroups = [];
              Here.api.get('/api/get_collectGroup', {}, {
                         success: function(data){
+                            loadingEl.remove();
                             data.forEach(function(group){
                                 group.photos.forEach(function(photo, index){
                                     group.photos[index] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash;
@@ -50,6 +78,7 @@ angular.module('home', ['ionic', 'hereApp.controllers'])
                             $scope.$apply();
                         },
                         error: function(data){
+                            loadingEl.remove();
                             $scope.collectgroups = [];
                             $scope.getCollectGroupsFailure = true;
                             $scope.$apply();    
