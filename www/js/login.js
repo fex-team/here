@@ -40,7 +40,7 @@ angular.module('login', ['ionic', 'hereApp.controllers'])
                                 Here.isLogin = true;
                                 $rootScope.isLogin = true;
 
-                                $stateParams.referer && (location.href = $stateParams.referer);
+                                $stateParams.referer ? (location.href = $stateParams.referer) : (location.href = '#/sidemenu/home');
                                 console.log(data);
                             },
                             error: function(data) {

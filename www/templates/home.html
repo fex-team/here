@@ -15,9 +15,7 @@
 								<a href="#/detail?groupId={{recommend.id}}"><span style="background-image: url({{recommend.src}})" class="slide-img" ></span></a>
 							</ion-slide>
 						</ion-slide-box>
-						<p id="groupName">
-							{{currentGroup}}
-						</p>
+						<p id="groupName">{{currentGroup}}</p>
 					</div>
 					<div class="local-list">
 						<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in hotgroups">
@@ -37,10 +35,7 @@
 			</ion-slide>
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">
 				<div class="beside-slide">
-					<p ng-show="getCurrentPositionFailure" class="failure-tips">
-						定位失败，请重试!
-					</p>
-
+					<p ng-show="getCurrentPositionFailure" class="failure-tips">定位失败，请重试!</p>
 					<div class="beside-groups">
 						<div class="local-list">
 							<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in besidegroups">
@@ -61,9 +56,7 @@
 			</ion-slide>
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">
 				<div class="collect-slide">
-					<p ng-show="getCollectGroupsFailure" class="failure-tips">
-						暂无收藏的相册!
-					</p>
+					<p ng-show="getCollectGroupsFailure" class="failure-tips">暂无收藏的相册!</p>
 					<div class="collect-groups">
 						<div class="local-list">
 							<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in collectgroups">
