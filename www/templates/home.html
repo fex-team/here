@@ -35,7 +35,7 @@
 			</ion-slide>
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">
 				<div class="beside-slide">
-					<loading></loading>
+					<div id="positionLoading"><loading></loading></div>
 					<p ng-show="getCurrentPositionFailure" class="failure-tips">定位失败，请重试!</p>
 					<div class="beside-groups">
 						<div class="local-list">
@@ -57,7 +57,7 @@
 			</ion-slide>
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">
 				<div class="collect-slide">
-					<loading></loading>
+					<div id="collectGroupsLoading"><loading></loading></div>
 					<p ng-show="getCollectGroupsFailure" class="failure-tips">暂无收藏的相册!</p>
 					<div class="collect-groups">
 						<div class="local-list">
