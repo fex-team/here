@@ -12,6 +12,8 @@ import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.PluginResult;
+import org.apache.cordova.PluginResult.Status;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,12 +56,10 @@ public class ImageResizePlugin extends CordovaPlugin {
 
 			final File storageFile = getStorageFile(filepath, width, height);
 
-			
-
-			new AsyncTask<Void, Void, byte[]>() {
-
+			cordova.getThreadPool().execute(new Runnable() {
+				
 				@Override
-				protected byte[] doInBackground(Void... params) {
+				public void run() {
 					Bitmap bitmap = null;
 					if(storageFile.exists()){
 						bitmap = BitmapFactory.decodeFile(storageFile.toString());
@@ -68,20 +68,17 @@ public class ImageResizePlugin extends CordovaPlugin {
 					}
 					byte[] res = bitmapToBytes(bitmap);
 					bitmap.recycle();
-					return res;
-				}
-
-				protected void onPostExecute(byte[] result) {
-					String base64 = Base64.encodeToString(result,
+					
+					String base64 = Base64.encodeToString(res,
 							Base64.NO_WRAP);
 					callbackContext.success(base64);
 					if(!storageFile.exists()){
-						saveByte(result,storageFile);
+						saveByte(res,storageFile);
 					}
 					
-				};
+				}
+			});
 
-			}.execute();
 
 			
 
