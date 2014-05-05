@@ -42,13 +42,9 @@ Here.api = {
         url = '&c=' + url.split('/')[1] + '&a=' + url.split('/')[2];
         
         url += "&_t=" + Date.now();
-
-        $.ajax({
-            url: Here.serverAddress + url,
-            type: 'POST',
-            data: input,
-            success: function( response ) {
-                if ( 1 === response.no ) {
+		
+		$.post(Here.serverAddress + url,input,function(response){
+			if ( 1 === response.no ) {
                     if ( $.isFunction(callbacks.success) ) {
                         callbacks.success( response.data );
                     }
@@ -57,11 +53,26 @@ Here.api = {
                         callbacks.error( response.data );
                     }
                 }
-            },
-            dataType: "json",
-            xhrFields: {
-                withCredentials: true
-            }
-        });
+		},'json');
+		
+        /*
+        $.ajax({
+                    url: Here.serverAddress + url,
+                    type: 'GET',
+                    data: input,
+                    success: function( response ) {
+                        if ( 1 === response.no ) {
+                            if ( $.isFunction(callbacks.success) ) {
+                                callbacks.success( response.data );
+                            }
+                        }else {
+                            if ( $.isFunction(callbacks.error) ) {
+                                callbacks.error( response.data );
+                            }
+                        }
+                    },
+                    dataType: "json"
+                });*/
+        
     }
 };

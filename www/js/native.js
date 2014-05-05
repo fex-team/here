@@ -198,6 +198,7 @@
 		var _group_id, _picArray, _callback, _result;
 		return {
 			start : function(group_id, picArray, callback) {
+
 				_callback = callback;
 				_picArray = picArray;
 				
@@ -205,7 +206,7 @@
 				// if (!started) {
 					// started = true;
 					// var host = window.location.host;
-					window.here.openCamera("file:///android_asset/www/mask.html?d="+escape(JSON.stringify(_picArray)), function(a) {
+					window.here.openCamera(_picArray, function(a) {
 						a = eval("(" + a + ")");
 						if (group_id) {
 							a.groupId = group_id;

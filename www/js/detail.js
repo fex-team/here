@@ -120,8 +120,9 @@
 		});
 
 		$scope.detailCamera = [{
-			type : 'button ion-ios7-camera-outline button-icon icon',
+			type : ' ion-ios7-camera-outline button-icon ',
 			tap : function(e) {
+				
 				var arr = [];
 				groups.photos.forEach(function(photo, index) {
 					arr.push(photo.src);
