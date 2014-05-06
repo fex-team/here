@@ -1,5 +1,5 @@
 
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment','page'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('sidemenu', {
@@ -171,6 +171,14 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       views:{
         'pager':{
           templateUrl: "templates/my_comments.html"
+        }
+      }
+      
+    }).state('page', {
+      url: "/page",
+      views:{
+        'pager':{
+          templateUrl: "templates/page.html"
         }
       }
       

@@ -353,7 +353,7 @@
 		};
 
 		$scope.openShare = function(){
-			shareDialogAPI.open(this.photo.offline,this.photo.src);
+			shareDialogAPI.open(false,this.photo);
 		}
 
 	}).controller('CommentController', function($rootScope, $scope, $element, $ionicPopup) {

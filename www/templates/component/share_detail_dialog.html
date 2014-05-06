@@ -3,24 +3,8 @@
 		<div class="match_parent" style="overflow: hidden;">
 			<iframe iframe-src="api.url" ></iframe>
 		</div>
-		<div class="common-loading" ng-show="api.loading" style="background: #fff;">
-			<div class="windows8">
-				<div class="wBall" id="wBall_1">
-					<div class="wInnerBall"></div>
-				</div>
-				<div class="wBall" id="wBall_2">
-					<div class="wInnerBall"></div>
-				</div>
-				<div class="wBall" id="wBall_3">
-					<div class="wInnerBall"></div>
-				</div>
-				<div class="wBall" id="wBall_4">
-					<div class="wInnerBall"></div>
-				</div>
-				<div class="wBall" id="wBall_5">
-					<div class="wInnerBall"></div>
-				</div>
-			</div>
+		<div class="match_parent" ng-show="api.loading" style="background: #fff;">
+			<div class="ion-loading-d" style="text-align: center;font-size: 50px;position: absolute;left: 50%;top: 50%;margin-left: -25px;margin-top: -25px;"></div>
 		</div>
 		<button class="button button-icon icon ion-ios7-close close" ng-click="api.show=false"></button>
 		
