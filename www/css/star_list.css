@@ -1,0 +1,36 @@
+.page_starlist .item{
+	position: relative;
+	padding: 0;
+}
+.page_starlist .photo.left{
+	width: 53px;
+	height: 53px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+.page_starlist .photo.right{
+	width: 77px;
+	height: 77px;
+	position: absolute;
+	right: 10px;
+	top: 3px;
+}
+.page_starlist .center{
+	margin: 12px 0 12px 80px;
+}
+.page_starlist .name{
+	font-size: 18px;
+	color: #f46302;
+}
+.page_starlist .content,.page_starlist .time{
+	font-size: 14px;
+	color:#a6a6a6;
+}
+.page_starlist .ion-loading-d{
+	height: 44px;
+	line-height: 44px;
+	font-size: 35px;
+	text-align: center;
+	display: block;
+}

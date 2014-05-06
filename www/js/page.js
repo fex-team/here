@@ -9,7 +9,7 @@
 		}];
 		
 		$scope.onPublish = function(){
-			console.info(this);
+			
 			$scope.switchTab("comment");
 			$scope.commentList = [{id : "123",
 									name : "comment",

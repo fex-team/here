@@ -1,0 +1,29 @@
+
+
+<ion-view title="赞"  class="page_starlist" >
+	<ion-header-bar
+	title="赞"
+	left-buttons="back"
+	type="bar-positive"
+	align-title="center"></ion-header-bar>
+
+	<ion-pane has-header="true" ng-controller="starListController" style="overflow: auto;margin-top: 44px;padding-bottom: 44px;">
+		
+		<ul class="list">
+			<li class="item" ng-repeat="star in star_list">
+				<span class="photo center_crop left" style="background-image: url('{{star.photo}}')"></span>
+				<span class="photo center_crop right" style="background-image: url('{{star.img}}')"></span>
+				<div class="center">
+					<div class="name">{{star.nick}}</div>
+					<div class="content">赞了你的图片</div>
+					<div class="time">{{star.time}}</div>
+				</div>
+			</li>
+			<li class="item" ng-show="loading">
+				<div class="ion-loading-d"></div>
+			</li>
+		</ul>
+		
+	</ion-pane>
+
+</ion-view>
