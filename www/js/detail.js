@@ -173,6 +173,7 @@
 				});
 
 			} else {
+				
 				Here.api.get('/api/get_group', {
 					groupId : $stateParams.groupId
 				}, {

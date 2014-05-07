@@ -1,5 +1,5 @@
 
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment','page','starList','commentList'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment','page','starList','commentList','List'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('sidemenu', {
@@ -211,6 +211,14 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       views:{
         'pager':{
           templateUrl: "templates/user.html"
+        }
+      }
+      
+    }).state('list', {
+      url: "/list?groupId",
+      views:{
+        'pager':{
+          templateUrl: "templates/list.html"
         }
       }
       

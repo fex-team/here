@@ -1,0 +1,102 @@
+.page-list{
+	background: #e6e6e6;
+}
+.page-list ul.list{
+	padding: 0 8px;
+}
+.page-list ul.list .item{
+	margin-top: 10px;
+	padding: 0;
+	background: #fff;
+}
+.page-list .inner{
+	margin: 5px;
+	position: relative;
+}
+.page-list .photo{
+	width: 38px;
+	height: 38px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.page-list .name{
+	font-size: 15px;
+	color: #333;
+	position: absolute;
+	top: 0;
+	left: 50px;
+}
+
+.page-list .time{
+	font-size: 12px;
+	color: #FF6136;
+	position: absolute;
+	top: 21px;
+	left: 50px;
+}
+.page-list .content{
+	padding-top: 50px;
+	
+}
+.page-list .img{
+	height: 200px;
+}
+.page-list .button-bar .button{
+	color: #333;
+	font-size: 12px;
+}
+.page-list .button.icon-left:before{
+	float: none;
+	margin-right: 5px;
+	color: #007AFF;
+	font-size: 25px;
+}
+
+.page-list .ion-ios7-heart-outline.stared:before{
+	content:"\f199";
+}
+
+.page-list .droplist {
+	position: absolute;
+	z-index: 999;
+	right: 0;
+	top: 44px;
+	background: rgba(255,255,255,0.8);
+}
+.page-list .droplist .item{
+	background: transparent;
+}
+.page-list .droplist.active{
+	display: block;
+}
+
+.page-list .droplist .item:after{
+	display: none;
+}
+.page-list .droplist-inner.active{
+	-webkit-animation: fadein 0.5s;
+}
+.page-list .item-icon-left .icon{
+	color: #007AFF;
+}
+.page-list .actionbar{
+	position: absolute;
+	right:0;
+	top: -8px;
+	color: #007AFF;
+}
+.page-list .ion-ios7-cloud-upload-outline{
+	color: #007AFF;
+}
+.page-list .ion-ios7-trash-outline{
+	color: #FF6136;
+}
+.page-list .ion-loading-d{
+	padding: 5px 0;
+	font-size: 25px;
+	text-align: center;
+	display: block;
+	
+}
