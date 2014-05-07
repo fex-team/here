@@ -78,3 +78,14 @@ a{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+.center_inside{
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.ionic-refresher-content .icon-pulling{
+	display: none !important;
+}
+ion-infinite-scroll .scroll-infinite{
+	display: none;
+}

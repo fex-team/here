@@ -1,20 +1,29 @@
 (function(){
 	angular.module('person_detail', ['ionic', 'hereApp.controllers'])
-    .controller('person_detail_header', function($scope, $stateParams, $controller) {
-		$scope.person_detail_edit = [{
-			type : 'button ion-ios7-compose-outline button-icon icon',
-			tap : function(e) {
-				location.href = "#/person_edit";
-			}
-		}];
+    .controller('person_detail', function($scope,$stateParams){
+    	
+    	var username = $stateParams['username'];
+    	
+    	var myusername = Here.userInfo&&Here.userInfo.username;
+    	
+    	$scope.my = username == myusername;
+    	if($scope.my){
+    		$scope.person_detail_edit = [{
+				type : 'button ion-ios7-compose-outline button-icon icon',
+				tap : function(e) {
+					location.href = "#/person_edit";
+				}
+			}];
+    	}
+    	
         $scope.back = [{
             type : 'button back-button button-icon icon ion-arrow-left-c',
             tap : function(e) {
-                location.href = "#/sidemenu/zone";
+            	history.back();
+                // location.href = "#/sidemenu/zone";
             }
         }];
-	})
-    .controller('person_detail', function($scope){
+    	
         $scope.user = {
             avatar: Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg'
         };
@@ -38,7 +47,7 @@
         }
 
         Here.isLogin && Here.api.get('/api/get_user', {
-            username : Here.userInfo.username
+            username : username
         }, {
             success : function(data) {
                 $scope.updateUserInfo(data);

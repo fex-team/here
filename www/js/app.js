@@ -1,5 +1,5 @@
 
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment','page'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment','page','starList','commentList'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('sidemenu', {
@@ -97,7 +97,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('person_detail', {
-      url: "/person_detail",
+      url: "/person_detail?username",
       views:{
         'pager':{
           templateUrl: "templates/person_detail.html"
@@ -118,6 +118,14 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       views:{
         'pager':{
           templateUrl: "templates/gallery.html"
+        }
+      }
+      
+    }).state('user_gallery', {
+      url: "/user_gallery",
+      views:{
+        'pager':{
+          templateUrl: "templates/user_gallery.html"
         }
       }
       
@@ -179,6 +187,30 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       views:{
         'pager':{
           templateUrl: "templates/page.html"
+        }
+      }
+      
+    }).state('star_list', {
+      url: "/star_list",
+      views:{
+        'pager':{
+          templateUrl: "templates/star_list.html"
+        }
+      }
+      
+    }).state('comment_list', {
+      url: "/comment_list",
+      views:{
+        'pager':{
+          templateUrl: "templates/comment_list.html"
+        }
+      }
+      
+    }).state('user', {
+      url: "/user",
+      views:{
+        'pager':{
+          templateUrl: "templates/user.html"
         }
       }
       
