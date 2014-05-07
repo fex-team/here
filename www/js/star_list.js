@@ -1,5 +1,5 @@
 (function() {
-	angular.module('starList', ['ionic', 'hereApp.controllers', 'component.openPhoto']).controller('starListController', function($location,shareDialogAPI, $ionicActionSheet, $rootScope, $scope, $openPhoto, $stateParams, $controller) {
+	angular.module('likeList', ['ionic', 'hereApp.controllers', 'component.openPhoto']).controller('likeListController', function($location,shareDialogAPI, $ionicActionSheet, $rootScope, $scope, $openPhoto, $stateParams, $controller) {
 
 		$scope.onItemClick = function() {
 			
@@ -16,44 +16,54 @@
 			return {
 				init : function() {
 					
-					var star_list = [];
-					for (var i = 0; i < 10; i++) {
-						star_list.push({
-							id : "123",
-							nick : "威廉萌",
-							time : "04-19 18:50",
-							photo : "img/1.png",
-							img : "img/2.png"
-						})
+					Here.api.get('/api/get_received_likes', {
+						username: $stateParams.username
+					}, {
+				        success : function(data) {
 
-					}
-					
-					$scope.star_list = star_list;
-					$scope.loadingmore = true;
-					$scope.$apply();
-					
-					$scope.$broadcast('scroll.refreshComplete');
+				            data.forEach(function(like){
+				                like.photo_background = {'background-image': 'url(' +Here.serverAddress + '&c=api&a=img&hash=' + like.hash + '&maxWidth=' + 77 * devicePixelRatio +  ')'};
+				                if(like.avatar == ''){
+				                	like.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg' + ')'};
+				                }else{
+				                	like.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=' + like.avatar + ')'};
+				                }
+				                
+				            });
+
+				            $scope.like_list = data;
+							$scope.loadingmore = false;
+				            $scope.$apply();
+				            $scope.$broadcast('scroll.refreshComplete');
+				        },
+				        error : function(data) {
+				        	$scope.like_list = [];
+				        	$scope.loadingmore = false;
+				            $scope.$apply();
+				            $scope.$broadcast('scroll.refreshComplete');
+				        }
+				    });
 				},
 				more : function() {
 					
-					if ($scope.loadingmore) {
-						var star_list = [];
-						for (var i = 0; i < 10; i++) {
-							star_list.push({
-								id : "123",
-								nick : "more",
-								time : "04-19 18:50",
-								photo : "img/1.png",
-								img : "img/2.png"
-							});
+					// if ($scope.loadingmore) {
+					// 	var like_list = [];
+					// 	for (var i = 0; i < 10; i++) {
+					// 		like_list.push({
+					// 			id : "123",
+					// 			nick : "more",
+					// 			time : "04-19 18:50",
+					// 			photo : "img/1.png",
+					// 			img : "img/2.png"
+					// 		});
 
-						}
-						$scope.star_list = $scope.star_list.concat(star_list);
+					// 	}
+					// 	$scope.like_list = $scope.like_list.concat(like_list);
 						
 						
-						$scope.loadingmore = false;
-					}
-					$scope.$broadcast('scroll.infiniteScrollComplete');
+					// 	$scope.loadingmore = false;
+					// }
+					// $scope.$broadcast('scroll.infiniteScrollComplete');
 
 				}
 			}

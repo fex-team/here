@@ -1,5 +1,5 @@
 
-angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment','page','starList','commentList','List'])
+angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','nativeDirective', 'home','gallery','capture','settings','detail','register','login','map','person_detail','zone','person_edit','syncModule','syncConfirmModule','component.shareDialog','mobiscroll','comment','page','commentList','likeList', 'List'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('sidemenu', {
@@ -191,7 +191,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('star_list', {
-      url: "/star_list",
+      url: "/star_list?username",
       views:{
         'pager':{
           templateUrl: "templates/star_list.html"
@@ -199,7 +199,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('comment_list', {
-      url: "/comment_list",
+      url: "/comment_list?username&type",
       views:{
         'pager':{
           templateUrl: "templates/comment_list.html"

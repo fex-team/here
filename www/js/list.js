@@ -61,6 +61,7 @@
 						avatar:getAvatar(photo.avatar),
 						comments:photo.comments,
 						likes:photo.likes,
+						liked:photo.liked,
 						img:Here.serverAddress + '&c=api&a=img&hash=' + photo.hash,
 						my:myusername===photo.username
 					},merge));
@@ -116,8 +117,8 @@
 								nick : "威廉萌",
 								time : "04-19 18:50",
 								photo : "img/1.png",
-								stared : "stared",
-								star : 123,
+								liked : "stared",
+								likes : 123,
 								comment : 123,
 								img : "img/2.png"
 							})

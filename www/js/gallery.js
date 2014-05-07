@@ -116,7 +116,7 @@
 			}
 
 		}
-	}).controller('galleryNetworkController', function($scope, $ionicPopup, $element){
+	}).controller('galleryController', function($scope, $ionicPopup, $element){
 		
 		
 		

@@ -1,10 +1,10 @@
-<div ng-controller="galleryNetworkController">
+<div ng-controller="galleryController">
 
 	<ion-content has-header="true" style="bottom: {{style.bottom}}px;">
 		<div  class="local-list">
 			<loading></loading>
 			<p ng-show="!groups" class="failure-tips">
-				暂无网络相册
+				暂无相册
 			</p>
 			<div class="list-item" style="width: {{item_width}}px;height:{{item_width}}px;" ng-repeat="group in groups">
 				<div class="inner">

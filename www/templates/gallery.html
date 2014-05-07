@@ -10,13 +10,13 @@
 
 	</ion-header-bar>
 
-	<ion-tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" ng-init="_username='poolk001'">
+	<ion-tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" >
 
 		<ion-tab title="本地相册" icon="ion-home" href="#/gallery/local">
 			<ion-nav-view name="gallery-local-tab"></ion-nav-view>
 		</ion-tab>
 
-		<ion-tab title="网络相册" icon="ion-ios7-information" href="#/gallery/network?username={{_username}}" ng-init="username='poolk001'">
+		<ion-tab title="网络相册" icon="ion-ios7-information" href="#/gallery/network?username={{_username}}">
 			<ion-nav-view name="gallery-network-tab"></ion-nav-view>
 		</ion-tab>
 

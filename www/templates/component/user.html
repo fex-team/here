@@ -32,12 +32,18 @@
 					</p>
 				</li>
 				<li>
-					<a style="display: block;" href="#/star_list?username={{user.username}}">
+					<a ng-if="user.likes" style="display: block;" href="#/star_list?username={{user.username}}">
 						<span>{{user.likes}}</span>
 						<p>
 							赞
 						</p>
 					</a>
+					<div ng-if="!user.likes">
+						<span>{{user.likes}}</span>
+						<p>
+							赞
+						</p>
+					</div>
 				</li>
 			</ul>
 		</div>

@@ -54,7 +54,7 @@
 	font-size: 25px;
 }
 
-.page-list .ion-ios7-heart-outline.stared:before{
+.page-list .ion-ios7-heart-outline.liked:before{
 	content:"\f199";
 }
 

@@ -35,14 +35,12 @@
 						<div class="actionbar">
 							<a class="button button-icon icon ion-ios7-cloud-upload-outline" ng-show="item.offline"></a>
 							<a class="button button-icon icon ion-ios7-trash-outline" ng-show="item.my||item.offline"></a>
-							
-							
 						</div>
 					</div>
 					<div class="button-bar">
 						<a ng-click="openShare()" class="button icon-left ion-ios7-redo-outline button-clear">分享</a>
 						<a class="button  icon-left ion-ios7-chatbubble-outline button-clear">{{item.comments}}</a>
-						<a class="button icon-left stared ion-ios7-heart-outline button-clear" ng-class="item.stared">{{item.likes}}</a>
+						<a class="button icon-left ion-ios7-heart-outline button-clear" ng-class="item.liked">{{item.likes}}</a>
 					</div>
 				</li>
 				<li class="item" ng-show="loadingmore">
