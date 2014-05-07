@@ -8,6 +8,7 @@ import com.tencent.mm.sdk.openapi.SendMessageToWX;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.tencent.mm.sdk.openapi.WXImageObject;
 import com.tencent.mm.sdk.openapi.WXMediaMessage;
+import com.tencent.mm.sdk.openapi.WXTextObject;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -29,7 +30,7 @@ public class ShareUtils {
 		});
 
 	}
-	
+
 	public static byte[] bmpToByteArray(final Bitmap bmp,
 			final boolean needRecycle) {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -69,8 +70,8 @@ public class ShareUtils {
 				return;
 			}
 
-			
-			Bitmap bmp = BitmapFactory.decodeByteArray(photos, 0, photos.length);
+			Bitmap bmp = BitmapFactory
+					.decodeByteArray(photos, 0, photos.length);
 			WXImageObject imgObj = new WXImageObject(bmp);
 			WXMediaMessage msg = new WXMediaMessage();
 			msg.mediaObject = imgObj;
@@ -83,11 +84,31 @@ public class ShareUtils {
 			final SendMessageToWX.Req req = new SendMessageToWX.Req();
 			req.transaction = buildTransaction("img");
 			req.message = msg;
-			req.scene = SendMessageToWX.Req.WXSceneTimeline;
-			
+			req.scene = scene;
+
 			api.sendReq(req);
 
-			
+		}
+
+		public void shareText(String text) {
+			WXTextObject textObj = new WXTextObject();
+			textObj.text = text;
+
+			// 用WXTextObject对象初始化一个WXMediaMessage对象
+			WXMediaMessage msg = new WXMediaMessage();
+			msg.mediaObject = textObj;
+			// 发送文本类型的消息时，title字段不起作用
+			msg.title = "Will be ignored";
+			msg.description = "sdddd";
+
+			// 构造一个Req
+			SendMessageToWX.Req req = new SendMessageToWX.Req();
+			req.transaction = buildTransaction("text"); // transaction字段用于唯一标识一个请求
+			req.message = msg;
+			req.scene = SendMessageToWX.Req.WXSceneTimeline ;
+
+			// 调用api接口发送数据到微信
+			api.sendReq(req);
 		}
 
 		private String buildTransaction(final String type) {

@@ -19,28 +19,26 @@
 			restrict : 'A',
 			link : function(scope, element, attrs) {
 
-				
 				$timeout(function() {
-					
+
 					var width = attrs.nativeSrcWidth || $(element[0]).width();
 					var height = attrs.nativeSrcHeight || $(element[0]).height();
 
 					var type = attrs.nativeSrcType || "img";
-					(function(el){
-						
+					(function(el) {
+
 						getBase64(attrs.nativeSrc, width, height, function(base64) {
 
 							if (type == "img") {
 								el.attr("src", base64);
-							} else if (type == "background") { 
-							
-								
-								el.css("background-image","url(" + base64 + ")");
+							} else if (type == "background") {
+
+								el.css("background-image", "url(" + base64 + ")");
 							}
-	
+
 						});
 					})(element);
-					
+
 				});
 
 			}
@@ -74,8 +72,8 @@
 			link : function(scope, element, attrs) {
 
 				function jump(url) {
-				
-					if(!url){
+
+					if (!url) {
 						url = "about:blank";
 					}
 					element[0].contentWindow.location.replace(url);
@@ -89,5 +87,35 @@
 
 			}
 		};
-	});
+	}).directive("scrollFix", function($window, $timeout) {
+		return {
+			restrict : 'A',
+			link : function(scope, element, attrs) {
+
+				var id = attrs['scrollFix'];
+				var el;
+				if (id) {
+					el = $(id);
+				} else {
+					el = $(window);
+				}
+				var $element = $(element[0]);
+				var $next = $element.next();
+				var top = $element.offset().top+$element.height();
+				el.bind("scroll", function() {
+					var _top = $(this).scrollTop();
+					if (_top > top) {
+						if (!$element.hasClass("fixed")) {
+							$element.addClass("fixed").appendTo("#page-page-content");
+						}
+
+					} else {
+						$next.before($element.removeClass("fixed"));
+					}
+
+				});
+
+			}
+		};
+	})
 })();

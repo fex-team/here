@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.baidu.fex.here;
+package com.baidu.fex.here.app;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

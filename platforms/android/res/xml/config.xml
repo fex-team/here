@@ -55,6 +55,6 @@
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
-    <content src="http://172.22.72.178/end/here_hybird/" />
+    <content src="http://172.22.80.253/" />
     <access origin="*" />
 </widget>

@@ -4,15 +4,10 @@
     <application android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/app_name">
         <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote">
         </service>
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/app_name" android:name="here" android:theme="@android:style/Theme.Black.NoTitleBar">
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/app_name" android:launchMode="singleTask" android:name="here" android:theme="@android:style/Theme.Black.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.baidu.fex.camera.CameraActivity" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity android:name="com.baidu.fex.camera.CameraActivity" android:screenOrientation="landscape" />
