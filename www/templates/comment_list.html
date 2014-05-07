@@ -1,0 +1,41 @@
+<ion-view title="评论"  class="page_commentlist" >
+	<ion-header-bar
+	title="评论"
+	left-buttons="back"
+	type="bar-positive"
+	align-title="center"></ion-header-bar>
+
+	<ion-content has-header="true" ng-controller="commentListController">
+		<ion-refresher
+		pulling-text="Pull to refresh..."
+		on-refresh="loading.init()"></ion-refresher>
+		<ion-infinite-scroll
+		on-infinite="loading.more()"
+		icon="ion-loading-d"
+		distance="1%"></ion-infinite-scroll>
+		<ul class="list">
+			<li class="item1" ng-repeat="comment in comment_list" ng-click="onItemClick()">
+				<div class="comment">
+					<span class="photo center_crop" style="background-image: url('{{comment.photo}}')"></span>
+					<span class="name">{{comment.nick}}</span>
+					<span class="time">{{comment.time}}</span>
+					<div class="content">
+						<div class="me">
+							{{comment.comment}}
+						</div>
+						<div class="ref">
+							<div class="img center_inside" style="background-image: url('{{comment.img}}')"></div>
+							<div class="triangle"></div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="item1" ng-show="loadingmore">
+				<div class="ion-loading-d"></div>
+			</li>
+
+		</ul>
+		<div style="height: 1px;"></div>
+	</ion-content>
+
+</ion-view>

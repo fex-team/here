@@ -1,0 +1,54 @@
+<ion-content has-header="true" ng-controller="zoneController">
+	<div class="zone-hd">
+		<div class="zone-bg"></div>
+		<div class="zone-person">
+			<div style="margin-left: 20px">
+				<img ng-click="openPhoto()" ng-src="{{user.avatar}}" class="layout-left"/>
+				<div class="layout-right">
+					<p>
+						{{user.nickname}}
+					</p>
+					<a href="#/person_detail?username={{user.username}}" class="button icon-left button-outline button-positive button-small ion-ios7-person-outline"> 详细资料 </a>
+				</div>
+			</div>
+
+			<ul class="zone-actions">
+				<li>
+					<span>{{user.groups}}</span>
+					<p>
+						相册
+					</p>
+				</li>
+				<li>
+					<span>{{user.photos}}</span>
+					<p>
+						照片
+					</p>
+				</li>
+				<li>
+					<span>{{user.follows}}</span>
+					<p>
+						跟拍
+					</p>
+				</li>
+				<li>
+					<a style="display: block;" href="#/star_list?username={{user.username}}">
+						<span>{{user.likes}}</span>
+						<p>
+							赞
+						</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="zone-list">
+		<a class="item item-icon-left" ng-href="{{gallery.url}}"> <i class="icon ion-ios7-photos-outline"></i>{{label.gallery}}</a>
+
+		<a class="item item-icon-left" href="#/my_groups" > <i class="icon ion-ios7-bookmarks-outline"></i>{{label.collection}}</a>
+
+		<a ng-show="my" class="item item-icon-left" href="#/comment_list?username={{user.username}}&&type=receiver" style="margin-top: 20px;"> <i class="icon ion-ios7-chatbubble-outline"></i>我收到的评论</a>
+		<a ng-show="my" class="item item-icon-left" href="#/comment_list?username={{user.username}}&&type=send"> <i class="icon ion-ios7-paperplane"></i>我发出的评论</a>
+	</div>
+</ion-content>

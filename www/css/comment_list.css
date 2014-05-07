@@ -1,0 +1,80 @@
+.page_commentlist{
+	background: #e6e6e6;
+}
+
+.page_commentlist .item1{
+	position: relative;
+	padding: 8px;
+	margin-top: 8px;
+	background: #fff;
+}
+
+.page_commentlist .list{
+	padding: 0 8px;
+	
+}
+
+.page_commentlist .comment{
+	position: relative;
+}
+
+.page_commentlist .photo{
+	width: 38px;
+	height: 38px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.page_commentlist .name{
+	
+	position: absolute;
+	left: 56px;
+	top: 0;
+	font-size: 18px;
+	color: #f45b00;
+}
+
+.page_commentlist .time{
+	
+	position: absolute;
+	left: 56px;
+	top: 25px;
+	font-size: 12px;
+	color: #f59318;
+	width: 150px;
+}
+.page_commentlist .content{
+	padding-top: 56px;
+}
+.page_commentlist .me{
+	margin-bottom: 10px;
+}
+.page_commentlist .img{
+	height: 180px;
+}
+
+.page_commentlist .ref{
+	position: relative;
+	border: 1px solid #e2e2e2;
+	background:#fcfcfc;
+	padding: 5px;
+	
+}
+
+.page_commentlist .triangle{
+	background: url("images/triangle.png") no-repeat;
+	width: 17.5px;
+	height: 6.5px;
+	position: absolute;
+	top: -7px;
+	left: 10px;
+}
+
+.page_commentlist .ion-loading-d{
+	
+	font-size: 25px;
+	text-align: center;
+	display: block;
+	
+}

@@ -117,13 +117,27 @@
 
 		}
 	}).controller('galleryNetworkController', function($scope, $ionicPopup, $element){
+		
+		
+		
+		var myusername = Here.userInfo&&Here.userInfo.username;
+		
+		var username = /username=(.*)&?/.exec(location.href)[1];
+		
+		$scope.style={
+			bottom:username == myusername?"28":"0"
+		};
+		
+		console.info($scope.style);
+		
+		
 		$scope.groups = [];
 		$scope.element = $element;
 		
 		$scope.item_width = document.body.clientWidth / 2;
 
 		Here.api.get('/api/get_group_by_username', {
-					username : Here.userInfo.username
+					username : username
 				}, {
 					success : function(data) {
 						$scope.element.find('loading').remove();
@@ -163,7 +177,7 @@
         $scope.back = [{
             type : 'button back-button button-icon icon ion-arrow-left-c',
             tap : function(e) {
-                location.href = "#/sidemenu/zone";
+                history.back();
             }
         }];
 	})

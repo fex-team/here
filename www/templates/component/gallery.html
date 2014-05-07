@@ -1,0 +1,20 @@
+<div ng-controller="galleryNetworkController">
+
+	<ion-content has-header="true" style="bottom: {{style.bottom}}px;">
+		<div  class="local-list">
+			<loading></loading>
+			<p ng-show="!groups" class="failure-tips">
+				暂无网络相册
+			</p>
+			<div class="list-item" style="width: {{item_width}}px;height:{{item_width}}px;" ng-repeat="group in groups">
+				<div class="inner">
+					<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.src}}"  class="img"></span> </a>
+					<p>
+						{{group.name}}
+					</p>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+</div>
