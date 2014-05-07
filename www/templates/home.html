@@ -5,29 +5,20 @@
 		<a class="tab-item" ng-click="slideTo(2)">收藏</a>
 	</div>
 	<ion-pane has-header="true" ng-controller="HomeController" style="margin-top: 44px;">
-		<ion-slide-box class="tab-slide home-pages" show-pager="false" disable-scroll="true" ng-controller="SliderCollection" on-slide-changed="slide()">
+		<ion-slide-box class="tab-slide home-pages" show-pager="false" ng-controller="SliderCollection" on-slide-changed="slide()">
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">
 				<div class="pride-slide">
 					<!-- 轮播图 -->
 					<div class="slider-container" ng-controller="RecommendCollection">
-						<div class="flipsnap" style="width:{{screen_width*4}}px">
-							<div class="flipsnap-item" ng-repeat="recommend in recommends" style="width:{{screen_width}}px">
+						<ion-slide-box class="tab-slide recommend-collection" on-slide-changed="slide()">
+							<ion-slide ng-repeat="recommend in recommends">
 								<a href="#/detail?groupId={{recommend.id}}"><span style="background-image: url({{recommend.src}})" class="slide-img" ></span></a>
-							</div>
-						</div>
+							</ion-slide>
+						</ion-slide-box>
 						<p id="groupName">{{currentGroup}}</p>
-
-						<div class="pointer">
-							<span class="current"></span>
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
 					</div>
-
-					<h2 class="title-h2">最新上传</h2>
 					<div class="local-list">
-						<div class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in hotgroups">
+						<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in hotgroups">
 							<div class="inner">
 								<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.photos[0]}}"  class="img"></span> </a>
 
@@ -40,20 +31,6 @@
 						</div>
 					</div>
 
-					<h2 class="title-h2">评论最多</h2>
-					<div class="local-list">
-						<div class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in hotgroups">
-							<div class="inner">
-								<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.photos[0]}}"  class="img"></span> </a>
-
-								<p>
-									{{group.name}}
-									<a href="#/map?position={{group.longitude}},{{group.latitude}}" ng-show="group.longitude" class="icon ion-ios7-location"></a>
-								</p>
-							</div>
-
-						</div>
-					</div>
 				</div>
 			</ion-slide>
 			<ion-slide style="-webkit-overflow-scrolling: touch;overflow-y: auto;overflow-x: hidden;padding-bottom: 44px">

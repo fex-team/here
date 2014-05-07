@@ -28,7 +28,7 @@
 	position: absolute;
 	left: 64px;
 	top: 32px;
-	width: 100px;
+	/*width: 100px;*/
 }
 .page-row1 .row1-row2 {
 	padding-top: 66px;
@@ -66,7 +66,7 @@
 	color: #333;
 }
 
-.row2-row1.star .tab-star {
+.row2-row1.like .tab-like {
 	color: #333;
 }
 
@@ -109,7 +109,7 @@
 	font-size: 11px;
 	color: #a4a4a4;
 }
-.star-item {
+.like-item {
 	height: 59px;
 	line-height: 59px;
 	font-size: 16px;
@@ -118,7 +118,7 @@
 	border-bottom: 1px solid #dadada;
 	position: relative;
 }
-.star-item .photo {
+.like-item .photo {
 	position: absolute;
 	left: 10px;
 	top: 50%;
@@ -126,7 +126,7 @@
 	height: 38px;
 	margin-top: -19px;
 }
-.star-list {
+.like-list {
 	background: #f8f8f8;
 	border: 1px solid #dadada;
 	border-top: none;
@@ -156,7 +156,7 @@
 	
 }
 
-.page-bottom-bar .button.icon-left.stared:before{
+.page-bottom-bar .button.icon-left.likeed:before{
 	content: "\f199";
 }
 

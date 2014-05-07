@@ -251,7 +251,7 @@
 			});
 		};
 
-		// 关注照片
+		// 赞照片
 		$scope.doLike = function() {
 			if( !Here.isLogin ){
 				$ionicPopup.alert({
