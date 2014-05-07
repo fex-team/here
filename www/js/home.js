@@ -93,11 +93,15 @@ var ratio = window.devicePixelRatio || 1;
 
                         $scope.recommends = data;
                         $scope.currentGroup = $scope.recommends[0].name;
-                        $timeout(function(){
-                            // 强制setup
-                            $scope.slideBoxController.setup();
-                        }, 100);
                         $scope.$apply();
+
+                        var flipsnap = Flipsnap('.flipsnap');
+                        var $pointer = $('.pointer span');
+                        flipsnap.element.addEventListener('fspointmove', function() {
+                            $pointer.filter('.current').removeClass('current');
+                            $pointer.eq(flipsnap.currentPoint).addClass('current');
+                            $('#groupName').html( data[flipsnap.currentPoint].name );
+                        }, false);
                     },
                     error: function(data){
                         console.log(data);
@@ -107,7 +111,6 @@ var ratio = window.devicePixelRatio || 1;
     $element.bind('touchstart mousedown', function(e){
         // slidemenu打开时
         if( /275/.test(angular.element(document.querySelector('#ion-pane')).css('-webkit-transform')) ){
-            $scope.slideBoxController.disable();
             $rootScope.$broadcast('closeSlideMenu');
             $rootScope.$broadcast('candrag', false);
         }
@@ -116,10 +119,6 @@ var ratio = window.devicePixelRatio || 1;
     $element.bind('touchend mouseup', function(e){
         $rootScope.$broadcast('candrag', true);
     });
-
-    $scope.slide = function(){
-        $scope.currentGroup = $scope.recommends[$scope.slideBoxController.currentIndex()].name;
-    }
 
 }).controller('SliderCollection', function($rootScope, $scope, $ionicSlideBoxDelegate, $element, $ionicSideMenuDelegate){
 

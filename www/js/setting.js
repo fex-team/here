@@ -45,6 +45,8 @@
 
                                 			setTimeout(function(){
 					                        	$state.go('sidemenu.home');
+
+					                        	//TODO 刷新侧边栏信息
                                 			}, 200);
 					                    },
 					                    error: function(data){

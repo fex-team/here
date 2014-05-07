@@ -45,8 +45,10 @@
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" >
 						<i class="share" ng-click="openShare()"></i>
-						<i class="like" ng-click="doLike()" ng-show="!photo.offline">{{photo.likes}}</i>
-						<i class="comment" ng-click="showComment()" ng-show="!photo.offline">{{photo.comments}}</i>
+						<span ng-show="login">
+							<i class="like" ng-click="doLike()" ng-show="!photo.offline">{{photo.likes}}</i>
+							<i class="comment" ng-click="showComment()" ng-show="!photo.offline">{{photo.comments}}</i>
+						<span>
 					</p>
 					<div class="comment-panel" ng-controller="CommentController" ng-show="photo.commentShow">
 						<p>
