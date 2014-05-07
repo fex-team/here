@@ -1,5 +1,31 @@
 (function() {
-	angular.module('page', ['ionic', 'hereApp.controllers', 'component.openPhoto']).controller('pageController', function($location,shareDialogAPI, $ionicActionSheet, $rootScope, $scope, $openPhoto, $stateParams, $controller) {
+	angular.module('page', ['ionic', 'hereApp.controllers', 'component.openPhoto'])
+	.controller('pageController', function($location, shareDialogAPI, $ionicActionSheet, $ionicPopup, $rootScope, $scope, $openPhoto, $stateParams, $controller) {
+
+
+		Here.api.get('/api/get_photo', {
+					hash : $stateParams.hash
+				}, {
+					success : function(photo) {
+						photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash ;
+
+						if( photo.avatar == '' ){
+							photo['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+						}else{
+							photo['avatar'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.avatar;
+						}
+
+						photo.likeed = 'likeed';
+
+						$scope.photo = photo;
+						commentLoading.init();
+					},
+					error : function(data) {
+					}
+				});
+
+
+
 
 		$scope.pblishButton = [{
 			type : ' ion-ios7-checkmark-outline button-icon ',
@@ -9,21 +35,60 @@
 		}];
 		
 		$scope.onPublish = function(){
-			
-			$scope.switchTab("comment");
-			$scope.commentList = [{id : "123",
-									name : "comment",
-									content : this.theme.pblishContent,
-									photo : "img/1.png",
-									time : "05-03 23:33"}].concat($scope.commentList);
-			
-			this.theme.pblishContent = "";
-			
-			history.back();
-			setTimeout(function(){
-				$scrollEl.scrollTop(342);
-				
-			},50);
+
+			var photoId = $scope.photo.id;
+			var content = $scope.photo.newComment;
+
+			if (content === '' || !content) {
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '评论内容不能为空！'
+				});
+				return;
+			}
+
+			if (!Here.isLogin) {
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '请先登录'
+				}).then(function(res) {
+					location.href = "#/login?referer=" + encodeURIComponent(location.hash);
+				});
+				return;
+			}
+
+			console.log('图片Id：' + photoId);
+			console.log('评论内容：' + content);
+
+			Here.api.post('/api/comment', {
+					'photoId' : photoId,
+					'content' : content
+				}, {
+					success : function(data) {
+						var userInfo = JSON.parse(localStorage.getItem('here_userInfo'));
+
+						$scope.commentList.unshift({
+							avatar: userInfo.avatar ? Here.serverAddress + '&c=api&a=img&hash=' + userInfo.avatar : Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg',
+							nickname : Here.userInfo.nickname,
+							content : $scope.photo.newComment,
+							time : '刚刚'
+						});
+						$scope.photo.comments = ++$scope.photo.comments;
+						$scope.photo.newComment = '';
+						$scope.$apply();
+						$scope.switchTab("comment");
+						history.back();
+						setTimeout(function(){
+							$scrollEl.scrollTop(342);
+						},50);
+					},
+					error : function(data) {
+						$ionicPopup.alert({
+							title: '警告',
+			          		content: data.message
+						});
+					}
+				});
 			
 		}
 		
@@ -45,24 +110,52 @@
 
 		$scope.openShare = function() {
 
-			shareDialogAPI.open(false, this.theme.photo);
+			shareDialogAPI.open(false, this.photo.src);
 		}
 
-		$scope.theme = {
-			nick : "微博小秘书",
-			photo : "img/1.png",
-			time : "05-04 23:01",
-			img : "img/1.png",
-			stared:'stared'
-		}
-		
-		$scope.onStar = function(){
-			if(this.theme.stared == "stared"){
-				this.theme.stared = "";	
-			}else{
-				this.theme.stared = "stared";
+		$scope.onLike = function(){
+			if(this.photo.likeed == "likeed"){
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '您已赞过'
+				});
+				return;
 			}
 			
+			if( !Here.isLogin ){
+				$ionicPopup.alert({
+					title: '警告',
+	          		content: '请先登录'
+				}).then(function(res) {
+					location.href = "#/login?referer=" + encodeURIComponent(location.hash);
+				});
+				return;
+			}
+			var photoId = $scope.photo.id;
+			Here.api.post('/api/like', {
+				'photoId' : photoId
+			}, {
+				success : function(data) {
+					var userInfo = JSON.parse(localStorage.getItem('here_userInfo'));
+
+					$scope.likeList.unshift({
+						avatar: userInfo.avatar ? Here.serverAddress + '&c=api&a=img&hash=' + userInfo.avatar : Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg',
+						nickname : Here.userInfo.nickname,
+						time : '刚刚'
+					});
+					$scope.photo.likes = ++$scope.photo.likes;
+					$scope.switchTab("like");
+					this.photo.likeed == "likeed";
+					$scope.$apply();
+				},
+				error : function(data) {
+					$ionicPopup.alert({
+						title: '警告',
+		          		content: data.message
+					});
+				}
+			});
+
 		}
 
 		$scope.onCommentClick = function() {
@@ -100,7 +193,7 @@
 		var $fixedbar = $("#page-fixed-bar");
 
 		var offset = {
-			"star" : 0,
+			"like" : 0,
 			"comment" : 0
 		};
 
@@ -121,8 +214,8 @@
 					top = 342;
 				}
 
-				if (tab == "star") {
-					starLoading.init();
+				if (tab == "like") {
+					likeLoading.init();
 				} else {
 					commentLoading.init();
 				}
@@ -139,8 +232,8 @@
 			if ($scope.showlist == "comment" && $scope.showCommentLoading) {
 				commentLoading.more();
 			}
-			if ($scope.showlist == "star" && $scope.showStarLoading) {
-				starLoading.more();
+			if ($scope.showlist == "like" && $scope.showLikeLoading) {
+				likeLoading.more();
 			}
 		}
 
@@ -154,21 +247,26 @@
 				"init" : function() {
 					if (!init) {
 						init = true;
-						setTimeout(function() {
-							var commentList = [];
-							for (var i = 0; i < 20; i++) {
-								commentList.push({
-									id : "123",
-									name : "威廉萌" + i,
-									content : "dddd" + i,
-									photo : "img/1.png",
-									time : "05-03 23:33"
-								});
-							}
 
-							$scope.commentList = commentList;
-							$scope.$apply();
-						}, 2000);
+						Here.api.get('/api/get_comments', {
+								photoId : $scope.photo.id
+							}, {
+								success : function(comments) {
+									comments.forEach(function(comment){
+										if( comment.avatar == '' ){
+											comment['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+										}else{
+											comment['avatar'] = Here.serverAddress + '&c=api&a=img&hash=' + comment.avatar;
+										}
+									});
+									$scope.commentList = comments;
+									$scope.showCommentLoading = false;
+									$scope.$apply();
+
+								},
+								error : function(data) {
+								}
+							});
 					}
 
 				},
@@ -198,27 +296,33 @@
 
 		})();
 
-		commentLoading.init();
-
-		var starLoading = (function() {
+		var likeLoading = (function() {
 			var init = false;
 			var moreLoading = false;
 			return {
 				"init" : function() {
 					if (!init) {
 						init = true;
-						setTimeout(function() {
-							var starList = [];
-							for (var i = 0; i < 20; i++) {
-								starList.push({
-									id : "123",
-									name : "威廉萌" + i,
-									photo : "img/1.png",
-								});
-							}
-							$scope.starList = starList;
-							$scope.$apply();
-						}, 2000);
+
+						Here.api.get('/api/get_likes', {
+								photoId : $scope.photo.id
+							}, {
+								success : function(likes) {
+									likes.forEach(function(like){
+										if( like.avatar == '' ){
+											like['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+										}else{
+											like['avatar'] = Here.serverAddress + '&c=api&a=img&hash=' + like.avatar;
+										}
+									});
+									$scope.likeList = likes;
+									$scope.showLikeLoading = false;
+									$scope.$apply();
+
+								},
+								error : function(data) {
+								}
+							});
 					}
 
 				},
@@ -226,16 +330,15 @@
 					if (!moreLoading) {
 						moreLoading = true;
 						setTimeout(function() {
-							var starList = [];
+							var likeList = [];
 							for (var i = 0; i < 5; i++) {
-								starList.push({
+								likeList.push({
 									id : "123",
 									name : "more" + i,
 									photo : "img/1.png",
 								});
 							}
-							$scope.showStarLoading = false;
-							$scope.starList = $scope.starList.concat(starList);
+							$scope.showLikeLoading = false; $scope.likeList = $scope.likeList.concat(likeList);
 							$scope.$apply();
 						}, 2000);
 

@@ -12,16 +12,16 @@
 				<div class="page-row1" >
 
 					<div class="row1-row1">
-						<span class="photo center_crop" style="background-image: url('{{theme.photo}}')"></span>
+						<span class="photo center_crop" style="background-image: url('{{photo.avatar}}')"></span>
 						<div class="name">
-							{{theme.nick}}
+							{{photo.nickname}}
 						</div>
 						<div class="time">
-							{{theme.time}}
+							{{photo.time}}
 						</div>
 					</div>
 					<div class="row1-row2">
-						<span class="img center_crop" style="background-image: url('{{theme.img}}')"></span>
+						<span class="img center_crop" style="background-image: url('{{photo.src}}')"></span>
 					</div>
 
 				</div>
@@ -29,16 +29,16 @@
 				<div class="page-row2">
 
 					<div class="row2-row1" id="page-fixed-bar" ng-class='showlist' scroll-fix="#page-page-scroll">
-						<span class="tab-comment" ng-click='switchTab("comment")'>3333评论</span>
-						<span class="tab-star" ng-click='switchTab("star")'>100赞</span>
+						<span class="tab-comment" ng-click='switchTab("comment")'>{{photo.comments}}评论</span>
+						<span class="tab-like" ng-click='switchTab("like")'>{{photo.likes}}赞</span>
 					</div>
 
 					<div class="row2-row2">
 						<div class="comment-list" ng-show='showlist=="comment"'>
-							<div class="comment-item" ng-repeat="comment in commentList" ng-clid="onCommentClick()">
-								<span class="photo center_crop" style="background-image: url('{{comment.photo}}')"></span>
+							<div class="comment-item" ng-repeat="comment in commentList">
+								<span class="photo center_crop" style="background-image: url('{{comment.avatar}}')"></span>
 								<div class="right">
-									<span class="name">{{comment.name}}</span>
+									<span class="name">{{comment.nickname}}</span>
 									<div class="content">
 										{{comment.content}}
 									</div>
@@ -49,12 +49,12 @@
 							</div>
 							<div class="ion-loading-d"  ng-show="showCommentLoading" ng-init="showCommentLoading=true"></div>
 						</div>
-						<div class="star-list" ng-show='showlist=="star"'>
-							<div class="star-item" ng-repeat="star in starList">
-								<span class="photo center_crop" style="background-image: url('{{star.photo}}')"></span>
-								{{star.name}}
+						<div class="like-list" ng-show='showlist=="like"'>
+							<div class="like-item" ng-repeat="like in likeList">
+								<span class="photo center_crop" style="background-image: url('{{like.avatar}}')"></span>
+								{{like.nickname}}
 							</div>
-							<div class="ion-loading-d" ng-show="showStarLoading" ng-init="showStarLoading=true"></div>
+							<div class="ion-loading-d" ng-show="showLikeLoading" ng-init="showLikeLoading=true"></div>
 						</div>
 
 					</div>
@@ -71,7 +71,7 @@
 
 			<a class="button button-outline icon-left ion-ios7-chatbubble-outline button-positive" ng-click="switchPblish()">评论</a>
 
-			<a class="button button-outline icon-left ion-ios7-heart-outline button-positive" ng-class="theme.stared" ng-click="onStar()">赞</a>
+			<a class="button button-outline icon-left ion-ios7-heart-outline button-positive" ng-class="photo.likeed" ng-click="onLike()">赞</a>
 
 		</div>
 	</div>
@@ -87,7 +87,7 @@
 			
 			<ion-content has-header="true" padding="true">
 			
-				<textarea  style="height: 200px;" placeholder="写评论..." ng-model="theme.pblishContent"></textarea>
+				<textarea  style="height: 200px;" placeholder="写评论..." ng-model="photo.newComment"></textarea>
 			
 			</ion-content>
 
