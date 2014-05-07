@@ -149,8 +149,9 @@
 		$scope.path = "";
 		
 		
-	}).controller('DetailController', function($scope, $stateParams, $ionicPopup,shareDialogAPI,$ionicLoading) {
-
+	}).controller('DetailController', function($scope, $stateParams, $ionicPopup, $ionicLoading, shareDialogAPI) {
+		$scope.login = Here.isLogin;
+		
 		$scope.doRefresh = function() {
 			if ($stateParams['native']) {
 
@@ -251,7 +252,7 @@
 			});
 		};
 
-		// 关注照片
+		// 赞照片
 		$scope.doLike = function() {
 			if( !Here.isLogin ){
 				$ionicPopup.alert({
@@ -299,7 +300,6 @@
 		}
 		// 同步照片
 		$scope.doAsync = function() {
-			
 			var me = this;
 			if ($stateParams['native']) {
 				$ionicPopup.confirm({

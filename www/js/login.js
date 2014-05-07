@@ -1,5 +1,5 @@
 angular.module('login', ['ionic', 'hereApp.controllers'])
-.controller('LoginController', function($rootScope, $scope, $stateParams, $state, $ionicPopup,$ionicLoading) {
+.controller('LoginController', function($rootScope, $scope, $stateParams, $state, $ionicPopup, $ionicLoading) {
     console.log($stateParams.referer);
     $scope.login = function(){
         var username = $scope.username;

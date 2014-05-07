@@ -6106,7 +6106,10 @@ ionic.views.Slider = ionic.views.View.inherit({
         // ensure swiping with one touch and not pinching
         if ( event.touches.length > 1 || event.scale && event.scale !== 1) return
 
-        if (options.disableScroll) event.preventDefault();
+        if (options.disableScroll){
+          event.preventDefault();
+          return;
+        }
         if(me.disabled){
           return;
         }
