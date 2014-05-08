@@ -12,19 +12,22 @@
 			
 			$scope.loadingmore = true;
 
-			var init = false;
+			var inited = false;
 
 			var more = false;
 
+			var currentPage = 1;
+
 			return {
 				init : function() {
-					
+					currentPage = 1;
 					Here.api.get(api, {
-						username: $stateParams.username
+						username: $stateParams.username,
+						page: currentPage
 					}, {
 				        success : function(data) {
-
-				            data.forEach(function(comment){
+				        	var comments = data.comments;
+				            comments.forEach(function(comment){
 				                comment.photo_background = {'background-image': 'url(' +Here.serverAddress + '&c=api&a=img&hash=' + comment.hash + ')'};
 				                if(comment.avatar == ''){
 				                	comment.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg' + ')'};
@@ -34,10 +37,13 @@
 				                
 				            });
 
-				            $scope.comment_list = data;
-							$scope.loadingmore = false;
+				            $scope.comment_list = comments;
+							$scope.loadingmore = data.hasMore;
 				            $scope.$apply();
 				            $scope.$broadcast('scroll.refreshComplete');
+				            currentPage = ++currentPage;
+
+				            inited = true;
 				        },
 				        error : function(data) {
 				        	$scope.comment_list = [];
@@ -49,26 +55,44 @@
 
 				},
 				more : function() {
-					
-					// if ($scope.loadingmore) {
-					// 	var comment_list = [];
-					// 	for (var i = 0; i < 10; i++) {
-					// 		comment_list.push({
-					// 			id : "123",
-					// 			nick : "more",
-					// 			comment : "好图片啊！",
-					// 			time : "04-19 18:50",
-					// 			photo : "img/1.png",
-					// 			img : "img/2.png"
-					// 		});
+					if (inited && $scope.loadingmore) {
+						Here.api.get(api, {
+								username: $stateParams.username,
+						page: currentPage
+							}, {
+								success : function(data) {
+									
+									var comments = data.comments;
+						            comments.forEach(function(comment){
+						                comment.photo_background = {'background-image': 'url(' +Here.serverAddress + '&c=api&a=img&hash=' + comment.hash + ')'};
+						                if(comment.avatar == ''){
+						                	comment.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg' + ')'};
+						                }else{
+						                	comment.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=' + comment.avatar + ')'};
+						                }
+						                
+						            });
 
-					// 	}
-					// 	$scope.comment_list = $scope.comment_list.concat(comment_list);
-						
-						
-					// 	$scope.loadingmore = false;
-					// }
-					// $scope.$broadcast('scroll.infiniteScrollComplete');
+						            $scope.comment_list = $scope.comment_list.concat(comments);
+									$scope.loadingmore = data.hasMore;
+						            $scope.$apply();
+						            // $scope.$broadcast('scroll.refreshComplete');
+
+									setTimeout(function(){
+										$scope.loadingmore && $scope.$broadcast('scroll.infiniteScrollComplete');
+									}, 100);
+									currentPage = ++currentPage;
+								},
+								error : function(data) {
+									console.log(data);
+									$scope.loadingmore = false;
+									$scope.$apply();
+									$scope.$broadcast('scroll.refreshComplete');
+								}
+							});
+					}else{
+						$scope.$broadcast('scroll.infiniteScrollComplete');
+					}
 
 				}
 			}
