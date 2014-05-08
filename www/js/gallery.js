@@ -4,7 +4,7 @@
 	.controller('galleryLocalController', function($scope, $stateParams, $controller, $ionicActionSheet, $ionicPopup) {
 		$scope.item_width = document.body.clientWidth / 2;
 		$scope.onItemClick = function(id){
-			location.href="#/detail?groupId="+id+"&native=true";
+			location.href="#/list?groupId="+id+"&native=true";
 		}
 		var groups = [];
 		var webdb = Utils.NATIVE.webdb;

@@ -12,7 +12,7 @@
 					<div class="slider-container" ng-controller="RecommendCollection">
 						<ion-slide-box class="tab-slide recommend-collection" on-slide-changed="slide()">
 							<ion-slide ng-repeat="recommend in recommends">
-								<a href="#/detail?groupId={{recommend.id}}"><span style="background-image: url({{recommend.src}})" class="slide-img" ></span></a>
+								<a href="#/list?groupId={{recommend.id}}"><span style="background-image: url({{recommend.src}})" class="slide-img" ></span></a>
 							</ion-slide>
 						</ion-slide-box>
 						<p id="groupName">{{currentGroup}}</p>
@@ -20,7 +20,7 @@
 					<div class="local-list">
 						<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in hotgroups">
 							<div class="inner">
-								<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.photos[0]}}"  class="img"></span> </a>
+								<a href="#/list?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.photos[0]}}"  class="img"></span> </a>
 
 								<p>
 									{{group.name}}
@@ -41,7 +41,7 @@
 						<div class="local-list">
 							<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in besidegroups">
 								<div class="inner">
-									<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.photos[0]}}"  class="img"></span> </a>
+									<a href="#/list?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.photos[0]}}"  class="img"></span> </a>
 
 									<p>
 										{{group.name}}
@@ -63,7 +63,7 @@
 						<div class="local-list">
 							<div  class="list-item" style="width: {{screen_width/2}}px;height:{{screen_width/2}}px;" ng-repeat="group in collectgroups">
 								<div class="inner">
-									<a href="#/detail?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.cover}}"  class="img"></span> </a>
+									<a href="#/list?groupId={{group.id}}"> <span src-type="background" src-resize="{{group.cover}}"  class="img"></span> </a>
 									<p>
 										{{group.name}}
 										<a href="#/map?position={{group.longitude}},{{group.latitude}}" ng-show="group.longitude" class="icon ion-ios7-location"></a>

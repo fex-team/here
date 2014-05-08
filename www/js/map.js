@@ -123,7 +123,7 @@
 								// city : "北京",
 								time : group.time.split(' ')[0],
 								follow : group.count,
-								url : 'detail?groupId=' + group.id,
+								url : 'list?groupId=' + group.id,
 								photo : Here.serverAddress + '&c=api&a=img&hash=' + group.hash
 							}, $scope);
 

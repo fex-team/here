@@ -61,29 +61,33 @@
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
+				var item = {
+					$img : $(element[0]),
+					callback : function($img) {
+						var width = attrs.nativeSrcWidth || $img.width();
+						var height = attrs.nativeSrcHeight || $img.height();
 
-				$timeout(function() {
+						var type = attrs.nativeSrcType || "img";
+						(function(el) {
 
-					var width = attrs.nativeSrcWidth || $(element[0]).width();
-					var height = attrs.nativeSrcHeight || $(element[0]).height();
+							getBase64(attrs.nativeSrc, width, height, function(base64) {
 
-					var type = attrs.nativeSrcType || "img";
-					(function(el) {
+								if (type == "img") {
+									el.attr("src", base64);
+								} else if (type == "background") {
 
-						getBase64(attrs.nativeSrc, width, height, function(base64) {
+									el.css("background-image", "url(" + base64 + ")");
+								}
 
-							if (type == "img") {
-								el.attr("src", base64);
-							} else if (type == "background") {
-
-								el.css("background-image", "url(" + base64 + ")");
-							}
-
-						});
-					})(element);
-
+							});
+						})($img);
+					}
+				}
+				LazyLoad.addInQueue(item);
+				
+				element.on('$destroy', function() {
+					LazyLoad.removeFromQueue(item);
 				});
-
 			}
 		};
 	}).directive("srcResize", function($timeout) {

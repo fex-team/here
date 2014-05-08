@@ -24,20 +24,22 @@
 			icon="ion-loading-d"
 			distance="1%"></ion-infinite-scroll>
 			<ul class="list">
-				<li class="item" ng-repeat="item in list">
+				<li class="item" ng-show="item.show" ng-repeat="item in list">
 					<div class="inner">
+						
 						<span class="photo center_crop" src-type="background" src-resize="{{item.avatar}}"></span>
 						<span class="name">{{item.nickname}}</span>
 						<span class="time">{{item.time}}</span>
-						<div class="content">
-							<div class="img center_inside" src-type="background" src-resize="{{item.img}}"></div>
+						<div class="content" ng-switch on="item.offline">
+							<div ng-switch-when="false" class="img center_inside" src-type="background" src-resize="{{item.img}}"></div>
+							<div ng-switch-when="true" class="img center_inside" native-src="{{item.img}}" native-src-type='background'></div>
 						</div>
-						<div class="actionbar">
-							<a class="button button-icon icon ion-ios7-cloud-upload-outline" ng-show="item.offline"></a>
-							<a class="button button-icon icon ion-ios7-trash-outline" ng-show="item.my||item.offline"></a>
+						<div class="actionbar" >
+							<a class="button button-icon icon ion-ios7-cloud-upload-outline" ng-click="onAsync()" ng-show="item.offline"></a>
+							<a class="button button-icon icon ion-ios7-trash-outline" ng-click="onDel()" ng-show="item.my||item.offline"></a>
 						</div>
 					</div>
-					<div class="button-bar">
+					<div class="button-bar" ng-hide='item.offline'>
 						<a ng-click="openShare()" class="button icon-left ion-ios7-redo-outline button-clear">分享</a>
 						<a class="button  icon-left ion-ios7-chatbubble-outline button-clear">{{item.comments}}</a>
 						<a class="button icon-left ion-ios7-heart-outline button-clear" ng-class="item.liked">{{item.likes}}</a>

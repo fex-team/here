@@ -215,7 +215,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('list', {
-      url: "/list?groupId",
+      url: "/list?groupId&native",
       views:{
         'pager':{
           templateUrl: "templates/list.html"
