@@ -41,6 +41,7 @@
 							$scope.loadingmore = data.hasMore;
 				            $scope.$apply();
 				            $scope.$broadcast('scroll.refreshComplete');
+				            currentPage = ++currentPage;
 
 				            inited = true;
 				        },
@@ -54,7 +55,6 @@
 
 				},
 				more : function() {
-					
 					if (inited && $scope.loadingmore) {
 						Here.api.get(api, {
 								username: $stateParams.username,
