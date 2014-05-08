@@ -101,6 +101,8 @@
 						},
 						error : function(data) {
 							console.log(data);
+							$scope.loadingmore = false;
+							$scope.$apply();
 							$scope.$broadcast('scroll.refreshComplete');
 						}
 					});
@@ -110,6 +112,7 @@
 					
 				},
 				more : function() {
+
 					if (inited && $scope.loadingmore) {
 						Here.api.get('/api/get_group', {
 								groupId : groupId,
@@ -137,13 +140,14 @@
 								},
 								error : function(data) {
 									console.log(data);
-									// $scope.$broadcast('scroll.refreshComplete');
+									$scope.loadingmore = false;
+									$scope.$apply();
+									$scope.$broadcast('scroll.refreshComplete');
 								}
 							});
 					}else{
 						$scope.$broadcast('scroll.infiniteScrollComplete');
 					}
-
 
 				}
 			}
