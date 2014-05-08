@@ -72,15 +72,14 @@
 				
 			$scope.loadingmore = true;
 
-			var init = false;
-
-			
-			
+			var inited = false;
+			var currentPage = 1;
 
 			return {
 				init : function() {
 					Here.api.get('/api/get_group', {
-						groupId : groupId
+						groupId : groupId,
+						page: currentPage
 					}, {
 						success : function(data) {
 							var cover = {
@@ -93,9 +92,12 @@
 								offline:false
 							});
 							$scope.list = list;
-							$scope.loadingmore = true;
+							$scope.loadingmore = data.hasMore;
 							$scope.$apply();
 							$scope.$broadcast('scroll.refreshComplete');
+							currentPage = ++currentPage;
+
+							inited = true;
 						},
 						error : function(data) {
 							console.log(data);
@@ -108,27 +110,40 @@
 					
 				},
 				more : function() {
-
-					if ($scope.loadingmore) {
-						var list = [];
-						for (var i = 0; i < 10; i++) {
-							list.push({
-								id : "123",
-								nick : "威廉萌",
-								time : "04-19 18:50",
-								photo : "img/1.png",
-								liked : "stared",
-								likes : 123,
-								comment : 123,
-								img : "img/2.png"
-							})
-
-						}
-						$scope.list = $scope.list.concat(list);
-
-						$scope.loadingmore = false;
+					if (inited && $scope.loadingmore) {
+						Here.api.get('/api/get_group', {
+								groupId : groupId,
+								page: currentPage
+							}, {
+								success : function(data) {
+									var cover = {
+										id:data.id,
+										name:data.name,
+										userId:data.userId
+									};
+									$scope.cover = cover;
+									var list = getList(data.photos,{
+										offline:false
+									});
+									$scope.list = $scope.list.concat(list);
+									$scope.loadingmore = data.hasMore;
+									$scope.$apply();
+									// $scope.$broadcast('scroll.refreshComplete');
+									// 
+									setTimeout(function(){
+										$scope.loadingmore && $scope.$broadcast('scroll.infiniteScrollComplete');
+									}, 100);
+									currentPage = ++currentPage;
+								},
+								error : function(data) {
+									console.log(data);
+									// $scope.$broadcast('scroll.refreshComplete');
+								}
+							});
+					}else{
+						$scope.$broadcast('scroll.infiniteScrollComplete');
 					}
-					$scope.$broadcast('scroll.infiniteScrollComplete');
+
 
 				}
 			}
