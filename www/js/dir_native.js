@@ -1,5 +1,48 @@
 (function() {
 
+	var LazyLoad = (function() {
+		var imgQueue = [];
+
+		var height = $(window).height();
+
+		var width = $(window).width();
+
+		function removeItem(arr, item) {
+			var i;
+			while (( i = arr.indexOf(item)) !== -1) {
+				arr.splice(i, 1);
+			}
+		}
+
+		function loop() {
+			for (var i = 0; i < imgQueue.length; ++i) {
+				var item = imgQueue[i], offset = item.$img.offset();
+				if (offset.width > 0 && offset.height > 0 && offset.top < height && offset.left < width) {
+					item.callback(item.$img);
+					imgQueue.splice(i--, 1);
+
+				}
+			}
+
+		}
+
+		setInterval(function() {
+			loop();
+			console.info(imgQueue.length);
+		}, 1000);
+
+		return {
+
+			addInQueue : function(item) {
+				imgQueue.push(item);
+			},
+			removeFromQueue : function(item) {
+				removeItem(imgQueue, item);
+			}
+		}
+
+	})();
+
 	angular.module('nativeDirective', []).directive('nativeSrc', function($timeout) {
 
 		function getBase64(file, width, height, callback) {
@@ -44,24 +87,33 @@
 			}
 		};
 	}).directive("srcResize", function($timeout) {
+
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
-				var src = attrs.srcResize;
-				var ratio = window.devicePixelRatio || 1;
-				$timeout(function() {
-					var width = $(element[0]).width() * ratio;
+				var item = {
+					$img : $(element[0]),
+					callback : function($img) {
+						var src = attrs.srcResize;
+						var ratio = window.devicePixelRatio || 1;
+						var width = $img.width() * ratio;
 
-					var type = attrs.srcType || "img";
-					if (type == "img") {
-						element.attr("src", src + "&maxWidth=" + width);
-					} else if (type == "background") {
+						var type = attrs.srcType || "img";
+						if (type == "img") {
+							$img.attr("src", src + "&maxWidth=" + width);
+						} else if (type == "background") {
 
-						element.css({
-							"background-image" : "url(" + src + "&maxWidth=" + width + ")"
-						});
+							$img.css({
+								"background-image" : "url(" + src + "&maxWidth=" + width + ")"
+							});
 
+						}
 					}
+				};
+				LazyLoad.addInQueue(item);
+
+				element.on('$destroy', function() {
+					LazyLoad.removeFromQueue(item);
 				});
 
 			}
@@ -101,7 +153,7 @@
 				}
 				var $element = $(element[0]);
 				var $next = $element.next();
-				var top = $element.offset().top+$element.height();
+				var top = $element.offset().top + $element.height();
 				el.bind("scroll", function() {
 					var _top = $(this).scrollTop();
 					if (_top > top) {
@@ -117,5 +169,5 @@
 
 			}
 		};
-	})
+	});
 })();
