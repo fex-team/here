@@ -20,7 +20,7 @@
 
 			return {
 				init : function() {
-					
+					currentPage = 1;
 					Here.api.get(api, {
 						username: $stateParams.username,
 						page: currentPage

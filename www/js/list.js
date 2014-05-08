@@ -77,6 +77,7 @@
 
 			return {
 				init : function() {
+					currentPage = 1;
 					Here.api.get('/api/get_group', {
 						groupId : groupId,
 						page: currentPage
