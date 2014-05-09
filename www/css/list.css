@@ -13,6 +13,7 @@
 .page-list .inner{
 	margin: 5px;
 	position: relative;
+	display: block;
 }
 .page-list .photo{
 	width: 38px;

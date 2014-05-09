@@ -1,6 +1,8 @@
 (function() {
 	angular.module('List', ['ionic', 'hereApp.controllers', 'component.openPhoto']).controller('ListController', function($location, shareDialogAPI, $ionicActionSheet, $rootScope, $scope, $openPhoto, $stateParams, $controller,$ionicPopup,$ionicLoading) {
 
+		
+
 		var groupId = $stateParams['groupId'];
 
 		$scope.showdroplist = false;
@@ -32,6 +34,13 @@
 		$scope.openShare = function() {
 			
 			shareDialogAPI.open(false, this.item.img);
+			
+		}
+		
+		$scope.onItemClick = function(){
+			if(!this.item.offline){
+				location.href="#/page";
+			}
 		}
 		
 		$scope.onDel = function(){

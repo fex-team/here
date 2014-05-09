@@ -25,7 +25,7 @@
 				icon="ion-loading-d"
 				distance="1%"></ion-infinite-scroll>
 			<ul class="list">
-				<li class="item" ng-show="item.show" ng-repeat="item in list">
+				<li class="item" ng-click="onItemClick()" ng-show="item.show" ng-repeat="item in list">
 					<div class="inner">
 						
 						<span class="photo center_crop" src-type="background" src-resize="{{item.avatar}}"></span>
@@ -41,7 +41,7 @@
 						</div>
 					</div>
 					<div class="button-bar" ng-hide='item.offline'>
-						<a ng-click="openShare()" class="button icon-left ion-ios7-redo-outline button-clear">分享</a>
+						<a ng-click="openShare();$event.stopPropagation();" class="button icon-left ion-ios7-redo-outline button-clear">分享</a>
 						<a class="button  icon-left ion-ios7-chatbubble-outline button-clear">{{item.comments}}</a>
 						<a class="button icon-left ion-ios7-heart-outline button-clear" ng-class="item.liked">{{item.likes}}</a>
 					</div>
