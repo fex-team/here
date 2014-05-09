@@ -11,7 +11,7 @@
 
 		$scope.loading = (function() {
 			
-			$scope.loadingmore = true;
+			$scope.loadingmore = false;
 			
 			var inited = false;
 			var currentPage = 1;
@@ -53,13 +53,6 @@
 						}
 					});
 					
-				},
-				moreDataCanBeLoaded: function(){
-					if(inited){
-						return true;
-					}
-
-					return false;
 				},
 				more : function() {
 					if (inited && $scope.loadingmore) {

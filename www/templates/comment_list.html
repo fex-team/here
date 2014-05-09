@@ -10,7 +10,7 @@
 		pulling-text="Pull to refresh..."
 		on-refresh="loading.init()"></ion-refresher>
 		<ion-infinite-scroll
-		ng-if="loading.moreDataCanBeLoaded()"
+		ng-if="loadingmore"
 		on-infinite="loading.more()"
 		icon="ion-loading-d"
 		distance="1%"></ion-infinite-scroll>
