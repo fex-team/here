@@ -17,12 +17,13 @@
 
 		<ion-content has-header="true" >
 			<ion-refresher
-
-			on-refresh="loading.init()"></ion-refresher>
+				pulling-text="Pull to refresh..."
+				on-refresh="loading.init()"></ion-refresher>
 			<ion-infinite-scroll
-			on-infinite="loading.more()"
-			icon="ion-loading-d"
-			distance="1%"></ion-infinite-scroll>
+				ng-if="loading.moreDataCanBeLoaded()"
+				on-infinite="loading.more()"
+				icon="ion-loading-d"
+				distance="1%"></ion-infinite-scroll>
 			<ul class="list">
 				<li class="item" ng-show="item.show" ng-repeat="item in list">
 					<div class="inner">

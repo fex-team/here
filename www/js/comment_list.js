@@ -40,7 +40,10 @@
 				            $scope.comment_list = comments;
 							$scope.loadingmore = data.hasMore;
 				            $scope.$apply();
+				            
 				            $scope.$broadcast('scroll.refreshComplete');
+							$scope.$broadcast('scroll.infiniteScrollComplete');
+							
 				            currentPage = ++currentPage;
 
 				            inited = true;
@@ -53,6 +56,13 @@
 				        }
 				    });
 
+				},
+				moreDataCanBeLoaded: function(){
+					if(inited){
+						return true;
+					}
+
+					return false;
 				},
 				more : function() {
 					if (inited && $scope.loadingmore) {

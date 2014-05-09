@@ -28,7 +28,7 @@
 
 		setInterval(function() {
 			loop();
-			console.info(imgQueue.length);
+			// console.info(imgQueue.length);
 		}, 1000);
 
 		return {

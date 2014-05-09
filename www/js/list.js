@@ -177,10 +177,11 @@
 							$scope.loadingmore = false;
 							$scope.$apply();
 							$scope.$broadcast('scroll.refreshComplete');
-							
-							
 						});
 					});
+				},
+				moreDataCanBeLoaded: function(){
+
 				},
 				more:function(){
 					
@@ -214,15 +215,15 @@
 				});
 				return res;
 			}
-
-
-			$scope.loadingmore = true;
+				
+			$scope.loadingmore = false;
 
 			var inited = false;
 			var currentPage = 1;
 
 			return {
 				init : function() {
+					currentPage = 1;
 					Here.api.get('/api/get_group', {
 						groupId : groupId,
 						page : currentPage
@@ -244,7 +245,10 @@
 								$scope.list = list;
 								$scope.loadingmore = data.hasMore;
 								$scope.$apply();
+
 								$scope.$broadcast('scroll.refreshComplete');
+								$scope.$broadcast('scroll.infiniteScrollComplete');
+
 								currentPage = ++currentPage;
 
 								inited = true;
@@ -253,43 +257,55 @@
 						},
 						error : function(data) {
 							console.log(data);
+							$scope.loadingmore = false;
+							$scope.$apply();
 							$scope.$broadcast('scroll.refreshComplete');
 						}
 					});
+										
+				},
+				moreDataCanBeLoaded: function(){
+					if(inited){
+						return true;
+					}
 
+					return false;
 				},
 				more : function() {
+
 					if (inited && $scope.loadingmore) {
 						Here.api.get('/api/get_group', {
-							groupId : groupId,
-							page : currentPage
-						}, {
-							success : function(data) {
-								var cover = {
-									id : data.id,
-									name : data.name,
-									userId : data.userId
-								};
-								$scope.cover = cover;
-								var list = getList(data.photos, {
-									offline : false
-								});
-								$scope.list = $scope.list.concat(list);
-								$scope.loadingmore = data.hasMore;
-								$scope.$apply();
-								// $scope.$broadcast('scroll.refreshComplete');
-								//
-								setTimeout(function() {
-									$scope.loadingmore && $scope.$broadcast('scroll.infiniteScrollComplete');
-								}, 100);
-								currentPage = ++currentPage;
-							},
-							error : function(data) {
-								console.log(data);
-								// $scope.$broadcast('scroll.refreshComplete');
-							}
-						});
-					} else {
+								groupId : groupId,
+								page: currentPage
+							}, {
+								success : function(data) {
+									var cover = {
+										id:data.id,
+										name:data.name,
+										userId:data.userId
+									};
+									$scope.cover = cover;
+									var list = getList(data.photos,{
+										offline:false
+									});
+									$scope.list = $scope.list.concat(list);
+									$scope.loadingmore = data.hasMore;
+									$scope.$apply();
+									// $scope.$broadcast('scroll.refreshComplete');
+									// 
+									setTimeout(function(){
+										$scope.loadingmore && $scope.$broadcast('scroll.infiniteScrollComplete');
+									}, 100);
+									currentPage = ++currentPage;
+								},
+								error : function(data) {
+									console.log(data);
+									$scope.loadingmore = false;
+									$scope.$apply();
+									$scope.$broadcast('scroll.refreshComplete');
+								}
+							});
+					}else{
 						$scope.$broadcast('scroll.infiniteScrollComplete');
 					}
 
@@ -302,6 +318,7 @@
 			var loading = $stateParams['native']=="true"?LocalAlbumLoading:NetworkAlbumLoading;
 			return {
 				init : loading.init,
+				moreDataCanBeLoaded : loading.moreDataCanBeLoaded,
 				more : loading.more
 			}
 

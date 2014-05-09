@@ -46,7 +46,7 @@
             $scope.updateUserInfo( JSON.parse(localStorage.getItem('here_userInfo')) );
         }
 
-        Here.isLogin && Here.api.get('/api/get_user', {
+        Here.isLogin && username && Here.api.get('/api/get_user', {
             username : username
         }, {
             success : function(data) {

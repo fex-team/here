@@ -13,28 +13,46 @@
                     'sex': user.sex ? user.sex : '',
                     'city': (user.city ? user.city : ''),
                     'intro': user.intro,
-                    'birthday':user.birthday
+                    'birthday': user.birthday
                 };
+
+                //执行提交
+                var doPost = function(){
+                    var loading = $ionicLoading.show({
+                        content: '保存中...',
+                    });
+                    Here.api.post('/user/update', postData, {
+                        success : function(data) {
+                            loading.hide();
+                            $state.go('person_detail');
+                        },
+                        error : function(data) {
+                            loading.hide();
+                            $ionicPopup.alert({
+                                title: '警告',
+                                content: data.message
+                            });
+                        }
+                    });
+                };
+
+                var avatarImage;
 
                 if( /data:/.test(user.avatar) ){
                     postData.avatar = user.avatar;
+
+                    // 取头像尺寸
+                    avatarImage = new Image();
+                    avatarImage.onload = function(){
+                        postData.avatarSize = avatarImage.width + 'X' + avatarImage.height;
+                        doPost();
+                    };
+                    avatarImage.src = user.avatar;
+                }else{
+                    doPost();
                 }
-				var loading = $ionicLoading.show({
-			      content: '保存中...',
-			    });
-				Here.api.post('/user/update', postData, {
-					success : function(data) {
-						loading.hide();
-						$state.go('person_detail');
-					},
-					error : function(data) {
-						loading.hide();
-						$ionicPopup.alert({
-                            title: '警告',
-                            content: data.message
-                        });
-					}
-				});
+
+				
 			}
 		}];
 		
