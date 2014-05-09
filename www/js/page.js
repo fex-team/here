@@ -4,7 +4,7 @@
 
 
 		Here.api.get('/api/get_photo', {
-					hash : $stateParams.hash
+					id : $stateParams.id
 				}, {
 					success : function(photo) {
 						photo['src'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.hash ;
