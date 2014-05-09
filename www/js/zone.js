@@ -43,7 +43,7 @@
 								$scope.user.avatar = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
 						}*/
 			
-
+			$rootScope.$broadcast('userInfoUpdate', userData);
 		};
 
 		// TODO 取操作放在common server中
@@ -73,7 +73,6 @@
 			username : username
 		}, {
 			success : function(data) {
-				console.info(data);
 				$scope.updateUserInfo( data );
 				$scope.$apply();
 				localStorage.setItem( 'here_userInfo', JSON.stringify(data) );

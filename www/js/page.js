@@ -97,7 +97,6 @@
 			if (/^\#\/page[^_]/.test(location.hash)) {
 				$scope.showPblish = false;
 				$scope.showPage = true;
-				$scope.$apply();
 			}
 		}
 		

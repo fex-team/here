@@ -40,7 +40,7 @@
 					
 					<p class="img-wrap" ng-switch on="photo.type"> 
 						<font ng-switch-when="native" class="img" style="height:{{screen_width/16*9}}px;" native-src="{{photo.src}}" native-src-type='background'></font> 
-						<a href="#/page?hash={{photo.hash}}"><span ng-switch-default class="img" style="height:{{screen_width/16*9}}px;" src-type="background" src-resize="{{photo.src}}"></span></a>
+						<a href="#/page?id={{photo.id}}"><span ng-switch-default class="img" style="height:{{screen_width/16*9}}px;" src-type="background" src-resize="{{photo.src}}"></span></a>
 					</p>
 					<p class="time"><span>{{photo.time}}</span></p>
 					<p class="actions" >

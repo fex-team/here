@@ -49,4 +49,10 @@ angular.module('hereApp.controllers', []).controller('MainCtrl', function($scope
 	$rootScope.$on('$stateChangeSuccess', function(){
 		$ionicSideMenuDelegate.close($scope);
 	});
+
+	$rootScope.$on('userInfoUpdate', function(e, userInfo){
+		$scope.nickname = userInfo.nickname;
+		$scope.username = userInfo.username;
+		$scope.avatar = Here.serverAddress + '&c=api&a=img&hash=' + userInfo.avatar;
+	});
 });

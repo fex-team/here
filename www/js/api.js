@@ -1,9 +1,7 @@
 Here = window.Here || {};
 
-// Here.serverAddress = /hereapp/.test(location.href) ? 'http://hereapp.duapp.com/here/?m=here' : 'http://172.22.72.131/end/here/?m=here';
+Here.serverAddress = /hereapp/.test(location.href) ? 'http://hereapp.duapp.com/here/?m=here' : 'http://localhost/end/here/?m=here';
 
-Here.serverAddress = 'http://hereapp.duapp.com/here/?m=here';
-// Here.serverAddress = 'http://localhost/end/here/?m=here';
 Here.api = {
     /**
      * 获取数据的接口
@@ -42,9 +40,13 @@ Here.api = {
         url = '&c=' + url.split('/')[1] + '&a=' + url.split('/')[2];
         
         url += "&_t=" + Date.now();
-		
-		$.post(Here.serverAddress + url,input,function(response){
-			if ( 1 === response.no ) {
+
+        $.ajax({
+            url: Here.serverAddress + url,
+            type: 'POST',
+            data: input,
+            success: function( response ) {
+                if ( 1 === response.no ) {
                     if ( $.isFunction(callbacks.success) ) {
                         callbacks.success( response.data );
                     }
@@ -53,41 +55,25 @@ Here.api = {
                         callbacks.error( response.data );
                     }
                 }
-		},'json');
-		
-        /*
-        $.ajax({
-                    url: Here.serverAddress + url,
-                    type: 'GET',
-                    data: input,
-                    success: function( response ) {
-                        if ( 1 === response.no ) {
-                            if ( $.isFunction(callbacks.success) ) {
-                                callbacks.success( response.data );
-                            }
-                        }else {
-                            if ( $.isFunction(callbacks.error) ) {
-                                callbacks.error( response.data );
-                            }
-                        }
-                    },
-                    dataType: "json"
-                });*/
-        
+            },
+            dataType: "json"
+            // xhrFields: {
+            //     withCredentials: true
+            // }
+        });
     }
 };
 
 window.getAvatar = function(avatar) {
-	var res;
-	if (avatar == '') {
-		res = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
-	} else {
-		res = Here.serverAddress + '&c=api&a=img&hash=' + avatar;
-	}
-	return res;
+    var res;
+    if (avatar == '') {
+        res = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+    } else {
+        res = Here.serverAddress + '&c=api&a=img&hash=' + avatar;
+    }
+    return res;
 }
 
 window.getImg = function(hash){
-	return Here.serverAddress + '&c=api&a=img&hash=' + hash;
+    return Here.serverAddress + '&c=api&a=img&hash=' + hash;
 }
-

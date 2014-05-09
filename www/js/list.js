@@ -236,10 +236,14 @@
 
 			var inited = false;
 			var currentPage = 1;
+			var first = true;
+			var isLoading = false;
 
 			return {
 				init : function() {
+					isLoading = true;
 					currentPage = 1;
+					first = true;
 					Here.api.get('/api/get_group', {
 						groupId : groupId,
 						page : currentPage
@@ -267,7 +271,11 @@
 
 								currentPage = ++currentPage;
 
-								inited = true;
+								setTimeout(function(){
+					            	isLoading = false;
+					            	inited = true;
+					            }, 200);
+					            first = false;
 							});
 
 						},
@@ -281,7 +289,7 @@
 										
 				},
 				moreDataCanBeLoaded: function(){
-					if(inited){
+					if(inited || first){
 						return true;
 					}
 
@@ -289,7 +297,8 @@
 				},
 				more : function() {
 
-					if (inited && $scope.loadingmore) {
+					if (inited && $scope.loadingmore && !isLoading) {
+						isLoading = true;
 						Here.api.get('/api/get_group', {
 								groupId : groupId,
 								page: currentPage
@@ -310,6 +319,7 @@
 									// $scope.$broadcast('scroll.refreshComplete');
 									// 
 									setTimeout(function(){
+										isLoading = false;
 										$scope.loadingmore && $scope.$broadcast('scroll.infiniteScrollComplete');
 									}, 100);
 									currentPage = ++currentPage;
