@@ -262,4 +262,5 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
                         '</div>'+
                     '</div>'
     };
-})
+});
+

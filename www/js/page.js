@@ -252,6 +252,7 @@
 								photoId : $scope.photo.id
 							}, {
 								success : function(comments) {
+									comments = comments||[];
 									comments.forEach(function(comment){
 										if( comment.avatar == '' ){
 											comment['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
@@ -308,6 +309,7 @@
 								photoId : $scope.photo.id
 							}, {
 								success : function(likes) {
+									likes = likes || [];
 									likes.forEach(function(like){
 										if( like.avatar == '' ){
 											like['avatar'] = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';

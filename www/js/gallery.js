@@ -141,10 +141,11 @@
 				}, {
 					success : function(data) {
 						$scope.element.find('loading').remove();
-						data.forEach(function(group){
+						console.info(data);
+						data.groups.forEach(function(group){
 							group.src = Here.serverAddress + '&c=api&a=img&hash=' + group.hash;
 						});
-						$scope.groups = data;
+						$scope.groups = data.groups;
 						$scope.$apply();
 					},
 					error : function(data) {

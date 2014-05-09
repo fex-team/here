@@ -31,6 +31,7 @@
 			$scope.user.likes = userData.likes || 0;
 			$scope.user.nickname = userData.nickname;
 			$scope.user.username = userData.username;
+			$scope.user.avatar = getAvatar(userData.avatar);
 
 			/*
 			if (userData.avatar && userData.avatar.length > 0){
@@ -72,6 +73,7 @@
 			username : username
 		}, {
 			success : function(data) {
+				console.info(data);
 				$scope.updateUserInfo( data );
 				$scope.$apply();
 				localStorage.setItem( 'here_userInfo', JSON.stringify(data) );

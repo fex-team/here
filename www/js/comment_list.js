@@ -5,7 +5,11 @@
 		var api = $stateParams.type == 'receiver' ? '/api/get_received_comments' : '/api/get_posted_comments';
 
 		$scope.onItemClick = function() {
-			
+			location.href="#/page?id="+this.comment.id;
+		}
+		
+		$scope.onAvatarClick = function(){
+			location.href="#/user?username="+this.comment.username;
 		}
 
 		$scope.loading = (function() {
@@ -26,14 +30,13 @@
 						page: currentPage
 					}, {
 				        success : function(data) {
+				        	
 				        	var comments = data.comments;
 				            comments.forEach(function(comment){
-				                comment.photo_background = {'background-image': 'url(' +Here.serverAddress + '&c=api&a=img&hash=' + comment.hash + ')'};
-				                if(comment.avatar == ''){
-				                	comment.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg' + ')'};
-				                }else{
-				                	comment.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=' + comment.avatar + ')'};
-				                }
+						            	
+				                comment.photo =  getImg(comment.hash);
+				                comment.avatar = getAvatar(comment.avatar);
+				                
 				                
 				            });
 
@@ -74,12 +77,10 @@
 									
 									var comments = data.comments;
 						            comments.forEach(function(comment){
-						                comment.photo_background = {'background-image': 'url(' +Here.serverAddress + '&c=api&a=img&hash=' + comment.hash + ')'};
-						                if(comment.avatar == ''){
-						                	comment.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg' + ')'};
-						                }else{
-						                	comment.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=' + comment.avatar + ')'};
-						                }
+						            	
+						                comment.photo =  getImg(comment.hash);
+						                comment.avatar = getAvatar(comment.avatar);
+						                
 						                
 						            });
 

@@ -84,34 +84,42 @@
 					}
 				}
 				LazyLoad.addInQueue(item);
-				
+
 				element.on('$destroy', function() {
 					LazyLoad.removeFromQueue(item);
 				});
 			}
 		};
-	}).directive("srcResize", function($timeout) {
+	}).directive("srcResize", function($timeout,$sce) {
+
+		function load($img, src,srcType) {
+			var ratio = window.devicePixelRatio || 1;
+			var width = $img.width() * ratio;
+
+			var type = srcType || "img";
+			if (type == "img") {
+				$img.attr("src", src + "&maxWidth=" + width);
+			} else if (type == "background") {
+
+				$img.css({
+					"background-image" : "url(" + src + "&maxWidth=" + width + ")"
+				});
+
+			}
+		}
 
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {
+
 				var item = {
 					$img : $(element[0]),
 					callback : function($img) {
-						var src = attrs.srcResize;
-						var ratio = window.devicePixelRatio || 1;
-						var width = $img.width() * ratio;
 
-						var type = attrs.srcType || "img";
-						if (type == "img") {
-							$img.attr("src", src + "&maxWidth=" + width);
-						} else if (type == "background") {
+						load($img,attrs.srcResize,attrs.srcType);
+						
+						
 
-							$img.css({
-								"background-image" : "url(" + src + "&maxWidth=" + width + ")"
-							});
-
-						}
 					}
 				};
 				LazyLoad.addInQueue(item);

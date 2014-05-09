@@ -12,7 +12,7 @@
 				<div class="page-row1" >
 
 					<div class="row1-row1">
-						<span class="photo center_crop" style="background-image: url('{{photo.avatar}}')"></span>
+						<a href="#/user?username={{photo.username}}" class="photo center_crop" src-type="background" src-resize="{{photo.avatar}}"></a>
 						<div class="name">
 							{{photo.nickname}}
 						</div>
@@ -21,7 +21,7 @@
 						</div>
 					</div>
 					<div class="row1-row2">
-						<span class="img center_crop" style="background-image: url('{{photo.src}}')"></span>
+						<span class="img center_crop" src-type="background" src-resize="{{photo.src}}"></span>
 					</div>
 
 				</div>
@@ -35,8 +35,11 @@
 
 					<div class="row2-row2">
 						<div class="comment-list" ng-show='showlist=="comment"'>
+							<div class="empty" ng-show="commentList.length==0">
+								目前还没有评论哦~
+							</div>
 							<div class="comment-item" ng-repeat="comment in commentList">
-								<span class="photo center_crop" style="background-image: url('{{comment.avatar}}')"></span>
+								<a href="#/user?username={{comment.username}}" class="photo center_crop" src-type="background" src-resize="{{comment.avatar}}"></a>
 								<div class="right">
 									<span class="name">{{comment.nickname}}</span>
 									<div class="content">
@@ -50,10 +53,13 @@
 							<div class="ion-loading-d"  ng-show="showCommentLoading" ng-init="showCommentLoading=true"></div>
 						</div>
 						<div class="like-list" ng-show='showlist=="like"'>
-							<div class="like-item" ng-repeat="like in likeList">
-								<span class="photo center_crop" style="background-image: url('{{like.avatar}}')"></span>
-								{{like.nickname}}
+							<div class="empty" ng-show="likeList.length==0">
+								目前还没有赞哦~
 							</div>
+							<a href="#/user?username={{like.username}}" style="display: block;" class="like-item" ng-repeat="like in likeList">
+								<span class="photo center_crop" src-type="background" src-resize="{{like.avatar}}"></span>
+								{{like.nickname}}
+							</a>
 							<div class="ion-loading-d" ng-show="showLikeLoading" ng-init="showLikeLoading=true"></div>
 						</div>
 

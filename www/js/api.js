@@ -76,3 +76,18 @@ Here.api = {
         
     }
 };
+
+window.getAvatar = function(avatar) {
+	var res;
+	if (avatar == '') {
+		res = Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg';
+	} else {
+		res = Here.serverAddress + '&c=api&a=img&hash=' + avatar;
+	}
+	return res;
+}
+
+window.getImg = function(hash){
+	return Here.serverAddress + '&c=api&a=img&hash=' + hash;
+}
+

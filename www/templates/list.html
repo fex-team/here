@@ -28,13 +28,14 @@
 				<li class="item" ng-click="onItemClick()" ng-show="item.show" ng-repeat="item in list">
 					<div class="inner">
 						
-						<span class="photo center_crop" src-type="background" src-resize="{{item.avatar}}"></span>
+						
 						<span class="name">{{item.nickname}}</span>
 						<span class="time">{{item.time}}</span>
 						<div class="content" ng-switch on="item.offline">
 							<div ng-switch-when="false" class="img center_inside" src-type="background" src-resize="{{item.img}}"></div>
 							<div ng-switch-when="true" class="img center_inside" native-src="{{item.img}}" native-src-type='background'></div>
 						</div>
+						<span ng-click="onAvatarClick();$event.stopPropagation();" class="photo center_crop" src-type="background" src-resize="{{item.avatar}}"></span>
 						<div class="actionbar" >
 							<a class="button button-icon icon ion-ios7-cloud-upload-outline" ng-click="onAsync()" ng-show="item.offline"></a>
 							<a class="button button-icon icon ion-ios7-trash-outline" ng-click="onDel()" ng-show="item.my||item.offline"></a>

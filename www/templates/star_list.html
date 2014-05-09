@@ -15,9 +15,10 @@
 			icon="ion-loading-d"
 			distance="1%"></ion-infinite-scroll>
 		<ul class="list">
-			<li class="item" ng-repeat="like in like_list">
-				<span class="photo center_crop left" ng-style="like.avatar_background"></span>
-				<span class="photo center_crop right" ng-style="like.photo_background"></span>
+			<li class="item" ng-repeat="like in like_list" ng-click="onItemClick()">
+				
+				
+				<span class="photo center_crop right" src-type="background" src-resize="{{like.photo}}"></span>
 				<div class="center">
 					<div class="name">
 						{{like.nickname}}
@@ -29,6 +30,8 @@
 						{{like.time}}
 					</div>
 				</div>
+				<span ng-click="onAvatarClick();$event.stopPropagation();" class="photo center_crop left" src-type="background" src-resize="{{like.avatar}}"></span>
+				
 			</li>
 			<li class="item" ng-show="loadingmore">
 				<div class="ion-loading-d"></div>

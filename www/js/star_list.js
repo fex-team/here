@@ -2,7 +2,11 @@
 	angular.module('likeList', ['ionic', 'hereApp.controllers', 'component.openPhoto']).controller('likeListController', function($location,shareDialogAPI, $ionicActionSheet, $rootScope, $scope, $openPhoto, $stateParams, $controller) {
 
 		$scope.onItemClick = function() {
-			
+			location.href="#/page?id="+this.like.id;
+		}
+		
+		$scope.onAvatarClick = function(){
+			location.href="#/user?username="+this.like.username;
 		}
 
 		$scope.loading = (function() {
@@ -21,15 +25,11 @@
 						page: currentPage
 					}, {
 						success : function(data) {
+							
 							var likes = data.likes;
 							likes.forEach(function(like){
-				                like.photo_background = {'background-image': 'url(' +Here.serverAddress + '&c=api&a=img&hash=' + like.hash + '&maxWidth=' + 77 * devicePixelRatio +  ')'};
-				                if(like.avatar == ''){
-				                	like.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg' + ')'};
-				                }else{
-				                	like.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=' + like.avatar + ')'};
-				                }
-				                
+								like.photo =  getImg(like.hash);
+				                like.avatar = getAvatar(like.avatar);
 				            });
 
 				            $scope.like_list = likes;
@@ -68,14 +68,11 @@
 							page: currentPage
 						}, {
 							success : function(data) {
+								
 								var likes = data.likes;
 								likes.forEach(function(like){
-					                like.photo_background = {'background-image': 'url(' +Here.serverAddress + '&c=api&a=img&hash=' + like.hash + '&maxWidth=' + 77 * devicePixelRatio +  ')'};
-					                if(like.avatar == ''){
-					                	like.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=/avatar.jpg' + ')'};
-					                }else{
-					                	like.avatar_background = {'background-image': 'url(' + Here.serverAddress + '&c=api&a=img&hash=' + like.avatar + ')'};
-					                }
+					                like.photo =  getImg(like.hash);
+				                	like.avatar = getAvatar(like.avatar);
 					                
 					            });
 

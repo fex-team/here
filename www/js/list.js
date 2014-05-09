@@ -37,9 +37,16 @@
 			
 		}
 		
+		$scope.onAvatarClick = function(){
+			
+			if(!this.item.offline){
+				location.href="#/user?username="+this.item.username;
+			}
+		}
+		
 		$scope.onItemClick = function(){
 			if(!this.item.offline){
-				location.href="#/page";
+				location.href="#/page?id="+this.item.id;
 			}
 		}
 		
