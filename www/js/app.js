@@ -183,7 +183,7 @@ angular.module('hereApp', ['ionic', 'hereApp.services', 'hereApp.controllers','n
       }
       
     }).state('page', {
-      url: "/page?hash",
+      url: "/page?id",
       views:{
         'pager':{
           templateUrl: "templates/page.html"
