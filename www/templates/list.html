@@ -25,7 +25,7 @@
 				icon="ion-loading-d"
 				distance="1%"></ion-infinite-scroll>
 			<ul class="list">
-				<li class="item" ng-click="onItemClick()" ng-show="item.show" ng-repeat="item in list">
+				<li class="item" ng-click="onItemClick()" ng-show="item.show" ng-repeat="item in list track by $index">
 					<div class="inner">
 						
 						
@@ -38,7 +38,7 @@
 						<span ng-click="onAvatarClick();$event.stopPropagation();" class="photo center_crop" src-type="background" src-resize="{{item.avatar}}"></span>
 						<div class="actionbar" >
 							<a class="button button-icon icon ion-ios7-cloud-upload-outline" ng-click="onAsync()" ng-show="item.offline"></a>
-							<a class="button button-icon icon ion-ios7-trash-outline" ng-click="onDel()" ng-show="item.my||item.offline"></a>
+							<a class="button button-icon icon ion-ios7-trash-outline" ng-click="onDel();$event.stopPropagation();" ng-show="item.my||item.offline"></a>
 						</div>
 					</div>
 					<div class="button-bar" ng-hide='item.offline'>

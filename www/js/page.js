@@ -15,8 +15,6 @@
 							photo['avatar'] = Here.serverAddress + '&c=api&a=img&hash=' + photo.avatar;
 						}
 
-						photo.likeed = 'likeed';
-
 						$scope.photo = photo;
 						commentLoading.init();
 					},
@@ -33,6 +31,10 @@
 				$scope.onPublish();
 			}
 		}];
+
+		$scope.commentList = [];
+		$scope.likeList = [];
+
 		
 		$scope.onPublish = function(){
 
@@ -113,7 +115,7 @@
 		}
 
 		$scope.onLike = function(){
-			if(this.photo.likeed == "likeed"){
+			if(this.photo.liked == "liked"){
 				$ionicPopup.alert({
 					title: '警告',
 	          		content: '您已赞过'
@@ -144,7 +146,7 @@
 					});
 					$scope.photo.likes = ++$scope.photo.likes;
 					$scope.switchTab("like");
-					this.photo.likeed == "likeed";
+					$scope.photo.liked = "liked";
 					$scope.$apply();
 				},
 				error : function(data) {

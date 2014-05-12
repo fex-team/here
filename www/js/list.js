@@ -58,8 +58,37 @@
 			}).then(function(res) {
 				if(res){
 					
-					me.item.offline && Utils.NATIVE.webdb.deleteById(me.item.id);	
-					me.item.show = false;
+					if( me.item.offline ){
+						Utils.NATIVE.webdb.deleteById(me.item.id);	
+						me.item.show = false;
+					}else{
+						Here.api.get('/api/del_photo', {
+								id : me.item.id
+							}, {
+								success : function(data) {
+
+									//TODO bug apply之后不能改变图片src
+									// console.log($scope.list);
+									// $scope.list.forEach(function(item, index){
+									// 	if(item.id == me.item.id){
+									// 		$scope.list = $scope.list.slice(0, index).concat( $scope.list.slice(index+1, $scope.list.length) );
+									// 	}
+									// });
+
+									me.item.show = false;
+
+									console.log($scope.list);
+
+									// $scope.$apply();
+								},
+								error : function(data) {
+									$ionicPopup.alert({
+										title: '警告',
+						          		content: '删除失败，请重试'
+									})
+								}
+							});
+					}
 				}
 				
 				
@@ -213,7 +242,7 @@
 			function getList(arr, merge) {
 				merge = merge || {};
 				var res = [];
-				arr.forEach(function(photo) {
+				arr.length > 0 && arr.forEach(function(photo) {
 					res.push(angular.extend({
 						id : photo.id,
 						nickname : photo.nickname,
