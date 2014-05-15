@@ -164,4 +164,4 @@ var ratio = window.devicePixelRatio || 1;
 
 }).controller('HotGroup', function($scope){
     
-})
+});

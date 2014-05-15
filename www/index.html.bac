@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>Ionic Seed App</title>
+		
+		<!-- ionic css -->
+		<!-- <link href="lib/css/ionic.css" rel="stylesheet"> -->
+		<!-- <link href="lib/mobiscroll/css/mobiscroll.scroller.css" rel="stylesheet">
+		<link href="lib/mobiscroll/css/mobiscroll.scroller.ios7.css" rel="stylesheet">
+		<link href="lib/mobiscroll/css/mobiscroll.animation.css" rel="stylesheet"> -->
+		<!-- your app's css 
+		<link href="css/component/openshare.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
+		<link href="css/sidemenu.css" rel="stylesheet">
+		<link href="css/login.css" rel="stylesheet">
+		<link href="css/home.css" rel="stylesheet">
+		<link href="css/setting.css" rel="stylesheet">
+		<link href="css/capture.css" rel="stylesheet">
+		<link href="css/about_us.css" rel="stylesheet">
+		<link href="css/detail.css" rel="stylesheet">
+		<link href="css/map.css" rel="stylesheet">
+		<link href="css/zone.css" rel="stylesheet">
+		<link href="css/person_detail.css" rel="stylesheet">
+		<link href="css/person_edit.css" rel="stylesheet">
+		<link href="css/gallery.css" rel="stylesheet">
+		<link href="css/sync.css" rel="stylesheet">
+		<link href="css/page.css" rel="stylesheet">
+		<link href="css/star_list.css" rel="stylesheet">
+		<link href="css/comment_list.css" rel="stylesheet">
+		<link href="css/list.css" rel="stylesheet">-->
+
+		<link rel="stylesheet" type="text/css" href="dest/ionic-all.css">
+		<link rel="stylesheet" type="text/css" href="dest/mobiscroll.css">
+		<link rel="stylesheet" type="text/css" href="dest/app.min.css">
+
+		<!-- ionic/angularjs scripts
+		<script src="lib/js/ionic.bundle.js"></script>
+		<script src="lib/js/zepto.js"></script>
+
+		<script src="lib/js/md5.js"></script>
+		<script src="lib/js/cookie.js"></script>
+		<script src="lib/js/hammer.js"></script>
+		<script src="lib/js/gestures.js"></script>
+		<script src="lib/js/format.js"></script> -->
+		
+		<!-- <script src="lib/mobiscroll/js/mobiscroll.zepto.js"></script>
+		<script src="lib/mobiscroll/js/mobiscroll.core.js"></script>
+		<script src="lib/mobiscroll/js/mobiscroll.scroller.js"></script>
+		<script src="lib/mobiscroll/js/mobiscroll.datetime.js"></script>
+		<script src="lib/mobiscroll/js/mobiscroll.select.js"></script>
+		<script src="lib/mobiscroll/js/mobiscroll.scroller.ios7.js"></script>
+		<script src="lib/mobiscroll/js/i18n/mobiscroll.i18n.zh.js"></script>
+		<script src="lib/mobiscroll/js/mobiscroll.directive.js"></script> -->
+		<!-- cordova script (this will be a 404 during development)
+		
+
+		<!-- your app's script 
+		<script src="js/component/openPhoto.js"></script>
+		<script src="js/component/shareDialog.js"></script>
+		<script src="js/api.js"></script>
+		<script src="js/native.js"></script>
+		<script src="js/dir_native.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/home.js"></script>
+		<script src="js/page.js"></script>
+		<script src="js/detail.js"></script>
+		<script src="js/setting.js"></script>
+		<script src="js/register.js"></script>
+		<script src="js/person_detail.js"></script>
+		<script src="js/person_edit.js"></script>
+		<script src="js/login.js"></script>
+		<script src="js/capture.js"></script>
+		<script src="js/map.js"></script>
+		<script src="js/zone.js"></script>
+		<script src="js/gallery.js"></script>
+		<script src="js/sync.js"></script>
+		<script src="js/comments.js"></script>
+		<script src="js/star_list.js"></script>
+		<script src="js/comment_list.js"></script>
+		<script src="js/list.js"></script>-->
+
+		<script type="text/javascript" src="dest/zepto.js"></script>
+		<script type="text/javascript" src="dest/ionic.js"></script>
+		<script type="text/javascript" src="dest/lib.js"></script>
+		<script type="text/javascript" src="dest/mobiscroll.js"></script>
+		<script type="text/javascript" src="dest/app-all.js"></script>
+		<!-- <script src="cordova.js"></script> -->
+		
+	</head>
+	<body ng-app="hereApp" ng-controller="MainCtrl">
+
+		<ion-nav-view animation="slide-left-right" name="pager"></ion-nav-view>
+		
+	</body>
+	<script>
+		Array.prototype.remove = function(from, to) {
+			var rest = this.slice((to || from) + 1 || this.length);
+			this.length = from < 0 ? this.length + from : from;
+			return this.push.apply(this, rest);
+		}
+		window.addEventListener("load", function() {
+			document.addEventListener("deviceready", function() {
+				navigator.splashscreen.hide();
+			}, false);
+		}, false);
+
+	</script>
+</html>
